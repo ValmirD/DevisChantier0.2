@@ -108,7 +108,7 @@ public class MateriauDuChantierDB {
             insert = connexion.prepareStatement(
                     "Insert into MateriauDuChantier(idMateriauDuChantier, idChantier, idMateriau, debutDisponibilite, finDisponibilite, quantite) "
                     + "values(?, ?, ?, ?, ?, ?)");
-            insert.setInt(1, el.getId());
+            insert.setInt(1, num);
             insert.setInt(2, el.getIdChantier());
             insert.setInt(3, el.getIdMateriau());
             insert.setDate(4, el.getDebutDisponibilite());

@@ -147,7 +147,7 @@ public class CamionDB {
             insert = connexion.prepareStatement(
                     "Insert into Camion(idCamion, categorie, tonnage, capacite, location, marque, modele, numeroChassis, carburant, prixHtva, ctAmortMois) "
                     + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            insert.setInt(1, el.getId());
+            insert.setInt(1, num);
             insert.setString(2, el.getCategorie());
             insert.setInt(3, el.getTonnage());
             insert.setDouble(4, el.getCapacite());

@@ -104,7 +104,7 @@ public class CodeReferenceDuChantierDB {
             insert = connexion.prepareStatement(
                     "Insert into CodeReferenceDuChantier(idCodeReferenceDuChantier, idChantier, idCodeReference, quantite) "
                     + "values(?, ?, ?, ?)");
-            insert.setInt(1, el.getId());
+            insert.setInt(1, num);
             insert.setInt(2, el.getIdChantier());
             insert.setInt(3, el.getIdCodeReference());
             insert.setDouble(4, el.getQuantite());

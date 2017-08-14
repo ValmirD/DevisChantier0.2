@@ -106,7 +106,7 @@ public class PatronDB {
             insert = connexion.prepareStatement(
                     "Insert into Patron(idPatron, password, validationProjet) "
                     + "values(?, ?, ?)");
-            insert.setInt(1, el.getId());
+            insert.setInt(1, num);
             insert.setString(2, el.getPassword());
             insert.setBoolean(3, el.isValidationProjet());
             insert.executeUpdate();

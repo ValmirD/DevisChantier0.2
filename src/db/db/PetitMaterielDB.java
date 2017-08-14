@@ -140,7 +140,7 @@ public class PetitMaterielDB {
             insert = connexion.prepareStatement(
                     "Insert into PetitMateriel(idPetitMateriel, nom, type_, reference, prixHtva) "
                     + "values(?, ?, ?, ?, ?)");
-            insert.setInt(1, el.getId());
+            insert.setInt(1, num);
             insert.setString(2, el.getNom());
             insert.setString(3, el.getType());
             insert.setString(4, el.getReference());

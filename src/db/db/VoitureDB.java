@@ -135,7 +135,7 @@ public class VoitureDB {
             insert = connexion.prepareStatement(
                     "Insert into Voiture(idVoiture, attacheRemorque, marque, modele, numeroChassis, carburant, ctAmortMois) "
                     + "values(?, ?, ?, ?, ?, ?, ?)");
-            insert.setInt(1, el.getId());
+            insert.setInt(1, num);
             insert.setBoolean(2, el.isAttacheRemorque());
             insert.setString(3, el.getMarque());
             insert.setString(4, el.getModele());

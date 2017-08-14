@@ -118,7 +118,7 @@ public class DevisDB {
             insert = connexion.prepareStatement(
                     "Insert into Devis(idDevis, designationDevis, statut, dateDevis) "
                     + "values(?, ?, ?, ?)");
-            insert.setInt(1, el.getId());
+            insert.setInt(1, num);
             insert.setString(2, el.getDesignationDevis());
             insert.setString(3, el.getStatut());
             insert.setDate(4, el.getDateDevis());

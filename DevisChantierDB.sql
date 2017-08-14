@@ -250,26 +250,26 @@ create table SEQUENCES (
 	sValue numeric(10) not null
 	);
 
-Insert into SEQUENCES Values ('CAMION',1);
-Insert into SEQUENCES Values ('CAMIONDUCHANTIER',1);
-Insert into SEQUENCES Values ('CHANTIER',1);
-Insert into SEQUENCES Values ('CLIENT',1);
-Insert into SEQUENCES Values ('CODEREFERENCE',1);
-Insert into SEQUENCES Values ('CODEREFERENCEDUCHANTIER',1);
-Insert into SEQUENCES Values ('CONDUCTEUR',1);
-Insert into SEQUENCES Values ('CONDUCTEURDUCHANTIER',1);
-Insert into SEQUENCES Values ('DEVIS',1);
-Insert into SEQUENCES Values ('ENGIN',1);
-Insert into SEQUENCES Values ('ENGINDUCHANTIER',1);
-Insert into SEQUENCES Values ('MATERIAU',1);
-Insert into SEQUENCES Values ('MATERIAUDUCHANTIER',1);
-Insert into SEQUENCES Values ('OUVRIER',1);
-Insert into SEQUENCES Values ('OUVRIERDUCHANTIER',1);
-Insert into SEQUENCES Values ('PATRON',1);
-Insert into SEQUENCES Values ('PETITMATERIEL',1);
-Insert into SEQUENCES Values ('PETITMATERIELDUCHANTIER',1);
-Insert into SEQUENCES Values ('VOITURE',1);
-Insert into SEQUENCES Values ('VOITUREDUCHANTIER',1);
+Insert into SEQUENCES Values ('CAMION',2);
+Insert into SEQUENCES Values ('CAMIONDUCHANTIER',2);
+Insert into SEQUENCES Values ('CHANTIER',2);
+Insert into SEQUENCES Values ('CLIENT',2);
+Insert into SEQUENCES Values ('CODEREFERENCE',2);
+Insert into SEQUENCES Values ('CODEREFERENCEDUCHANTIER',2);
+Insert into SEQUENCES Values ('CONDUCTEUR',2);
+Insert into SEQUENCES Values ('CONDUCTEURDUCHANTIER',2);
+Insert into SEQUENCES Values ('DEVIS',2);
+Insert into SEQUENCES Values ('ENGIN',2);
+Insert into SEQUENCES Values ('ENGINDUCHANTIER',2);
+Insert into SEQUENCES Values ('MATERIAU',2);
+Insert into SEQUENCES Values ('MATERIAUDUCHANTIER',2);
+Insert into SEQUENCES Values ('OUVRIER',2);
+Insert into SEQUENCES Values ('OUVRIERDUCHANTIER',2);
+Insert into SEQUENCES Values ('PATRON',2);
+Insert into SEQUENCES Values ('PETITMATERIEL',2);
+Insert into SEQUENCES Values ('PETITMATERIELDUCHANTIER',2);
+Insert into SEQUENCES Values ('VOITURE',2);
+Insert into SEQUENCES Values ('VOITUREDUCHANTIER',2);
 
 Insert into CAMION Values (1,'C', 2, 1500, false, 'Mercedes', 'Worker', 'ZE25695d2d5', 'Diesel', null, 221);
 Insert into CLIENT Values (1, 'Benoit', 'Marteans', '1960-02-04', '0488365222', 'benoit@hotmail.com');

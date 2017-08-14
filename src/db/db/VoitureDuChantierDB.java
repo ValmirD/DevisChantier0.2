@@ -105,7 +105,7 @@ public class VoitureDuChantierDB {
             insert = connexion.prepareStatement(
                     "Insert into VoitureDuChantier(Select idVoitureDuChantier, idChantier, idVoiture, debutDisponibilite, finDisponibilite) "
                     + "values(?, ?, ?, ?, ?)");
-            insert.setInt(1, el.getId());
+            insert.setInt(1, num);
             insert.setInt(2, el.getIdChantier());
             insert.setInt(3, el.getIdVoiture());
             insert.setDate(4, el.getDebutDeDisponilibite());

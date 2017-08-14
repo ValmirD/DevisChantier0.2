@@ -109,7 +109,7 @@ public class PetitMaterielDuChantierDB {
             insert = connexion.prepareStatement(
                     "Insert into PetitMaterielDuChantier(idPetitMaterielDuChantier, idChantier, idPetitMateriel, debutDisponibilite, finDisponibilite, quantite) "
                     + "values(?, ?, ?, ?, ?, ?)");
-            insert.setInt(1, el.getId());
+            insert.setInt(1, num);
             insert.setInt(2, el.getIdChantier());
             insert.setInt(3, el.getIdPetitMateriel());
             insert.setDate(4, el.getDebutDisponibilite());

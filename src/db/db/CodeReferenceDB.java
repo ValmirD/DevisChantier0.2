@@ -116,7 +116,7 @@ public class CodeReferenceDB {
             insert = connexion.prepareStatement(
                     "Insert into CodeReference(idCodeReference, reference, typeTravail, prixHtva) "
                     + "values(?, ?, ?, ?)");
-            insert.setInt(1, el.getId());
+            insert.setInt(1, num);
             insert.setString(2, el.getReference());
             insert.setString(3, el.getTypeTravail());
             insert.setDouble(11, el.getPrixHtva());

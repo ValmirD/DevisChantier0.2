@@ -105,10 +105,10 @@ public class EnginDB {
 
             java.sql.PreparedStatement update;
             String sql = "Update Engin set "
-                    + "nom=? "
-                    + "type_=? "
-                    + "reference=? "
-                    + "location=? "
+                    + "nom=?, "
+                    + "type_=?, "
+                    + "reference=?, "
+                    + "location=?, "
                     + "prixHeure=? "
                     + "where idEngin=?";
             System.out.println(sql);
@@ -133,7 +133,7 @@ public class EnginDB {
             insert = connexion.prepareStatement(
                     "Insert into Engin(idEngin, nom, type_, reference, location, prixHeure) "
                     + "values(?, ?, ?, ?, ?, ?)");
-            insert.setInt(1, el.getId());
+            insert.setInt(1, num);
             insert.setString(2, el.getNom());
             insert.setString(3, el.getType());
             insert.setString(4, el.getReference());

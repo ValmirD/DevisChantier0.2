@@ -135,7 +135,7 @@ public class ClientDB {
             insert = connexion.prepareStatement(
                     "Insert into Client(idClient, nom, prenom, dateNaissance, numeroTelephone, email) "
                     + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            insert.setInt(1, el.getId());
+            insert.setInt(1, num);
             insert.setString(2, el.getNom());
             insert.setString(3, el.getPrenom());
             insert.setDate(4, el.getDateNaissance());

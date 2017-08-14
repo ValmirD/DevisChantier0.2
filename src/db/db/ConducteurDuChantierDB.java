@@ -110,7 +110,7 @@ public class ConducteurDuChantierDB {
             insert = connexion.prepareStatement(
                     "Insert into ConducteurDuChantier(idConducteurDuChantier, idChantier, idConducteur, dateDebut, dateFin, nombreHeures) "
                     + "values(?, ?, ?, ?, ?, ?)");
-            insert.setInt(1, el.getId());
+            insert.setInt(1, num);
             insert.setInt(2, el.getIdChantier());
             insert.setInt(3, el.getIdConducteur());
             insert.setDate(4, el.getDateDebut());

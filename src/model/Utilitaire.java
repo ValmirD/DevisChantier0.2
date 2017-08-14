@@ -45,7 +45,7 @@ import java.util.Calendar;
 public class Utilitaire {
     
     /*Engins*/
-    public static double MontantEngins(EnginSel engin, EnginDuChantierSel sel){
+    public static double montantEngins(EnginSel engin, EnginDuChantierSel sel){
         double montant = 0;
         double quantite = 0;
         double nombreHeures = 0;
@@ -68,7 +68,7 @@ public class Utilitaire {
     }
     
     /*Materiaux*/
-    public static double MontantMateriaux(MateriauSel sel1, MateriauDuChantierSel sel2){
+    public static double montantMateriaux(MateriauSel sel1, MateriauDuChantierSel sel2){
         double montant = 0;
         double quantite = 0;
         double montantTot = 0;
@@ -89,7 +89,7 @@ public class Utilitaire {
     }
     
     /*Petits Materiels*/
-    public static double MontantPetitsMateriels(PetitMaterielSel sel1, PetitMaterielDuChantierSel sel2){
+    public static double montantPetitsMateriels(PetitMaterielSel sel1, PetitMaterielDuChantierSel sel2){
         double montant = 0;
         double quantite = 0;
         double montantTot = 0;
@@ -110,7 +110,7 @@ public class Utilitaire {
     }    
     
     /*Codes References*/
-    public static double MontantCodesReferences(CodeReferenceSel sel1, CodeReferenceDuChantierSel sel2){
+    public static double montantCodesReferences(CodeReferenceSel sel1, CodeReferenceDuChantierSel sel2){
         double montant = 0;
         double quantite = 0;
         double montantTot = 0;
@@ -131,7 +131,7 @@ public class Utilitaire {
     }  
 
     /*Ouvriers*/
-    public static Date CalculAge(OuvrierSel sel1){
+    public static Date calculAge(OuvrierSel sel1){
         Date dateNai = null;
         
         try {
@@ -144,6 +144,30 @@ public class Utilitaire {
         }
         return dateNai;
     }  
+    
+    public static void insertEngin(EnginDto eng){
+        try {
+            FacadeDB.addEngin(eng);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void deleteEngin(int idEng){
+        try {
+            FacadeDB.deleteEngin(idEng);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void updateEngin(EnginDto eng){
+        try {
+            FacadeDB.updateEngin(eng);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     
 }
 

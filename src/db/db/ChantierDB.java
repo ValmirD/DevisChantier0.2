@@ -147,7 +147,7 @@ public class ChantierDB {
             insert = connexion.prepareStatement(
                     "Insert into Chantier(idChantier, idClient, idDevis, localisation, designationProjet, commentaire, dateCreationProjet, dateDebutprevue, dateDebutEffective, dateFinPrevue, dateFinEffective) "
                     + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            insert.setInt(1, el.getId());
+            insert.setInt(1, num);
             insert.setInt(2, el.getIdClient());
             insert.setInt(3, el.getIdDevis());
             insert.setString(4, el.getLocalisation());
