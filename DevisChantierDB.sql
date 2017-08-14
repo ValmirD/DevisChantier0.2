@@ -1,0 +1,297 @@
+drop table OUVRIERDUCHANTIER;
+drop table ENGINDUCHANTIER;
+drop table MATERIAUDUCHANTIER;
+drop table PETITMATERIELDUCHANTIER;
+drop table CODEREFERENCEDUCHANTIER;
+drop table VOITUREDUCHANTIER;
+drop table CAMIONDUCHANTIER;
+drop table CONDUCTEURDUCHANTIER;
+
+drop table CHANTIER;
+
+drop table ENGIN;
+drop table MATERIAU;
+drop table PETITMATERIEL;
+drop table CODEREFERENCE;
+drop table VOITURE;
+drop table CAMION;
+drop table CLIENT;
+drop table OUVRIER;
+drop table DEVIS;
+drop table PATRON;
+drop table CONDUCTEUR;
+drop table SEQUENCES;
+
+create table ENGIN (
+	idEngin numeric(10) primary key not null,
+	nom varchar(20),
+	type_ varchar(20),
+	reference varchar(20),
+	location boolean,
+	prixHeure double
+);
+
+create table MATERIAU (
+	idMateriau numeric(10) primary key not null,
+	nom varchar(20),
+	type_ varchar(20),
+	reference varchar(20),
+	fourniture varchar(20),
+	siteProduction varchar(20),
+	prixHtva double
+);
+
+create table PETITMATERIEL (
+	idPetitMateriel numeric(10) primary key not null, 
+	nom varchar(20),
+	type_ varchar(20),
+	reference varchar(20),
+	prixHtva double
+);
+
+create table CODEREFERENCE (
+	idCodeReference numeric(10) primary key not null, 
+	reference varchar(20),
+	typeTravail varchar(20),
+	prixHtva double
+);
+
+create table VOITURE (
+	idVoiture numeric(10) primary key not null, 
+	attacheRemorque boolean,
+	marque varchar(20),
+	modele varchar(20),
+	numeroChassis varchar(30) unique,
+	carburant varchar(20),
+	ctAmortMois double
+	);
+
+create table CAMION (
+	idCamion numeric(10) primary key not null, 
+	categorie varchar(20),
+	tonnage numeric(10),
+	capacite double,
+	location boolean,
+	marque varchar(20),
+	modele varchar(20),
+	numeroChassis varchar(20) unique,
+	carburant varchar(20),
+	prixHtva double,
+	ctAmortMois double
+	);
+
+create table OUVRIER (
+	idOuvrier numeric(10) primary key not null, 
+	nom varchar(20),
+	prenom varchar(20),
+	dateNaissance date,
+	numeroTelephone varchar(20) unique,
+	email varchar(20) unique,
+	remuneration double,
+	permis boolean,
+	entreeFonction date,
+	cout double
+	);
+
+create table CLIENT (
+	idClient numeric(10) primary key not null, 
+	nom varchar(20),
+	prenom varchar(20),
+	dateNaissance date,
+	numeroTelephone varchar(20) unique,
+	email varchar(20) unique
+	);
+	
+create table CONDUCTEUR(
+	idConducteur numeric(10) primary key not null,
+	password varchar(20),
+	nom varchar(20),
+	prenom varchar(20),
+	dateNaissance date,
+	numeroTelephone varchar(20) unique,
+	numeroTelephonePro varchar(20) unique,
+	email varchar(20) unique,
+	remuneration double,
+	permis boolean,
+	entreeFonction date,
+	cout double
+	);
+	
+create table PATRON (
+	idPatron numeric(10) primary key not null, 
+	password varchar(20),
+	validationProjet boolean,
+
+    constraint fkPatron foreign key (idPatron) references CONDUCTEUR(idConducteur)
+	);
+	
+create table DEVIS (
+	idDevis numeric(10) primary key not null, 
+	designationDevis varchar(20),
+	statut varchar(20),
+	dateDevis date
+	);
+	
+create table CHANTIER (
+	idChantier numeric(10) primary key not null, 
+    idClient numeric(10) not null,
+    idDevis numeric(10) not null,
+    localisation varchar(20),
+	designationProjet varchar(20),
+	commentaire varchar(500),
+	dateCreationProjet date,
+	dateDebutPrevu date,
+	dateDebutEffective date,
+	dateFinPrevu date,
+	dateFinEffective date,
+        
+    constraint fkClient foreign key (idClient) references CLIENT(idClient),
+    constraint fkDevis foreign key (idDevis) references DEVIS(idDevis)
+	);
+
+create table CONDUCTEURDUCHANTIER (
+	idCONDUCTEURDUCHANTIER numeric(10) primary key not null, 
+    idChantier numeric(10) not null,
+    idConducteur numeric(10) not null,
+	dateDebut date,
+    dateFin date,
+    nombreHeures double,
+        
+    constraint fkCONDUCTEURDUCHANTIER foreign key (idConducteur) references CONDUCTEUR(idConducteur),
+    constraint fkCONDUCTEURDUCHANTIER2 foreign key (idChantier) references CHANTIER(idChantier)
+	);
+
+create table OUVRIERDUCHANTIER (
+	idOUVRIERDUCHANTIER numeric(10) primary key not null, 
+    idChantier numeric(10) not null,
+    idOuvrier numeric(10) not null,
+	dateDebut date,
+    dateFin date,
+    nombreHeures double,
+
+    constraint fkOUVRIERDUCHANTIER foreign key (idChantier) references CHANTIER(idChantier),
+    constraint fkOUVRIERDUCHANTIER2 foreign key (idOuvrier) references OUVRIER(idOuvrier)
+	
+	);
+
+create table ENGINDUCHANTIER (
+	idENGINDUCHANTIER numeric(10) primary key not null, 
+    idChantier numeric(10) not null,
+    idEngin numeric(10) not null,
+	debutDisponibilite date,
+    finDisponibilite date,
+    nombreHeures double,
+    quantite double,
+
+    constraint fkENGINDUCHANTIER foreign key (idChantier) references CHANTIER(idChantier),
+    constraint fkENGINDUCHANTIER2 foreign key (idEngin) references ENGIN(idEngin)
+	);
+
+create table MATERIAUDUCHANTIER (
+	idMATERIAUDUCHANTIER numeric(10) primary key not null, 
+    idChantier numeric(10) not null,
+    idMateriau numeric(10) not null,
+	debutDisponibilite date,
+    finDisponibilite date,
+    quantite double,
+
+    constraint fkMATERIAUDUCHANTIER foreign key (idChantier) references CHANTIER(idChantier),
+    constraint fkMATERIAUDUCHANTIER2 foreign key (idMateriau) references MATERIAU(idMateriau)
+	);
+
+create table PETITMATERIELDUCHANTIER (
+	idPETITMATERIELDUCHANTIER numeric(10) primary key not null, 
+    idChantier numeric(10) not null,
+    idPetitMateriel numeric(10) not null,
+	debutDisponibilite date,
+    finDisponibilite date,
+    quantite double,
+
+    constraint fkPETITMATERIELDUCHANTIER foreign key (idChantier) references CHANTIER(idChantier),
+    constraint fkPETITMATERIELDUCHANTIER2 foreign key (idPetitMateriel) references PETITMATERIEL(idPetitMateriel)
+	);
+
+create table CODEREFERENCEDUCHANTIER (
+	idCODEREFERENCEDUCHANTIER numeric(10) primary key not null, 
+    idChantier numeric(10) not null,
+    idCodeReference numeric(10) not null,
+    quantite double,
+
+    constraint fkCODEDEREFERENCEDUCHANTIER foreign key (idChantier) references CHANTIER(idChantier),
+    constraint fkCODEDEREFERENCEDUCHANTIER2 foreign key (idCodeReference) references CODEREFERENCE(idCodeReference)
+    );
+
+create table VOITUREDUCHANTIER (
+	idVOITUREDUCHANTIER numeric(10) primary key not null, 
+    idChantier numeric(10) not null,
+    idVoiture numeric(10) not null,
+    debutDisponibilite date,
+    finDisponibilite date,
+
+    constraint fkVOITUREDUCHANTIER foreign key (idChantier) references CHANTIER(idChantier),
+    constraint fkVOITUREDUCHANTIER2 foreign key (idVoiture) references VOITURE(idVoiture)
+    );
+
+create table CAMIONDUCHANTIER (
+	idCAMIONDUCHANTIER numeric(10) primary key not null, 
+    idChantier numeric(10) not null,
+    idCamion numeric(10) not null,
+    quantite double,
+    nombreHeures double,
+    debutDisponibilite date,
+    finDisponibilite date,
+
+    constraint fkCAMIONDUCHANTIER foreign key (idChantier) references CHANTIER(idChantier),
+    constraint fkCAMIONDUCHANTIER2 foreign key (idCamion) references CAMION(idCamion)
+	);
+
+create table SEQUENCES (
+	id varchar(50) primary key not null,
+	sValue numeric(10) not null
+	);
+
+Insert into SEQUENCES Values ('CAMION',1);
+Insert into SEQUENCES Values ('CAMIONDUCHANTIER',1);
+Insert into SEQUENCES Values ('CHANTIER',1);
+Insert into SEQUENCES Values ('CLIENT',1);
+Insert into SEQUENCES Values ('CODEREFERENCE',1);
+Insert into SEQUENCES Values ('CODEREFERENCEDUCHANTIER',1);
+Insert into SEQUENCES Values ('CONDUCTEUR',1);
+Insert into SEQUENCES Values ('CONDUCTEURDUCHANTIER',1);
+Insert into SEQUENCES Values ('DEVIS',1);
+Insert into SEQUENCES Values ('ENGIN',1);
+Insert into SEQUENCES Values ('ENGINDUCHANTIER',1);
+Insert into SEQUENCES Values ('MATERIAU',1);
+Insert into SEQUENCES Values ('MATERIAUDUCHANTIER',1);
+Insert into SEQUENCES Values ('OUVRIER',1);
+Insert into SEQUENCES Values ('OUVRIERDUCHANTIER',1);
+Insert into SEQUENCES Values ('PATRON',1);
+Insert into SEQUENCES Values ('PETITMATERIEL',1);
+Insert into SEQUENCES Values ('PETITMATERIELDUCHANTIER',1);
+Insert into SEQUENCES Values ('VOITURE',1);
+Insert into SEQUENCES Values ('VOITUREDUCHANTIER',1);
+
+Insert into CAMION Values (1,'C', 2, 1500, false, 'Mercedes', 'Worker', 'ZE25695d2d5', 'Diesel', null, 221);
+Insert into CLIENT Values (1, 'Benoit', 'Marteans', '1960-02-04', '0488365222', 'benoit@hotmail.com');
+Insert into CODEREFERENCE Values (1, 'ER25698', 'Canalisation', 15);
+Insert into CONDUCTEUR Values (1, 'root', 'Laurent', 'Cordenier', '1990-09-11', '0485658999', '0499321587', 'laurent@melin.com', 3300, true, '2013-02-01', null);
+Insert into DEVIS Values (1, 'Parc de Woluwe', 'En validation', '2017-07-15');
+Insert into ENGIN Values (1, 'Grue', 'Gravier', 'REZ89851', true, 20);
+Insert into MATERIAU Values (1, 'Sable', 'Terrassement', '698.325.21', 'Externe', 'Hulpe', 10);
+Insert into OUVRIER Values (1, 'Jack', 'Bauer', '1988-05-03', '0477235987', 'jackbauer@melin.be', 1745, true, '2001-11-05', null);
+Insert into PATRON Values (1, 'root', null);
+Insert into PETITMATERIEL Values (1, 'Marteau', 'Nivellement', '2REZEDD', 5);
+Insert into VOITURE Values (1, true, 'Ford', 'Transporter', '36d5d5d48sd', 'Diesel', 59);
+
+Insert into CHANTIER Values (1, 1, 1, 'Bruxelles', 'parc de la woluwe', 'Cest un bon projet', '2017-02-01','2017-03-03','2017-03-05','2017-03-27','2017-03-28');
+
+Insert into CAMIONDUCHANTIER Values (1, 1, 1, 2, 5, '2017-01-01', '2017-01-11');
+Insert into OUVRIERDUCHANTIER Values (1, 1, 1, '2017-09-01', '2017-09-10', 36);
+Insert into CODEREFERENCEDUCHANTIER Values (1, 1, 1, 2);
+Insert into CONDUCTEURDUCHANTIER Values (1, 1, 1, '2017-08-17', '2017-08-25', 48);
+Insert into ENGINDUCHANTIER Values (1, 1, 1, '2017-09-01', '2017-09-10', 5, 1);
+Insert into MATERIAUDUCHANTIER Values (1, 1, 1, '2017-09-01', '2017-09-10', 325);
+Insert into PETITMATERIELDUCHANTIER Values (1, 1, 1, '2017-09-01', '2017-09-10', 3);
+Insert into VOITUREDUCHANTIER Values (1, 1, 1, '2017-01-01', '2017-01-11');
+
+
