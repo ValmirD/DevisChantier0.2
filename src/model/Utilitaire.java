@@ -138,8 +138,7 @@ public class Utilitaire {
             OuvrierDto ouv = FacadeDB.findOuvrierBySel(sel1);
             dateNai = ouv.getDateNaissance();
             System.out.println(dateNai);
-
-                    
+                              
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
