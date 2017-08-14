@@ -14,7 +14,6 @@ import java.sql.Date;
  */
 public class OuvrierDto extends EntityDto<Integer> {
     
-    private int idChantier;
     private double remuneration;
     private boolean permis;
     private String nom;
@@ -25,9 +24,8 @@ public class OuvrierDto extends EntityDto<Integer> {
     private Date entreeFonction;
     private double cout;
 
-    public OuvrierDto(int idOuvrier, int idChantier, double remuneration, boolean permis, String nom, String prenom, Date dateNaissance, String numeroTelephone, String email, Date entreeFonction, double cout) {
+    public OuvrierDto(int idOuvrier, double remuneration, boolean permis, String nom, String prenom, Date dateNaissance, String numeroTelephone, String email, Date entreeFonction, double cout) {
         this.id = idOuvrier;
-        this.idChantier = idChantier;
         this.remuneration = remuneration;
         this.permis = permis;
         this.nom = nom;
@@ -37,10 +35,6 @@ public class OuvrierDto extends EntityDto<Integer> {
         this.email = email;
         this.entreeFonction = entreeFonction;
         this.cout = cout;
-    }
-
-    public int getIdChantier() {
-        return idChantier;
     }
 
     public double getRemuneration() {

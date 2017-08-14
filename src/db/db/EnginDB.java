@@ -77,7 +77,7 @@ public class EnginDB {
                 al.add(new EnginDto(
                         rs.getInt("idEngin"), 
                         rs.getString("nom"), 
-                        rs.getString("type"), 
+                        rs.getString("type_"), 
                         rs.getString("reference"),
                         rs.getBoolean("location"),
                         rs.getDouble("prixHeure")                  
@@ -106,7 +106,7 @@ public class EnginDB {
             java.sql.PreparedStatement update;
             String sql = "Update Engin set "
                     + "nom=? "
-                    + "type=? "
+                    + "type_=? "
                     + "reference=? "
                     + "location=? "
                     + "prixHeure=? "
@@ -131,7 +131,7 @@ public class EnginDB {
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement insert;
             insert = connexion.prepareStatement(
-                    "Insert into Engin(idEngin, nom, type, reference, location, prixHeure) "
+                    "Insert into Engin(idEngin, nom, type_, reference, location, prixHeure) "
                     + "values(?, ?, ?, ?, ?, ?)");
             insert.setInt(1, el.getId());
             insert.setString(2, el.getNom());

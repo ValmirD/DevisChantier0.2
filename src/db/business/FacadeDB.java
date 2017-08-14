@@ -456,10 +456,9 @@ public class FacadeDB {
             
     }
 
-    public static CodeReferenceDto findCodeReferenceById(int eId) throws DevisChantierBusinessException {
+    public static CodeReferenceDto findCodeReferenceBySel(CodeReferenceSel sel) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            CodeReferenceSel sel = new CodeReferenceSel(eId);
             Collection<CodeReferenceDto> col = CodeReferenceBL.findBySel(sel);
             CodeReferenceDto ldto = null;
             if (col.size() == 1) {
@@ -551,10 +550,9 @@ public class FacadeDB {
             
     }
 
-    public static CodeReferenceDuChantierDto findCodeReferenceDuChantierById(int eId) throws DevisChantierBusinessException {
+    public static CodeReferenceDuChantierDto findCodeReferenceDuChantierBySel(CodeReferenceDuChantierSel sel) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            CodeReferenceDuChantierSel sel = new CodeReferenceDuChantierSel(eId);
             Collection<CodeReferenceDuChantierDto> col = CodeReferenceDuChantierBL.findBySel(sel);
             CodeReferenceDuChantierDto ldto = null;
             if (col.size() == 1) {
@@ -938,11 +936,10 @@ public class FacadeDB {
             
     }
 
-    public static EnginDto findEnginById(int eId) throws DevisChantierBusinessException {
+    public static EnginDto findEnginBySel(EnginSel eng) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            EnginSel sel = new EnginSel(eId);
-            Collection<EnginDto> col = EnginBL.findBySel(sel);
+            Collection<EnginDto> col = EnginBL.findBySel(eng);
             EnginDto ldto = null;
             if (col.size() == 1) {
                 ldto = col.iterator().next();
@@ -1035,10 +1032,9 @@ public class FacadeDB {
             
     }
 
-    public static EnginDuChantierDto findEnginDuChantierById(int eId) throws DevisChantierBusinessException {
+    public static EnginDuChantierDto findEnginDuChantierBySel(EnginDuChantierSel sel) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            EnginDuChantierSel sel = new EnginDuChantierSel(eId);
             Collection<EnginDuChantierDto> col = EnginDuChantierBL.findBySel(sel);
             EnginDuChantierDto ldto = null;
             if (col.size() == 1) {
@@ -1132,11 +1128,10 @@ public class FacadeDB {
             
     }
 
-    public static MateriauDto findMateriauById(int eId) throws DevisChantierBusinessException {
+    public static MateriauDto findMateriauBySel(MateriauSel mat) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            MateriauSel sel = new MateriauSel(eId);
-            Collection<MateriauDto> col = MateriauBL.findBySel(sel);
+            Collection<MateriauDto> col = MateriauBL.findBySel(mat);
             MateriauDto ldto = null;
             if (col.size() == 1) {
                 ldto = col.iterator().next();
@@ -1229,11 +1224,10 @@ public class FacadeDB {
             
     }
 
-    public static MateriauDuChantierDto findMateriauDuChantierById(int eId) throws DevisChantierBusinessException {
+    public static MateriauDuChantierDto findMateriauDuChantierBySel(MateriauDuChantierSel matcha) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            MateriauDuChantierSel sel = new MateriauDuChantierSel(eId);
-            Collection<MateriauDuChantierDto> col = MateriauDuChantierBL.findBySel(sel);
+            Collection<MateriauDuChantierDto> col = MateriauDuChantierBL.findBySel(matcha);
             MateriauDuChantierDto ldto = null;
             if (col.size() == 1) {
                 ldto = col.iterator().next();
@@ -1324,10 +1318,9 @@ public class FacadeDB {
             
     }
 
-    public static OuvrierDto findOuvrierById(int eId) throws DevisChantierBusinessException {
+    public static OuvrierDto findOuvrierBySel(OuvrierSel sel) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            OuvrierSel sel = new OuvrierSel(eId);
             Collection<OuvrierDto> col = OuvrierBL.findBySel(sel);
             OuvrierDto ldto = null;
             if (col.size() == 1) {
@@ -1419,10 +1412,9 @@ public class FacadeDB {
             
     }
 
-    public static OuvrierDuChantierDto findOuvrierDuChantierById(int eId) throws DevisChantierBusinessException {
+    public static OuvrierDuChantierDto findOuvrierDuChantierBySel(OuvrierDuChantierSel sel) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            OuvrierDuChantierSel sel = new OuvrierDuChantierSel(eId);
             Collection<OuvrierDuChantierDto> col = OuvrierDuChantierBL.findBySel(sel);
             OuvrierDuChantierDto ldto = null;
             if (col.size() == 1) {
@@ -1609,10 +1601,9 @@ public class FacadeDB {
             
     }
 
-    public static PetitMaterielDto findPetitMaterielById(int eId) throws DevisChantierBusinessException {
+    public static PetitMaterielDto findPetitMaterielBySel(PetitMaterielSel sel) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            PetitMaterielSel sel = new PetitMaterielSel(eId);
             Collection<PetitMaterielDto> col = PetitMaterielBL.findBySel(sel);
             PetitMaterielDto ldto = null;
             if (col.size() == 1) {
@@ -1704,10 +1695,9 @@ public class FacadeDB {
             
     }
 
-    public static PetitMaterielDuChantierDto findPetitMaterielDuChantierById(int eId) throws DevisChantierBusinessException {
+    public static PetitMaterielDuChantierDto findPetitMaterielDuChantierBySel(PetitMaterielDuChantierSel sel) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            PetitMaterielDuChantierSel sel = new PetitMaterielDuChantierSel(eId);
             Collection<PetitMaterielDuChantierDto> col = PetitMaterielDuChantierBL.findBySel(sel);
             PetitMaterielDuChantierDto ldto = null;
             if (col.size() == 1) {

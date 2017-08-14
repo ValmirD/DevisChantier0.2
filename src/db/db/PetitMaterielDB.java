@@ -87,7 +87,7 @@ public class PetitMaterielDB {
                 al.add(new PetitMaterielDto(
                         rs.getInt("idPetitMateriel"), 
                         rs.getString("nom"), 
-                        rs.getString("type"), 
+                        rs.getString("type_"), 
                         rs.getString("reference"),
                         rs.getDouble("prixHtva")                      
                 )

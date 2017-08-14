@@ -76,7 +76,6 @@ public class OuvrierDB {
             while (rs.next()) {
                 al.add(new OuvrierDto(
                         rs.getInt("idOuvrier"), 
-                        rs.getInt("idChantier"), 
                         rs.getDouble("remuneration"), 
                         rs.getBoolean("permis"),
                         rs.getString("nom"),
