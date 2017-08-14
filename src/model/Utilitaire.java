@@ -38,7 +38,6 @@ import java.util.Calendar;
 
 
 
-
 /**
  *
  * @author Vali
@@ -67,7 +66,8 @@ public class Utilitaire {
         }
         return montantTot;
     }
-
+    
+    /*Materiaux*/
     public static double MontantMateriaux(MateriauSel sel1, MateriauDuChantierSel sel2){
         double montant = 0;
         double quantite = 0;
@@ -87,7 +87,8 @@ public class Utilitaire {
         }
         return montantTot;
     }
-
+    
+    /*Petits Materiels*/
     public static double MontantPetitsMateriels(PetitMaterielSel sel1, PetitMaterielDuChantierSel sel2){
         double montant = 0;
         double quantite = 0;
@@ -108,6 +109,7 @@ public class Utilitaire {
         return montantTot;
     }    
     
+    /*Codes References*/
     public static double MontantCodesReferences(CodeReferenceSel sel1, CodeReferenceDuChantierSel sel2){
         double montant = 0;
         double quantite = 0;
@@ -128,9 +130,9 @@ public class Utilitaire {
         return montantTot;
     }  
 
+    /*Ouvriers*/
     public static Date CalculAge(OuvrierSel sel1){
         Date dateNai = null;
-
         
         try {
             OuvrierDto ouv = FacadeDB.findOuvrierBySel(sel1);
