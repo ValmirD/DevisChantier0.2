@@ -16,16 +16,16 @@ public class VoitureDto extends EntityDto<Integer> {
     private String modele;
     private String numeroChassis;
     private String carburant;
-    private double ctAmortMois;
+    private double prixHtva;
     
-    public VoitureDto(int idVoiture, boolean attacheRemorque, String marque, String modele, String numeroChassis, String carburant, double ctAmortMois) {
+    public VoitureDto(int idVoiture, boolean attacheRemorque, String marque, String modele, String numeroChassis, String carburant, double prixHtva) {
         this.id = idVoiture;
         this.attacheRemorque = attacheRemorque;
         this.marque = marque;
         this.modele = modele;
         this.numeroChassis = numeroChassis;
         this.carburant = carburant;
-        this.ctAmortMois = ctAmortMois;
+        this.prixHtva = prixHtva;
     }    
 
     public boolean isAttacheRemorque() {
@@ -48,8 +48,8 @@ public class VoitureDto extends EntityDto<Integer> {
         return carburant;
     }
 
-    public double getCtAmortMois() {
-        return ctAmortMois;
+    public double getPrixHtva() {
+        return prixHtva;
     }
 
 

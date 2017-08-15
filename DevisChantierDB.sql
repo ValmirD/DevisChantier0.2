@@ -63,7 +63,7 @@ create table VOITURE (
 	modele varchar(20),
 	numeroChassis varchar(30) unique,
 	carburant varchar(20),
-	ctAmortMois double
+	prixHtva double
 	);
 
 create table CAMION (
@@ -71,13 +71,11 @@ create table CAMION (
 	categorie varchar(20),
 	tonnage numeric(10),
 	capacite double,
-	location boolean,
 	marque varchar(20),
 	modele varchar(20),
 	numeroChassis varchar(20) unique,
 	carburant varchar(20),
-	prixHtva double,
-	ctAmortMois double
+	prixHtva double
 	);
 
 create table OUVRIER (
@@ -227,6 +225,7 @@ create table VOITUREDUCHANTIER (
     idVoiture numeric(10) not null,
     debutDisponibilite date,
     finDisponibilite date,
+	nombreJours numeric(10),
 
     constraint fkVOITUREDUCHANTIER foreign key (idChantier) references CHANTIER(idChantier),
     constraint fkVOITUREDUCHANTIER2 foreign key (idVoiture) references VOITURE(idVoiture)
@@ -236,7 +235,6 @@ create table CAMIONDUCHANTIER (
 	idCAMIONDUCHANTIER numeric(10) primary key not null, 
     idChantier numeric(10) not null,
     idCamion numeric(10) not null,
-    quantite double,
     nombreHeures double,
     debutDisponibilite date,
     finDisponibilite date,
@@ -271,7 +269,7 @@ Insert into SEQUENCES Values ('PETITMATERIELDUCHANTIER',2);
 Insert into SEQUENCES Values ('VOITURE',2);
 Insert into SEQUENCES Values ('VOITUREDUCHANTIER',2);
 
-Insert into CAMION Values (1,'C', 2, 1500, false, 'Mercedes', 'Worker', 'ZE25695d2d5', 'Diesel', null, 221);
+Insert into CAMION Values (1,'C', 2, 1500, 'Mercedes', 'Worker', 'ZE25695d2d5', 'Diesel', 99);
 Insert into CLIENT Values (1, 'Benoit', 'Marteans', '1960-02-04', '0488365222', 'benoit@hotmail.com');
 Insert into CODEREFERENCE Values (1, 'ER25698', 'Canalisation', 15);
 Insert into CONDUCTEUR Values (1, 'root', 'Laurent', 'Cordenier', '1990-09-11', '0485658999', '0499321587', 'laurent@melin.com', 3300, true, '2013-02-01', null);
@@ -281,17 +279,17 @@ Insert into MATERIAU Values (1, 'Sable', 'Terrassement', '698.325.21', 'Externe'
 Insert into OUVRIER Values (1, 'Jack', 'Bauer', '1988-05-03', '0477235987', 'jackbauer@melin.be', 1745, true, '2001-11-05', null);
 Insert into PATRON Values (1, 'root', null);
 Insert into PETITMATERIEL Values (1, 'Marteau', 'Nivellement', '2REZEDD', 5);
-Insert into VOITURE Values (1, true, 'Ford', 'Transporter', '36d5d5d48sd', 'Diesel', 59);
+Insert into VOITURE Values (1, true, 'Ford', 'Transporter', '36d5d5d48sd', 'Diesel', 19);
 
 Insert into CHANTIER Values (1, 1, 1, 'Bruxelles', 'parc de la woluwe', 'Cest un bon projet', '2017-02-01','2017-03-03','2017-03-05','2017-03-27','2017-03-28');
 
-Insert into CAMIONDUCHANTIER Values (1, 1, 1, 2, 5, '2017-01-01', '2017-01-11');
+Insert into CAMIONDUCHANTIER Values (1, 1, 1, 5, '2017-01-01', '2017-01-11');
 Insert into OUVRIERDUCHANTIER Values (1, 1, 1, '2017-09-01', '2017-09-10', 36);
 Insert into CODEREFERENCEDUCHANTIER Values (1, 1, 1, 2);
 Insert into CONDUCTEURDUCHANTIER Values (1, 1, 1, '2017-08-17', '2017-08-25', 48);
 Insert into ENGINDUCHANTIER Values (1, 1, 1, '2017-09-01', '2017-09-10', 5, 1);
 Insert into MATERIAUDUCHANTIER Values (1, 1, 1, '2017-09-01', '2017-09-10', 325);
 Insert into PETITMATERIELDUCHANTIER Values (1, 1, 1, '2017-09-01', '2017-09-10', 3);
-Insert into VOITUREDUCHANTIER Values (1, 1, 1, '2017-01-01', '2017-01-11');
+Insert into VOITUREDUCHANTIER Values (1, 1, 1, '2017-01-01', '2017-01-11', 14);
 
 

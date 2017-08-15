@@ -14,27 +14,23 @@ public class CamionDto extends EntityDto<Integer> {
     private String categorie;
     private int tonnage;
     private double capacite;
-    private boolean location;
     private String marque;
     private String modele;
     private String numeroChassis;
     private String carburant;
     private double prixHtva;
-    private double ctAmortMois;
     
 
-    public CamionDto(int idCamion, String categorie, int tonnage, double capacite, boolean location, String marque, String modele, String numeroChassis, String carburant, double prixHtva, double ctAmortMois) {
+    public CamionDto(int idCamion, String categorie, int tonnage, double capacite, String marque, String modele, String numeroChassis, String carburant, double prixHtva) {
         this.id = idCamion;
         this.categorie = categorie;
         this.tonnage = tonnage;
         this.capacite = capacite;
-        this.location = location;
         this.marque = marque;
         this.modele = modele;
         this.numeroChassis = numeroChassis;
         this.carburant = carburant;
         this.prixHtva = prixHtva;
-        this.ctAmortMois = ctAmortMois;
     }
     
     public String getCategorie() {
@@ -47,10 +43,6 @@ public class CamionDto extends EntityDto<Integer> {
 
     public double getCapacite() {
         return capacite;
-    }
-
-    public boolean isLocation() {
-        return location;
     }
 
     public String getMarque() {
@@ -73,9 +65,6 @@ public class CamionDto extends EntityDto<Integer> {
         return prixHtva;
     }
 
-    public double getCtAmortMois() {
-        return ctAmortMois;
-    }
     
     
 }

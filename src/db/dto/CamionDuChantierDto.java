@@ -18,16 +18,14 @@ public class CamionDuChantierDto extends EntityDto<Integer> {
     private int idChantier;
     private int idCamion;
     private double nombreHeures;
-    private int quantite;
 
-    public CamionDuChantierDto(int idCamionDuChantier, Date debutDisponibilite, Date finDisponibilite, int idChantier, int idCamion, double nombreHeures, int quantite) {
+    public CamionDuChantierDto(int idCamionDuChantier, Date debutDisponibilite, Date finDisponibilite, int idChantier, int idCamion, double nombreHeures) {
         this.id = idCamionDuChantier;
         this.debutDisponibilite = debutDisponibilite;
         this.finDisponibilite = finDisponibilite;
         this.idChantier = idChantier;
         this.idCamion = idCamion;
         this.nombreHeures = nombreHeures;
-        this.quantite = quantite;
     }
 
     public Date getDebutDisponibilite() {
@@ -50,9 +48,6 @@ public class CamionDuChantierDto extends EntityDto<Integer> {
         return nombreHeures;
     }
 
-    public int getQuantite() {
-        return quantite;
-    }
     
     
     

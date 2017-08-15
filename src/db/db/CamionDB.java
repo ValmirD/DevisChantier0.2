@@ -26,7 +26,7 @@ public class CamionDB {
     public static List<CamionDto> getCollection(CamionSel sel) throws DevisChantierDbException {
         List<CamionDto> al = new ArrayList<>();
         try {
-            String query = "Select idCamion, categorie, tonnage, capacite, location, marque, modele, numeroChassis, carburant, prixhtva, ctamortmois FROM Camion ";
+            String query = "Select idCamion, categorie, tonnage, capacite, marque, modele, numeroChassis, carburant, prixhtva FROM Camion ";
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement stmt;
             String where = "";
@@ -78,13 +78,11 @@ public class CamionDB {
                         rs.getString("categorie"), 
                         rs.getInt("tonnage"), 
                         rs.getDouble("capacite"),
-                        rs.getBoolean("location"),
                         rs.getString("marque"),
                         rs.getString("modele"),
                         rs.getString("numeroChassis"),
                         rs.getString("carburant"),
-                        rs.getDouble("prixHtva"),
-                        rs.getDouble("ctAmortMois")
+                        rs.getDouble("prixHtva")
                 )
                 );
             }
@@ -112,27 +110,23 @@ public class CamionDB {
                     + "categorie=? "
                     + "tonnage=? "
                     + "capacite=? "
-                    + "location=? "
                     + "marque=? "
                     + "modele=? "
                     + "numeroChassis=? "
                     + "carburant=? "
                     + "prixHtva=? "
-                    + "ctAmortMois=? "
                     + "where idCamion=?";
             System.out.println(sql);
             update = connexion.prepareStatement(sql);
             update.setString(1, el.getCategorie());
             update.setInt(2, el.getTonnage());
             update.setDouble(3, el.getCapacite());
-            update.setBoolean(4, el.isLocation());
-            update.setString(5, el.getMarque());
-            update.setString(6, el.getModele());
-            update.setString(7, el.getNumeroChassis());
-            update.setString(8, el.getCarburant());
-            update.setDouble(9, el.getPrixHtva());
-            update.setDouble(10, el.getCtAmortMois());
-            update.setInt(11, el.getId());
+            update.setString(4, el.getMarque());
+            update.setString(5, el.getModele());
+            update.setString(6, el.getNumeroChassis());
+            update.setString(7, el.getCarburant());
+            update.setDouble(8, el.getPrixHtva());
+            update.setInt(9, el.getId());
             update.executeUpdate();
         } catch (DevisChantierDbException | SQLException ex) {
             throw new DevisChantierDbException("Camion, modification impossible:\n" + ex.getMessage());
@@ -145,19 +139,17 @@ public class CamionDB {
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement insert;
             insert = connexion.prepareStatement(
-                    "Insert into Camion(idCamion, categorie, tonnage, capacite, location, marque, modele, numeroChassis, carburant, prixHtva, ctAmortMois) "
-                    + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    "Insert into Camion(idCamion, categorie, tonnage, capacite, marque, modele, numeroChassis, carburant, prixHtva) "
+                    + "values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
             insert.setInt(1, num);
             insert.setString(2, el.getCategorie());
             insert.setInt(3, el.getTonnage());
             insert.setDouble(4, el.getCapacite());
-            insert.setBoolean(5, el.isLocation());
-            insert.setString(6, el.getMarque());
-            insert.setString(7, el.getModele());
-            insert.setString(8, el.getNumeroChassis());
-            insert.setString(9, el.getCarburant());
-            insert.setDouble(10, el.getPrixHtva());
-            insert.setDouble(11, el.getCtAmortMois());
+            insert.setString(5, el.getMarque());
+            insert.setString(6, el.getModele());
+            insert.setString(7, el.getNumeroChassis());
+            insert.setString(8, el.getCarburant());
+            insert.setDouble(9, el.getPrixHtva());
             insert.executeUpdate();
             return num;
         } catch (DevisChantierDbException | SQLException ex) {

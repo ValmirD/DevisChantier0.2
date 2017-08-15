@@ -26,7 +26,7 @@ public class ConducteurDB {
     public static List<ConducteurDto> getCollection(ConducteurSel sel) throws DevisChantierDbException {
         List<ConducteurDto> al = new ArrayList<>();
         try {
-            String query = "Select idConducteur, password, nom, prenom, dateDeNaissance, numeroTelephone, numeroTelephonePro, email, remuneration, permis, entreeFonction, cout FROM Conducteur ";
+            String query = "Select idConducteur, password, nom, prenom, dateNaissance, numeroTelephone, numeroTelephonePro, email, remuneration, permis, entreeFonction, cout FROM Conducteur ";
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement stmt;
             String where = "";
@@ -99,8 +99,7 @@ public class ConducteurDB {
                         rs.getString("email"),
                         rs.getDate("entreeFonction"),
                         rs.getDouble("cout"),
-                        rs.getBoolean("permis"),
-                        rs.getInt("idChantier")
+                        rs.getBoolean("permis")
                 )
                 );
             }
@@ -128,7 +127,7 @@ public class ConducteurDB {
                     + "password=? "
                     + "nom=? "
                     + "prenom=? "
-                    + "dateDeNaissance=? "
+                    + "dateNaissance=? "
                     + "numeroTelephone=? "
                     + "numeroTelephonePro=? "
                     + "email=? "

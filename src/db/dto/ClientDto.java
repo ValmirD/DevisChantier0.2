@@ -18,16 +18,16 @@ public class ClientDto extends EntityDto<Integer> {
     private Date dateNaissance;
     private String numeroTelephone;
     private String email;
-    private int idChantier;
 
-    public ClientDto(int idClient, String nom, String prenom, Date dateNaissance, String numeroTelephone, String email, int idChantier) {
+
+    public ClientDto(int idClient, String nom, String prenom, Date dateNaissance, String numeroTelephone, String email) {
         this.id = idClient;
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
         this.numeroTelephone = numeroTelephone;
         this.email = email;
-        this.idChantier = idChantier;
+
     }
 
     public String getNom() {
@@ -50,9 +50,6 @@ public class ClientDto extends EntityDto<Integer> {
         return email;
     }
 
-    public int getIdChantier() {
-        return idChantier;
-    }
     
     
     

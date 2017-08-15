@@ -81,8 +81,7 @@ public class ClientDB {
                         rs.getString("prenom"), 
                         rs.getDate("dateNaissance"),
                         rs.getString("numeroTelephone"),
-                        rs.getString("email"),
-                        rs.getInt("idChantier")
+                        rs.getString("email")
                 )
                 );
             }
@@ -134,7 +133,7 @@ public class ClientDB {
             java.sql.PreparedStatement insert;
             insert = connexion.prepareStatement(
                     "Insert into Client(idClient, nom, prenom, dateNaissance, numeroTelephone, email) "
-                    + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    + "values(?, ?, ?, ?, ?, ?)");
             insert.setInt(1, num);
             insert.setString(2, el.getNom());
             insert.setString(3, el.getPrenom());

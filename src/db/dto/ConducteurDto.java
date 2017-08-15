@@ -24,9 +24,9 @@ public class ConducteurDto extends EntityDto<Integer> {
     private Date entreeFonction;
     private double cout;
     private boolean permis;
-    private int idChantier;
 
-    public ConducteurDto(int idConducteur, String password, String numeroTelephonePro, String numeroTelephone, double remuneration, String nom, String prenom, Date dateNaissance, String email, Date entreeFonction, double cout, boolean permis, int idChantier) {
+
+    public ConducteurDto(int idConducteur, String password, String numeroTelephonePro, String numeroTelephone, double remuneration, String nom, String prenom, Date dateNaissance, String email, Date entreeFonction, double cout, boolean permis) {
         this.id = idConducteur;
         this.password = password;
         this.numeroTelephonePro = numeroTelephonePro;
@@ -38,7 +38,6 @@ public class ConducteurDto extends EntityDto<Integer> {
         this.email = email;
         this.entreeFonction = entreeFonction;
         this.cout = cout;
-        this.idChantier = idChantier;
     }
 
     public String getPassword() {
@@ -85,8 +84,5 @@ public class ConducteurDto extends EntityDto<Integer> {
         return permis;
     }
 
-    public int getIdChantier() {
-        return idChantier;
-    }
 
 }

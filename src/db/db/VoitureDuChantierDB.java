@@ -26,10 +26,11 @@ public class VoitureDuChantierDB {
     public static List<VoitureDuChantierDto> getCollection(VoitureDuChantierSel sel) throws DevisChantierDbException {
         List<VoitureDuChantierDto> al = new ArrayList<>();
         try {
-            String query = "Select idVoitureDuChantier, idChantier, idVoiture, debutDisponibilite, finDisponibilite FROM VoitureDuChantier ";
+            String query = "Select idVoitureDuChantier, idChantier, idVoiture, debutDisponilibite, finDisponibilite, nombreJours FROM VoitureDuChantier ";
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement stmt;
             String where = "";
+            
             /*Pour une valeur numerique */
             if (sel.getIdVoitureDuChantier() != 0) {
                 where = where + " idVoitureDuChantier = ? ";
@@ -51,10 +52,11 @@ public class VoitureDuChantierDB {
             while (rs.next()) {
                 al.add(new VoitureDuChantierDto(
                         rs.getInt("idVoitureDuChantier"), 
+                        rs.getInt("idChantier"),
+                        rs.getInt("idVoiture"),
                         rs.getDate("debutDisponilibite"), 
                         rs.getDate("finDisponilibite"), 
-                        rs.getInt("idChantier"),
-                        rs.getInt("idVoiture")
+                        rs.getInt("nombreJours")
                 )                      
                 );
             }
@@ -83,14 +85,16 @@ public class VoitureDuChantierDB {
                     + "idVoiture=? "
                     + "debutDisponilibite=? "
                     + "finDisponilibite=? "
+                    + "nombreJours=? "
                     + "where idVoitureDuChantier=?";
             System.out.println(sql);
             update = connexion.prepareStatement(sql);
             update.setInt(1, el.getIdChantier());
             update.setInt(2, el.getIdVoiture());
-            update.setDate(3, el.getDebutDeDisponilibite());
-            update.setDate(4, el.getFinDeDisponilibite());
-            update.setInt(5, el.getId());
+            update.setDate(3, el.getDebutDisponilibite());
+            update.setDate(4, el.getFinDisponilibite());
+            update.setInt(5, el.getNombreJours());
+            update.setInt(6, el.getId());
             update.executeUpdate();
         } catch (DevisChantierDbException | SQLException ex) {
             throw new DevisChantierDbException("VoitureDuChantier, modification impossible:\n" + ex.getMessage());
@@ -103,13 +107,14 @@ public class VoitureDuChantierDB {
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement insert;
             insert = connexion.prepareStatement(
-                    "Insert into VoitureDuChantier(Select idVoitureDuChantier, idChantier, idVoiture, debutDisponibilite, finDisponibilite) "
-                    + "values(?, ?, ?, ?, ?)");
+                    "Insert into VoitureDuChantier(Select idVoitureDuChantier, idChantier, idVoiture, debutDisponilibite, finDisponibilite, nombreJours) "
+                    + "values(?, ?, ?, ?, ?, ?)");
             insert.setInt(1, num);
             insert.setInt(2, el.getIdChantier());
             insert.setInt(3, el.getIdVoiture());
-            insert.setDate(4, el.getDebutDeDisponilibite());
-            insert.setDate(5, el.getFinDeDisponilibite());
+            insert.setDate(4, el.getDebutDisponilibite());
+            insert.setDate(5, el.getFinDisponilibite());
+            insert.setInt(6, el.getNombreJours());
             insert.executeUpdate();
             return num;
         } catch (DevisChantierDbException | SQLException ex) {

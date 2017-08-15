@@ -76,10 +76,9 @@ public class FacadeDB {
             
     }
 
-    public static CamionDto findCamionById(int eId) throws DevisChantierBusinessException {
+    public static CamionDto findCamionBySel(CamionSel sel) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            CamionSel sel = new CamionSel(eId);
             Collection<CamionDto> col = CamionBL.findBySel(sel);
             CamionDto ldto = null;
             if (col.size() == 1) {
@@ -171,10 +170,9 @@ public class FacadeDB {
             
     }
 
-    public static CamionDuChantierDto findCamionDuChantierById(int eId) throws DevisChantierBusinessException {
+    public static CamionDuChantierDto findCamionDuChantierBySel(CamionDuChantierSel sel) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            CamionDuChantierSel sel = new CamionDuChantierSel(eId);
             Collection<CamionDuChantierDto> col = CamionDuChantierBL.findBySel(sel);
             CamionDuChantierDto ldto = null;
             if (col.size() == 1) {
@@ -361,10 +359,9 @@ public class FacadeDB {
             
     }
 
-    public static ClientDto findClientById(int eId) throws DevisChantierBusinessException {
+    public static ClientDto findClientBySel(ClientSel sel) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            ClientSel sel = new ClientSel(eId);
             Collection<ClientDto> col = ClientBL.findBySel(sel);
             ClientDto ldto = null;
             if (col.size() == 1) {
@@ -624,8 +621,6 @@ public class FacadeDB {
         }
     }     
 
-  
-
     /*Conducteur*/
     public static Collection<ConducteurDto> getAllConducteur() throws DevisChantierBusinessException {
         try {
@@ -646,10 +641,9 @@ public class FacadeDB {
             
     }
 
-    public static ConducteurDto findConducteurById(int eId) throws DevisChantierBusinessException {
+    public static ConducteurDto findConducteurBySel(ConducteurSel sel) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            ConducteurSel sel = new ConducteurSel(eId);
             Collection<ConducteurDto> col = ConducteurBL.findBySel(sel);
             ConducteurDto ldto = null;
             if (col.size() == 1) {
@@ -742,10 +736,9 @@ public class FacadeDB {
             
     }
 
-    public static ConducteurDuChantierDto findConducteurDuChantierById(int eId) throws DevisChantierBusinessException {
+    public static ConducteurDuChantierDto findConducteurDuChantierBySel(ConducteurDuChantierSel sel) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            ConducteurDuChantierSel sel = new ConducteurDuChantierSel(eId);
             Collection<ConducteurDuChantierDto> col = ConducteurDuChantierBL.findBySel(sel);
             ConducteurDuChantierDto ldto = null;
             if (col.size() == 1) {
@@ -1789,10 +1782,9 @@ public class FacadeDB {
             
     }
 
-    public static VoitureDto findVoitureById(int eId) throws DevisChantierBusinessException {
+    public static VoitureDto findVoitureBySel(VoitureSel sel) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            VoitureSel sel = new VoitureSel(eId);
             Collection<VoitureDto> col = VoitureBL.findBySel(sel);
             VoitureDto ldto = null;
             if (col.size() == 1) {
@@ -1884,10 +1876,9 @@ public class FacadeDB {
             
     }
 
-    public static VoitureDuChantierDto findVoitureDuChantierById(int eId) throws DevisChantierBusinessException {
+    public static VoitureDuChantierDto findVoitureDuChantierBySel(VoitureDuChantierSel sel) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            VoitureDuChantierSel sel = new VoitureDuChantierSel(eId);
             Collection<VoitureDuChantierDto> col = VoitureDuChantierBL.findBySel(sel);
             VoitureDuChantierDto ldto = null;
             if (col.size() == 1) {

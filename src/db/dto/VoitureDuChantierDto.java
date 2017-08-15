@@ -13,25 +13,19 @@ import java.sql.Date;
  */
 public class VoitureDuChantierDto extends EntityDto<Integer> {
     
-    private Date debutDisponilibite;
-    private Date finDisponilibite;
     private int idChantier;
     private int idVoiture;
+    private Date debutDisponilibite;
+    private Date finDisponilibite;
+    private int nombreJours;
 
-    public VoitureDuChantierDto(int idVoitureDuChantier, Date debutDisponilibite, Date finDisponilibite, int idChantier, int idVoiture) {
+    public VoitureDuChantierDto(int idVoitureDuChantier,int idChantier, int idVoiture, Date debutDisponilibite, Date finDisponilibite, int nombreJours) {
         this.id = idVoitureDuChantier;
-        this.debutDisponilibite = debutDisponilibite;
-        this.finDisponilibite = finDisponilibite;
         this.idChantier = idChantier;
         this.idVoiture = idVoiture;
-    }
-
-    public Date getDebutDeDisponilibite() {
-        return debutDisponilibite;
-    }
-
-    public Date getFinDeDisponilibite() {
-        return finDisponilibite;
+        this.debutDisponilibite = debutDisponilibite;
+        this.finDisponilibite = finDisponilibite;
+        this.nombreJours = nombreJours;
     }
 
     public int getIdChantier() {
@@ -41,6 +35,21 @@ public class VoitureDuChantierDto extends EntityDto<Integer> {
     public int getIdVoiture() {
         return idVoiture;
     }
+
+    public Date getDebutDisponilibite() {
+        return debutDisponilibite;
+    }
+
+    public Date getFinDisponilibite() {
+        return finDisponilibite;
+    }
+
+    public int getNombreJours() {
+        return nombreJours;
+    }
+
+
+
 
 
     

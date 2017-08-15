@@ -26,7 +26,7 @@ public class VoitureDB {
     public static List<VoitureDto> getCollection(VoitureSel sel) throws DevisChantierDbException {
         List<VoitureDto> al = new ArrayList<>();
         try {
-            String query = "Select idVoiture, attacheRemorque, marque, modele, numeroChassis, carburant, ctAmortMois FROM Voiture ";
+            String query = "Select idVoiture, attacheRemorque, marque, modele, numeroChassis, carburant, prixHtva FROM Voiture ";
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement stmt;
             String where = "";
@@ -80,7 +80,7 @@ public class VoitureDB {
                         rs.getString("modele"),
                         rs.getString("numeroChassis"),
                         rs.getString("carburant"),
-                        rs.getDouble("ctAmortMois")                     
+                        rs.getDouble("prixHtva")                     
                 )
                 );
             }
@@ -110,7 +110,7 @@ public class VoitureDB {
                     + "modele=? "
                     + "numeroChassis=? "
                     + "carburant=? "
-                    + "ctAmortMois=? "
+                    + "prixHtva=? "
                     + "where idVoiture=?";
             System.out.println(sql);
             update = connexion.prepareStatement(sql);
@@ -119,7 +119,7 @@ public class VoitureDB {
             update.setString(3, el.getModele());
             update.setString(4, el.getNumeroDeChassis());
             update.setString(5, el.getCarburant());
-            update.setDouble(6, el.getCtAmortMois());
+            update.setDouble(6, el.getPrixHtva());
             update.setInt(7, el.getId());
             update.executeUpdate();
         } catch (DevisChantierDbException | SQLException ex) {
@@ -133,7 +133,7 @@ public class VoitureDB {
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement insert;
             insert = connexion.prepareStatement(
-                    "Insert into Voiture(idVoiture, attacheRemorque, marque, modele, numeroChassis, carburant, ctAmortMois) "
+                    "Insert into Voiture(idVoiture, attacheRemorque, marque, modele, numeroChassis, carburant, prixHtva) "
                     + "values(?, ?, ?, ?, ?, ?, ?)");
             insert.setInt(1, num);
             insert.setBoolean(2, el.isAttacheRemorque());
@@ -141,7 +141,7 @@ public class VoitureDB {
             insert.setString(4, el.getModele());
             insert.setString(5, el.getNumeroDeChassis());
             insert.setString(6, el.getCarburant());
-            insert.setDouble(7, el.getCtAmortMois());
+            insert.setDouble(7, el.getPrixHtva());
             insert.executeUpdate();
             return num;
         } catch (DevisChantierDbException | SQLException ex) {
