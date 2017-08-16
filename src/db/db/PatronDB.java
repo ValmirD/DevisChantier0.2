@@ -89,12 +89,12 @@ public class PatronDB {
 
             java.sql.PreparedStatement update;
             String sql = "Update Patron set "
-                    + "password=? "
-                    + "nom=? "
-                    + "prenom=? "
-                    + "dateNaissance=? "
-                    + "numeroTelephone=? "
-                    + "numeroTelephonePro=? "
+                    + "password=?, "
+                    + "nom=?, "
+                    + "prenom=?, "
+                    + "dateNaissance=?, "
+                    + "numeroTelephone=?, "
+                    + "numeroTelephonePro=?, "
                     + "email=? "
                     + "where idPatron=?";
             System.out.println(sql);

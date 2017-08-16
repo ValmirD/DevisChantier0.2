@@ -124,16 +124,16 @@ public class ConducteurDB {
 
             java.sql.PreparedStatement update;
             String sql = "Update Conducteur set "
-                    + "password=? "
-                    + "nom=? "
-                    + "prenom=? "
-                    + "dateNaissance=? "
-                    + "numeroTelephone=? "
-                    + "numeroTelephonePro=? "
-                    + "email=? "
-                    + "remuneration=? "
-                    + "permis=? "
-                    + "entreeFonction=? "
+                    + "password=?, "
+                    + "nom=?, "
+                    + "prenom=?, "
+                    + "dateNaissance=?, "
+                    + "numeroTelephone=?, "
+                    + "numeroTelephonePro=?, "
+                    + "email=?, "
+                    + "remuneration=?, "
+                    + "permis=?, "
+                    + "entreeFonction=?, "
                     + "cout=? "
                     + "where idConducteur=?";
             System.out.println(sql);

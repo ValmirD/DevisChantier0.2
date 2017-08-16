@@ -106,10 +106,10 @@ public class ClientDB {
 
             java.sql.PreparedStatement update;
             String sql = "Update Client set "
-                    + "nom=? "
-                    + "prenom=? "
-                    + "dateNaissance=? "
-                    + "numeroTelephone=? "
+                    + "nom=?, "
+                    + "prenom=?, "
+                    + "dateNaissance=?, "
+                    + "numeroTelephone=?, "
                     + "email=? "
                     + "where idClient=?";
             System.out.println(sql);

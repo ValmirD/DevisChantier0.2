@@ -80,10 +80,10 @@ public class MateriauDuChantierDB {
 
             java.sql.PreparedStatement update;
             String sql = "Update MateriauDuChantier set "
-                    + "idChantier=? "
-                    + "idMateriau=? "
-                    + "debutDisponibilite=? "
-                    + "finDisponibilite=? "
+                    + "idChantier=?, "
+                    + "idMateriau=?, "
+                    + "debutDisponibilite=?, "
+                    + "finDisponibilite=?, "
                     + "quantite=? "
                     + "where idMateriauDuChantier=?";
             System.out.println(sql);

@@ -142,11 +142,11 @@ public class MateriauDB {
 
             java.sql.PreparedStatement update;
             String sql = "Update Materiau set "
-                    + "nom=? "
-                    + "type_=? "
-                    + "reference=? "
-                    + "fourniture=? "
-                    + "siteProduction=? "
+                    + "nom=?, "
+                    + "type_=?, "
+                    + "reference=?, "
+                    + "fourniture=?, "
+                    + "siteProduction=?, "
                     + "prixHtva=? "
                     + "where idMateriau=?";
             System.out.println(sql);

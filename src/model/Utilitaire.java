@@ -48,6 +48,10 @@ import db.selDto.CamionSel;
 import db.dto.CamionDto;
 import db.dto.CamionDuChantierDto;
 
+import db.selDto.DevisSel;
+import db.dto.DevisDto;
+
+
 import db.selDto.ClientSel;
 import db.dto.ClientDto;
 
@@ -446,6 +450,32 @@ public class Utilitaire {
     }    
     
     /*CamionsDuChantier*/
+    
+    
+    /*Devis*/
+    public static void insertDevis(DevisDto dev){
+        try {
+            FacadeDB.addDevis(dev);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void deleteDevis(int idDev){
+        try {
+            FacadeDB.deleteDevis(idDev);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void updateDevis(DevisDto dev){
+        try {
+            FacadeDB.updateDevis(dev);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }      
     
     
     

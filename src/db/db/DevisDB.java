@@ -26,7 +26,7 @@ public class DevisDB {
     public static List<DevisDto> getCollection(DevisSel sel) throws DevisChantierDbException {
         List<DevisDto> al = new ArrayList<>();
         try {
-            String query = "Select idDevis, designationDevis, statut, dateDevis FROM Devis ";
+            String query = "Select idDevis, designationDevis, statut, dateDevis, idChantier FROM Devis ";
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement stmt;
             String where = "";
@@ -94,16 +94,18 @@ public class DevisDB {
 
             java.sql.PreparedStatement update;
             String sql = "Update Devis set "
-                    + "designationDevis=? "
-                    + "statut=? "
-                    + "dateDevis=? "
+                    + "designationDevis=?, "
+                    + "statut=?, "
+                    + "dateDevis=?, "
+                    + "idChantier=? "                   
                     + "where idDevis=?";
             System.out.println(sql);
             update = connexion.prepareStatement(sql);
             update.setString(1, el.getDesignationDevis());
             update.setString(2, el.getStatut());
             update.setDate(3, el.getDateDevis());
-            update.setInt(11, el.getId());
+            update.setInt(4, el.getIdChantier());
+            update.setInt(5, el.getId());
             update.executeUpdate();
         } catch (DevisChantierDbException | SQLException ex) {
             throw new DevisChantierDbException("Devis, modification impossible:\n" + ex.getMessage());
@@ -116,12 +118,13 @@ public class DevisDB {
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement insert;
             insert = connexion.prepareStatement(
-                    "Insert into Devis(idDevis, designationDevis, statut, dateDevis) "
-                    + "values(?, ?, ?, ?)");
+                    "Insert into Devis(idDevis, designationDevis, statut, dateDevis, idChantier) "
+                    + "values(?, ?, ?, ?, ?)");
             insert.setInt(1, num);
             insert.setString(2, el.getDesignationDevis());
             insert.setString(3, el.getStatut());
             insert.setDate(4, el.getDateDevis());
+            insert.setInt(5, el.getIdChantier());
             insert.executeUpdate();
             return num;
         } catch (DevisChantierDbException | SQLException ex) {

@@ -81,10 +81,10 @@ public class CamionDuChantierDB {
 
             java.sql.PreparedStatement update;
             String sql = "Update CamionDuChantier set "
-                    + "idChantier=? "
-                    + "idCamion=? "
-                    + "nombreHeures=? "
-                    + "debutDisponibilite=? "
+                    + "idChantier=?, "
+                    + "idCamion=?, "
+                    + "nombreHeures=?, "
+                    + "debutDisponibilite=?, "
                     + "finDisponibilite=? "
                     + "where idCamionDuChantier=?";
             System.out.println(sql);

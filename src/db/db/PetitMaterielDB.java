@@ -114,9 +114,9 @@ public class PetitMaterielDB {
 
             java.sql.PreparedStatement update;
             String sql = "Update PetitMateriel set "
-                    + "nom=? "
-                    + "type_=? "
-                    + "reference=? "
+                    + "nom=?, "
+                    + "type_=?, "
+                    + "reference=?, "
                     + "prixHtva=? "
                     + "where idPetitMateriel=?";
             System.out.println(sql);

@@ -23,8 +23,9 @@ public class ChantierDto extends EntityDto<Integer> {
     private Date dateDebutEffective;
     private Date dateFinPrevue;
     private Date dateFinEffective;
+    private boolean validationProjet;
 
-    public ChantierDto(int idChantier, int idClient, int idDevis, String localisation, String designationProjet, String commentaire, Date dateCreationProjet, Date dateDebutPrevue, Date dateDebutEffective, Date dateFinPrevue, Date dateFinEffective) {
+    public ChantierDto(int idChantier, int idClient, int idDevis, String localisation, String designationProjet, String commentaire, Date dateCreationProjet, Date dateDebutPrevue, Date dateDebutEffective, Date dateFinPrevue, Date dateFinEffective, boolean validationProjet) {
         this.id = idChantier;
         this.idClient = idClient;
         this.idDevis = idDevis;
@@ -36,6 +37,7 @@ public class ChantierDto extends EntityDto<Integer> {
         this.dateDebutPrevue = dateDebutEffective;
         this.dateFinPrevue = dateFinPrevue;
         this.dateFinPrevue = dateFinEffective;
+        this.validationProjet = validationProjet;
     }
 
     public int getIdClient() {
@@ -77,6 +79,11 @@ public class ChantierDto extends EntityDto<Integer> {
     public Date getDateFinEffective() {
         return dateFinEffective;
     }
+
+    public boolean isValidationProjet() {
+        return validationProjet;
+    }
+
     
     
     

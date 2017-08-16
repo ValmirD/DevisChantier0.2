@@ -80,8 +80,8 @@ public class CodeReferenceDuChantierDB {
 
             java.sql.PreparedStatement update;
             String sql = "Update CodeReferenceDuChantier set "
-                    + "idChantier=? "
-                    + "idCodeReference=? "
+                    + "idChantier=?, "
+                    + "idCodeReference=?, "
                     + "quantite=? "
                     + "where idCodeReferenceDuChantier=?";
             System.out.println(sql);

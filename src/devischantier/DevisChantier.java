@@ -33,6 +33,8 @@ import db.dto.CamionDto;
 
 import db.dto.ClientDto;
 
+import db.dto.DevisDto;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -45,6 +47,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import java.sql.Date;
+import static javafx.application.Application.launch;
 
 /**
  *
@@ -61,6 +64,7 @@ public class DevisChantier extends Application {
         stage.setScene(scene);
         stage.show();
     }
+    
 
     /**
      * @param args the command line arguments
@@ -131,14 +135,22 @@ public class DevisChantier extends Application {
         //Utilitaire.updateCamion(camionUpdated);
         //Utilitaire.deleteCamion(3);
         
+        //DevisDto devis = new DevisDto(4, "Projet Zaventem 2", "Consultation", new java.sql.Date(2017,01,15), 1);
+        //Utilitaire.insertDevis(devis);
+        //DevisDto devisUpdated = new DevisDto(4, "Hello", "Waw", new java.sql.Date(2017-01-15), 1);
+        //Utilitaire.updateDevis(devisUpdated);
+        //Utilitaire.deleteDevis(4);
+        
         //ClientDto client = new ClientDto(5, "Marc", "Zotte", new java.sql.Date(1982-02-02), "0485321", "marc@beno.com");
         //Utilitaire.insertClient(client);
         //regarder dans la DB l'ID exacte, 6 est obsolète. 
         //Utilitaire.deleteEngin(6);
-        //Use stmt.setDate(1, new java.sql.Date(cal.getTimeInMillis()))
+
 
         //-EnginDto enginUpdated = new EnginDto(7, "Tracteur", "Creuser la pierre", "BL504", false, 55);
         //-Utilitaire.updateEngin(enginUpdated);
+        
+        //Use stmt.setDate(1, new java.sql.Date(cal.getTimeInMillis()))
         
         
         

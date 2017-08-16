@@ -109,14 +109,14 @@ public class OuvrierDB {
 
             java.sql.PreparedStatement update;
             String sql = "Update Ouvrier set "
-                    + "nom=? "
-                    + "prenom=? "
-                    + "dateNaissance=? "
-                    + "numeroTelephone=? "
-                    + "email=? "
-                    + "remuneration=? "
-                    + "permis=? "
-                    + "entreeFonction=? "
+                    + "nom=?, "
+                    + "prenom=?, "
+                    + "dateNaissance=?, "
+                    + "numeroTelephone=?, "
+                    + "email=?, "
+                    + "remuneration=?, "
+                    + "permis=?, "
+                    + "entreeFonction=?, "
                     + "cout=? "
                     + "where idOuvrier=?";
             System.out.println(sql);

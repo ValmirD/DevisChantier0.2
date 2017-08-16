@@ -132,7 +132,10 @@ create table DEVIS (
 	idDevis numeric(10) primary key not null, 
 	designationDevis varchar(20),
 	statut varchar(20),
-	dateDevis date
+	dateDevis date,
+	idChantier numeric(10) not null
+	
+
 	);
 	
 create table CHANTIER (
@@ -147,6 +150,7 @@ create table CHANTIER (
 	dateDebutEffective date,
 	dateFinPrevu date,
 	dateFinEffective date,
+	validationProjet boolean,
         
     constraint fkClient foreign key (idClient) references CLIENT(idClient),
     constraint fkDevis foreign key (idDevis) references DEVIS(idDevis)
@@ -278,7 +282,7 @@ Insert into CAMION Values (1,'C', 2, 1500, 'Mercedes', 'Worker', 'ZE25695d2d5', 
 Insert into CLIENT Values (1, 'Benoit', 'Marteans', '1960-02-04', '0488365222', 'benoit@hotmail.com');
 Insert into CODEREFERENCE Values (1, 'ER25698', 'Canalisation', 15);
 Insert into CONDUCTEUR Values (1, 'root', 'Laurent', 'Cordenier', '1990-09-11', '0485658999', '0499321587', 'laurent@melin.com', 3300, true, '2013-02-01', null);
-Insert into DEVIS Values (1, 'Parc de Woluwe', 'En validation', '2017-07-15');
+Insert into DEVIS Values (1, 'Parc de Woluwe', 'En validation', '2017-07-15', 1);
 Insert into ENGIN Values (1, 'Grue', 'Gravier', 'REZ89851', true, 20);
 Insert into MATERIAU Values (1, 'Sable', 'Terrassement', '698.325.21', 'Externe', 'Hulpe', 10);
 Insert into OUVRIER Values (1, 'Jack', 'Bauer', '1988-05-03', '0477235987', 'jackbauer@melin.be', 1745, true, '2001-11-05', null);
@@ -286,7 +290,7 @@ Insert into PATRON Values (1, 'root', 'Benoit', 'Martin', '1995-09-11', '0485658
 Insert into PETITMATERIEL Values (1, 'Marteau', 'Nivellement', '2REZEDD', 5);
 Insert into VOITURE Values (1, true, 'Ford', 'Transporter', '36d5d5d48sd', 'Diesel', 19);
 
-Insert into CHANTIER Values (1, 1, 1, 'Bruxelles', 'parc de la woluwe', 'Cest un bon projet', '2017-02-01','2017-03-03','2017-03-05','2017-03-27','2017-03-28');
+Insert into CHANTIER Values (1, 1, 1, 'Bruxelles', 'parc de la woluwe', 'Cest un bon projet', '2017-02-01','2017-03-03', null,'2017-03-27', null, false);
 
 Insert into CAMIONDUCHANTIER Values (1, 1, 1, 5, '2017-01-01', '2017-01-11');
 Insert into OUVRIERDUCHANTIER Values (1, 1, 1, '2017-09-01', '2017-09-10', 36);

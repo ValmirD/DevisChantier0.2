@@ -105,11 +105,11 @@ public class VoitureDB {
 
             java.sql.PreparedStatement update;
             String sql = "Update Voiture set "
-                    + "attacheRemorque=? "
-                    + "marque=? "
-                    + "modele=? "
-                    + "numeroChassis=? "
-                    + "carburant=? "
+                    + "attacheRemorque=?, "
+                    + "marque=?, "
+                    + "modele=?, "
+                    + "numeroChassis=?, "
+                    + "carburant=?, "
                     + "prixHtva=? "
                     + "where idVoiture=?";
             System.out.println(sql);

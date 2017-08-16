@@ -26,7 +26,7 @@ public class ChantierDB {
     public static List<ChantierDto> getCollection(ChantierSel sel) throws DevisChantierDbException {
         List<ChantierDto> al = new ArrayList<>();
         try {
-            String query = "Select idChantier, idClient, idDevis, localisation, designationduprojet, commentaire, dateCreationprojet, datedebutprevue, datedebuteffective, datefinprevue, datefineffective FROM Chantier ";
+            String query = "Select idChantier, idClient, idDevis, localisation, designationduprojet, commentaire, dateCreationprojet, datedebutprevue, datedebuteffective, datefinprevue, datefineffective, validationProjet FROM Chantier ";
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement stmt;
             String where = "";
@@ -84,7 +84,8 @@ public class ChantierDB {
                         rs.getDate("dateDebutPrevue"),
                         rs.getDate("dateDebutEffective"),
                         rs.getDate("dateFinPrevue"),                        
-                        rs.getDate("dateFinEffective")
+                        rs.getDate("dateFinEffective"),
+                        rs.getBoolean("validationProjet")                      
                 )
                 );
             }
@@ -109,16 +110,17 @@ public class ChantierDB {
 
             java.sql.PreparedStatement update;
             String sql = "Update Chantier set "
-                    + "idClient=? "
-                    + "idDevis=? "
-                    + "localisation=? "
-                    + "designationDuProjet=? "
-                    + "commentaire=? "
-                    + "dateCreationProjet=? "
-                    + "dateDebutPrevue=? "
-                    + "dateDebutEffective=? "
-                    + "dateFinPrevue=? "
-                    + "dateFinEffective=? "
+                    + "idClient=?, "
+                    + "idDevis=?, "
+                    + "localisation=?, "
+                    + "designationDuProjet=?, "
+                    + "commentaire=?, "
+                    + "dateCreationProjet=?, "
+                    + "dateDebutPrevue=?, "
+                    + "dateDebutEffective=?, "
+                    + "dateFinPrevue=?, "
+                    + "dateFinEffective=?, "
+                    + "validationProjet=? "                   
                     + "where idChantier=?";
             System.out.println(sql);
             update = connexion.prepareStatement(sql);
@@ -132,7 +134,8 @@ public class ChantierDB {
             update.setDate(8, el.getDateDebutEffective());
             update.setDate(9, el.getDateFinPrevue());            
             update.setDate(10, el.getDateFinEffective());
-            update.setInt(11, el.getId());
+            update.setBoolean(11, el.isValidationProjet());
+            update.setInt(12, el.getId());
             update.executeUpdate();
         } catch (DevisChantierDbException | SQLException ex) {
             throw new DevisChantierDbException("Chantier, modification impossible:\n" + ex.getMessage());
@@ -145,8 +148,8 @@ public class ChantierDB {
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement insert;
             insert = connexion.prepareStatement(
-                    "Insert into Chantier(idChantier, idClient, idDevis, localisation, designationProjet, commentaire, dateCreationProjet, dateDebutprevue, dateDebutEffective, dateFinPrevue, dateFinEffective) "
-                    + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    "Insert into Chantier(idChantier, idClient, idDevis, localisation, designationProjet, commentaire, dateCreationProjet, dateDebutprevue, dateDebutEffective, dateFinPrevue, dateFinEffective, validationProjet) "
+                    + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             insert.setInt(1, num);
             insert.setInt(2, el.getIdClient());
             insert.setInt(3, el.getIdDevis());
@@ -158,6 +161,7 @@ public class ChantierDB {
             insert.setDate(9, el.getDateDebutEffective());
             insert.setDate(10, el.getDateFinPrevue());
             insert.setDate(11, el.getDateFinEffective());
+            insert.setBoolean(12, el.isValidationProjet());
             insert.executeUpdate();
             return num;
         } catch (DevisChantierDbException | SQLException ex) {

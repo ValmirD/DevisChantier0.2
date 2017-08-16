@@ -92,8 +92,8 @@ public class CodeReferenceDB {
 
             java.sql.PreparedStatement update;
             String sql = "Update CodeReference set "
-                    + "reference=? "
-                    + "typeTravail=? "
+                    + "reference=?, "
+                    + "typeTravail=?, "
                     + "prixHtva=? "
                     + "where idCodeReference=?";
             System.out.println(sql);
