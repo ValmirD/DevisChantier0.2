@@ -1499,10 +1499,9 @@ public class FacadeDB {
             
     }
 
-    public static PatronDto findPatronById(int eId) throws DevisChantierBusinessException {
+    public static PatronDto findPatronBySel(PatronSel sel) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            PatronSel sel = new PatronSel(eId);
             Collection<PatronDto> col = PatronBL.findBySel(sel);
             PatronDto ldto = null;
             if (col.size() == 1) {

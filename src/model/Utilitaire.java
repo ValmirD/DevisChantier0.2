@@ -106,7 +106,9 @@ public class Utilitaire {
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
-    }    
+    }   
+    
+    /*EnginsDuChantier*/
     
     /*Materiaux*/
     public static double montantMateriaux(MateriauSel sel1, MateriauDuChantierSel sel2){
@@ -153,6 +155,8 @@ public class Utilitaire {
         }
     }    
     
+    /*MateriauxDuChantier*/
+    
     /*Petits Materiels*/
     public static double montantPetitsMateriels(PetitMaterielSel sel1, PetitMaterielDuChantierSel sel2){
         double montant = 0;
@@ -196,7 +200,9 @@ public class Utilitaire {
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
-    }       
+    } 
+    
+    /*PetitsMaterielsDuChantier*/
     
     /*Codes References*/
     public static double montantCodesReferences(CodeReferenceSel sel1, CodeReferenceDuChantierSel sel2){
@@ -259,16 +265,19 @@ public class Utilitaire {
         System.out.println(montantTot);
         return montantTot;
     }
+    
+    /*CodesReferencesDuChantier*/
+    
 
     /*Ouvriers*/
     public static Date calculAge(OuvrierSel sel1){
         Date dateNai = null;
-        
+
         try {
             OuvrierDto ouv = FacadeDB.findOuvrierBySel(sel1);
             dateNai = ouv.getDateNaissance();
             System.out.println(dateNai);
-                              
+            
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
@@ -293,9 +302,12 @@ public class Utilitaire {
             System.out.println(ex.getMessage());
         }
         return montantTot;
-    }    
+    }
+
+    /*OuvriersDuChantier*/ 
     
-    /*Conducteur*/
+    
+    /*Conducteurs*/
     public static double montantConducteurs(ConducteurSel sel1, ConducteurDuChantierSel sel2){
         double cout = 0;
         double nombreHeures = 0;
@@ -314,7 +326,9 @@ public class Utilitaire {
             System.out.println(ex.getMessage());
         }
         return montantTot;
-    }      
+    }  
+
+    /*ConducteursDuChantier*/
     
     /*Clients*/
     public static void insertClient(ClientDto cli){
@@ -350,10 +364,8 @@ public class Utilitaire {
         try {
             VoitureDto eng = FacadeDB.findVoitureBySel(voit);
             montant = eng.getPrixHtva();     
-            System.out.println(montant+"ici ok");
             VoitureDuChantierDto voiCha= FacadeDB.findVoitureDuChantierBySel(sel);
             nombreJours = voiCha.getNombreJours();
-            System.out.println(nombreJours+"ici ok2");
             montantTot = nombreJours*montant;
             System.out.println(montantTot);
                     
@@ -385,9 +397,11 @@ public class Utilitaire {
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
-    }       
+    }     
     
-    /*Camion*/    
+    /*VoituresDuChantier*/
+    
+    /*Camions*/    
     public static double montantCamions(CamionSel cam, CamionDuChantierSel sel){
         double montant = 0;
         double nombreHeures = 0;
@@ -396,10 +410,8 @@ public class Utilitaire {
         try {
             CamionDto eng = FacadeDB.findCamionBySel(cam);
             montant = eng.getPrixHtva();     
-            System.out.println(montant+"camion ok");
             CamionDuChantierDto camcha= FacadeDB.findCamionDuChantierBySel(sel);
             nombreHeures = camcha.getNombreHeures();
-            System.out.println(nombreHeures+"camionduchantier ok2");
             montantTot = nombreHeures*montant;
             System.out.println(montantTot);
                     
@@ -431,7 +443,9 @@ public class Utilitaire {
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
-    }      
+    }    
+    
+    /*CamionsDuChantier*/
     
     
     

@@ -127,6 +127,9 @@ public class DevisChantier extends Application {
         
         //CamionDto camion = new CamionDto(5, "B", 1, 1500, "Audi", "Charger", "254795625", "Diesel", 177);
         //Utilitaire.insertCamion(camion);
+        //CamionDto camionUpdated = new CamionDto(3, "B", 1, 1800, "Audi", "Charger", "254795625", "Essence", 177);
+        //Utilitaire.updateCamion(camionUpdated);
+        //Utilitaire.deleteCamion(3);
         
         //ClientDto client = new ClientDto(5, "Marc", "Zotte", new java.sql.Date(1982-02-02), "0485321", "marc@beno.com");
         //Utilitaire.insertClient(client);

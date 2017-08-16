@@ -26,7 +26,7 @@ public class PatronDB {
     public static List<PatronDto> getCollection(PatronSel sel) throws DevisChantierDbException {
         List<PatronDto> al = new ArrayList<>();
         try {
-            String query = "Select idPatron, password, validationProjet FROM Patron ";
+            String query = "Select idPatron, password, nom, prenom, dateNaissance, numeroTelephone, numeroTelephonePro, email FROM Patron ";
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement stmt;
             String where = "";
@@ -59,7 +59,12 @@ public class PatronDB {
                 al.add(new PatronDto(
                         rs.getInt("idPatron"), 
                         rs.getString("password"),
-                        rs.getBoolean("validationProjet")
+                        rs.getString("nom"),
+                        rs.getString("prenom"),
+                        rs.getDate("dateNaissance"),
+                        rs.getString("numeroTelephone"), 
+                        rs.getString("numeroTelephonePro"),   
+                        rs.getString("email")
                 )
                 );
             }
@@ -85,13 +90,23 @@ public class PatronDB {
             java.sql.PreparedStatement update;
             String sql = "Update Patron set "
                     + "password=? "
-                    + "validationProjet=? "
+                    + "nom=? "
+                    + "prenom=? "
+                    + "dateNaissance=? "
+                    + "numeroTelephone=? "
+                    + "numeroTelephonePro=? "
+                    + "email=? "
                     + "where idPatron=?";
             System.out.println(sql);
             update = connexion.prepareStatement(sql);
             update.setString(1, el.getPassword());
-            update.setBoolean(2, el.isValidationProjet());
-            update.setInt(3, el.getId());
+            update.setString(2, el.getNom());
+            update.setString(3, el.getPrenom());
+            update.setDate(4, el.getDateNaissance());
+            update.setString(5, el.getNumeroTelephone());
+            update.setString(6, el.getNumeroTelephonePro());
+            update.setString(7, el.getEmail());
+            update.setInt(8, el.getId());
             update.executeUpdate();
         } catch (DevisChantierDbException | SQLException ex) {
             throw new DevisChantierDbException("Patron, modification impossible:\n" + ex.getMessage());
@@ -104,11 +119,16 @@ public class PatronDB {
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement insert;
             insert = connexion.prepareStatement(
-                    "Insert into Patron(idPatron, password, validationProjet) "
+                    "Insert into Patron(idPatron, password, nom, prenom, dateNaissance, numeroTelephone, numeroTelephonePro, email) "
                     + "values(?, ?, ?)");
             insert.setInt(1, num);
             insert.setString(2, el.getPassword());
-            insert.setBoolean(3, el.isValidationProjet());
+            insert.setString(3, el.getNom());
+            insert.setString(4, el.getPrenom());
+            insert.setDate(5, el.getDateNaissance());
+            insert.setString(6, el.getNumeroTelephone());
+            insert.setString(7, el.getNumeroTelephonePro());
+            insert.setString(8, el.getEmail());
             insert.executeUpdate();
             return num;
         } catch (DevisChantierDbException | SQLException ex) {

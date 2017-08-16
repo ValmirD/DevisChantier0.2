@@ -107,13 +107,13 @@ public class CamionDB {
 
             java.sql.PreparedStatement update;
             String sql = "Update Camion set "
-                    + "categorie=? "
-                    + "tonnage=? "
-                    + "capacite=? "
-                    + "marque=? "
-                    + "modele=? "
-                    + "numeroChassis=? "
-                    + "carburant=? "
+                    + "categorie=?, "
+                    + "tonnage=?, "
+                    + "capacite=?, "
+                    + "marque=?, "
+                    + "modele=?, "
+                    + "numeroChassis=?, "
+                    + "carburant=?, "
                     + "prixHtva=? "
                     + "where idCamion=?";
             System.out.println(sql);

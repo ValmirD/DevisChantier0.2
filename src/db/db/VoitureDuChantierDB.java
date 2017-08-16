@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class VoitureDuChantierDB {
 
-    public static List<VoitureDuChantierDto> getAllVoitureDuChantiers() throws DevisChantierDbException {
+    public static List<VoitureDuChantierDto> getAllVoitureDuChantier() throws DevisChantierDbException {
         List<VoitureDuChantierDto> elements = getCollection(new VoitureDuChantierSel(0));
         return elements;
     }
@@ -26,7 +26,7 @@ public class VoitureDuChantierDB {
     public static List<VoitureDuChantierDto> getCollection(VoitureDuChantierSel sel) throws DevisChantierDbException {
         List<VoitureDuChantierDto> al = new ArrayList<>();
         try {
-            String query = "Select idVoitureDuChantier, idChantier, idVoiture, debutDisponilibite, finDisponibilite, nombreJours FROM VoitureDuChantier ";
+            String query = "Select idVoitureDuChantier, idChantier, idVoiture, debutDisponibilite, finDisponibilite, nombreJours  FROM VoitureDuChantier ";
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement stmt;
             String where = "";
@@ -35,7 +35,7 @@ public class VoitureDuChantierDB {
             if (sel.getIdVoitureDuChantier() != 0) {
                 where = where + " idVoitureDuChantier = ? ";
             }
-                        
+                              
             if (where.length() != 0) {
                 where = " where " + where;
                 query = query + where;
@@ -45,6 +45,7 @@ public class VoitureDuChantierDB {
                     stmt.setInt(i, sel.getIdVoitureDuChantier());
                     i++;
                 }
+
             } else {
                 stmt = connexion.prepareStatement(query);
             }
@@ -52,12 +53,12 @@ public class VoitureDuChantierDB {
             while (rs.next()) {
                 al.add(new VoitureDuChantierDto(
                         rs.getInt("idVoitureDuChantier"), 
-                        rs.getInt("idChantier"),
-                        rs.getInt("idVoiture"),
-                        rs.getDate("debutDisponilibite"), 
-                        rs.getDate("finDisponilibite"), 
+                        rs.getInt("idChantier"), 
+                        rs.getInt("idVoiture"), 
+                        rs.getDate("debutDisponibilite"),
+                        rs.getDate("finDisponibilite"),
                         rs.getInt("nombreJours")
-                )                      
+                )
                 );
             }
         } catch (java.sql.SQLException eSQL) {
@@ -81,10 +82,10 @@ public class VoitureDuChantierDB {
 
             java.sql.PreparedStatement update;
             String sql = "Update VoitureDuChantier set "
-                    + "idChantier=? "
-                    + "idVoiture=? "
-                    + "debutDisponilibite=? "
-                    + "finDisponilibite=? "
+                    + "idChantier=?, "
+                    + "idVoiture=?, "
+                    + "debutDisponibilite=?, "
+                    + "finDisponibilite=?, "
                     + "nombreJours=? "
                     + "where idVoitureDuChantier=?";
             System.out.println(sql);
@@ -94,7 +95,7 @@ public class VoitureDuChantierDB {
             update.setDate(3, el.getDebutDisponilibite());
             update.setDate(4, el.getFinDisponilibite());
             update.setInt(5, el.getNombreJours());
-            update.setInt(6, el.getId());
+            update.setInt(9, el.getId());
             update.executeUpdate();
         } catch (DevisChantierDbException | SQLException ex) {
             throw new DevisChantierDbException("VoitureDuChantier, modification impossible:\n" + ex.getMessage());
@@ -107,7 +108,7 @@ public class VoitureDuChantierDB {
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement insert;
             insert = connexion.prepareStatement(
-                    "Insert into VoitureDuChantier(Select idVoitureDuChantier, idChantier, idVoiture, debutDisponilibite, finDisponibilite, nombreJours) "
+                    "Insert into VoitureDuChantier(idVoitureDuChantier, idChantier, idVoiture, debutDisponibilite, finDisponibilite, nombreJours) "
                     + "values(?, ?, ?, ?, ?, ?)");
             insert.setInt(1, num);
             insert.setInt(2, el.getIdChantier());
@@ -122,4 +123,3 @@ public class VoitureDuChantierDB {
         }
     }
 }
-

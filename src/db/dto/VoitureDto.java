@@ -52,6 +52,10 @@ public class VoitureDto extends EntityDto<Integer> {
         return prixHtva;
     }
 
+    public void setAttacheRemorque(boolean attacheRemorque) {
+        this.attacheRemorque = attacheRemorque;
+    }
+
 
     
     

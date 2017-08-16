@@ -118,7 +118,12 @@ create table CONDUCTEUR(
 create table PATRON (
 	idPatron numeric(10) primary key not null, 
 	password varchar(20),
-	validationProjet boolean,
+	nom varchar(20),
+	prenom varchar(20),
+	dateNaissance date,
+	numeroTelephone varchar(20) unique,
+	numeroTelephonePro varchar(20) unique,
+	email varchar(20) unique,
 
     constraint fkPatron foreign key (idPatron) references CONDUCTEUR(idConducteur)
 	);
@@ -277,7 +282,7 @@ Insert into DEVIS Values (1, 'Parc de Woluwe', 'En validation', '2017-07-15');
 Insert into ENGIN Values (1, 'Grue', 'Gravier', 'REZ89851', true, 20);
 Insert into MATERIAU Values (1, 'Sable', 'Terrassement', '698.325.21', 'Externe', 'Hulpe', 10);
 Insert into OUVRIER Values (1, 'Jack', 'Bauer', '1988-05-03', '0477235987', 'jackbauer@melin.be', 1745, true, '2001-11-05', null);
-Insert into PATRON Values (1, 'root', null);
+Insert into PATRON Values (1, 'root', 'Benoit', 'Martin', '1995-09-11', '0485658889', '0488321587', 'benoit@melin.com');
 Insert into PETITMATERIEL Values (1, 'Marteau', 'Nivellement', '2REZEDD', 5);
 Insert into VOITURE Values (1, true, 'Ford', 'Transporter', '36d5d5d48sd', 'Diesel', 19);
 

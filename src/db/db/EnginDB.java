@@ -30,6 +30,7 @@ public class EnginDB {
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement stmt;
             String where = "";
+            
             /*Pour une valeur numerique */
             if (sel.getIdEngin() != 0) {
                 where = where + " idEngin = ? ";
