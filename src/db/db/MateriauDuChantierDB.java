@@ -91,9 +91,9 @@ public class MateriauDuChantierDB {
             update.setInt(1, el.getIdChantier());
             update.setInt(2, el.getIdMateriau());
             update.setDate(3, el.getDebutDisponibilite());
-            update.setDate(3, el.getFinDisponibilite());
-            update.setDouble(4, el.getQuantite());
-            update.setInt(11, el.getId());
+            update.setDate(4, el.getFinDisponibilite());
+            update.setDouble(5, el.getQuantite());
+            update.setInt(6, el.getId());
             update.executeUpdate();
         } catch (DevisChantierDbException | SQLException ex) {
             throw new DevisChantierDbException("MateriauDuChantier, modification impossible:\n" + ex.getMessage());

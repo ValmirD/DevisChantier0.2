@@ -95,7 +95,7 @@ public class VoitureDuChantierDB {
             update.setDate(3, el.getDebutDisponilibite());
             update.setDate(4, el.getFinDisponilibite());
             update.setInt(5, el.getNombreJours());
-            update.setInt(9, el.getId());
+            update.setInt(6, el.getId());
             update.executeUpdate();
         } catch (DevisChantierDbException | SQLException ex) {
             throw new DevisChantierDbException("VoitureDuChantier, modification impossible:\n" + ex.getMessage());

@@ -119,7 +119,7 @@ public class CodeReferenceDB {
             insert.setInt(1, num);
             insert.setString(2, el.getReference());
             insert.setString(3, el.getTypeTravail());
-            insert.setDouble(11, el.getPrixHtva());
+            insert.setDouble(4, el.getPrixHtva());
             insert.executeUpdate();
             return num;
         } catch (DevisChantierDbException | SQLException ex) {

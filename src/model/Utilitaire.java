@@ -55,6 +55,9 @@ import db.dto.DevisDto;
 import db.selDto.ClientSel;
 import db.dto.ClientDto;
 
+import db.selDto.ChantierSel;
+import db.dto.ChantierDto;
+
 import java.sql.Date;
 
 
@@ -80,7 +83,6 @@ public class Utilitaire {
             quantite = engCha.getQuantite();
             nombreHeures = engCha.getNombreHeures();
             montantTot = nombreHeures*quantite*montant;
-            System.out.println(montantTot);
                     
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
@@ -127,7 +129,6 @@ public class Utilitaire {
             MateriauDuChantierDto matCha= FacadeDB.findMateriauDuChantierBySel(sel2);
             quantite = matCha.getQuantite();
             montantTot = quantite*montant;
-            System.out.println(montantTot);
                     
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
@@ -174,7 +175,6 @@ public class Utilitaire {
             PetitMaterielDuChantierDto pema= FacadeDB.findPetitMaterielDuChantierBySel(sel2);
             quantite = pema.getQuantite();
             montantTot = quantite*montant;
-            System.out.println(montantTot);
                     
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
@@ -221,7 +221,6 @@ public class Utilitaire {
             CodeReferenceDuChantierDto pema= FacadeDB.findCodeReferenceDuChantierBySel(sel2);
             quantite = pema.getQuantite();
             montantTot = quantite*montant;
-            System.out.println(montantTot);
                     
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
@@ -300,8 +299,7 @@ public class Utilitaire {
             OuvrierDuChantierDto ouvcha= FacadeDB.findOuvrierDuChantierBySel(sel2);
             nombreHeures = ouvcha.getNombreHeures();
             montantTot = cout*nombreHeures;
-            System.out.println(montantTot);
-                    
+            
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
@@ -309,7 +307,8 @@ public class Utilitaire {
     }
 
     /*OuvriersDuChantier*/ 
-    
+
+
     
     /*Conducteurs*/
     public static double montantConducteurs(ConducteurSel sel1, ConducteurDuChantierSel sel2){
@@ -324,7 +323,6 @@ public class Utilitaire {
             ConducteurDuChantierDto concha= FacadeDB.findConducteurDuChantierBySel(sel2);
             nombreHeures = concha.getNombreHeures();
             montantTot = cout*nombreHeures;
-            System.out.println(montantTot);
                     
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
@@ -368,10 +366,10 @@ public class Utilitaire {
         try {
             VoitureDto eng = FacadeDB.findVoitureBySel(voit);
             montant = eng.getPrixHtva();     
+            
             VoitureDuChantierDto voiCha= FacadeDB.findVoitureDuChantierBySel(sel);
             nombreJours = voiCha.getNombreJours();
             montantTot = nombreJours*montant;
-            System.out.println(montantTot);
                     
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
@@ -414,10 +412,10 @@ public class Utilitaire {
         try {
             CamionDto eng = FacadeDB.findCamionBySel(cam);
             montant = eng.getPrixHtva();     
+            
             CamionDuChantierDto camcha= FacadeDB.findCamionDuChantierBySel(sel);
             nombreHeures = camcha.getNombreHeures();
             montantTot = nombreHeures*montant;
-            System.out.println(montantTot);
                     
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
@@ -477,6 +475,30 @@ public class Utilitaire {
         }
     }      
     
+    /*Devis*/
+    public static void insertChantier(ChantierDto cha){
+        try {
+            FacadeDB.addChantier(cha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void deleteChantier(int idCha){
+        try {
+            FacadeDB.deleteChantier(idCha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void updateChantier(ChantierDto cha){
+        try {
+            FacadeDB.updateChantier(cha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }         
     
     
     

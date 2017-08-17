@@ -146,9 +146,9 @@ create table CHANTIER (
 	designationProjet varchar(20),
 	commentaire varchar(500),
 	dateCreationProjet date,
-	dateDebutPrevu date,
+	dateDebutPrevue date,
 	dateDebutEffective date,
-	dateFinPrevu date,
+	dateFinPrevue date,
 	dateFinEffective date,
 	validationProjet boolean,
         

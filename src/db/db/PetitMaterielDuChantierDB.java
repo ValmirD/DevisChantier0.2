@@ -94,7 +94,8 @@ public class PetitMaterielDuChantierDB {
             update.setInt(2, el.getIdPetitMateriel());
             update.setDate(3, el.getDebutDisponibilite());
             update.setDate(4, el.getFinDisponibilite());
-            update.setDouble(5, el.getId());
+            update.setDouble(5, el.getQuantite());
+            update.setDouble(6, el.getId());
             update.executeUpdate();
         } catch (DevisChantierDbException | SQLException ex) {
             throw new DevisChantierDbException("PetitMaterielDuChantier, modification impossible:\n" + ex.getMessage());
@@ -114,7 +115,7 @@ public class PetitMaterielDuChantierDB {
             insert.setInt(3, el.getIdPetitMateriel());
             insert.setDate(4, el.getDebutDisponibilite());
             insert.setDate(5, el.getFinDisponibilite());
-            insert.setDouble(5, el.getQuantite());
+            insert.setDouble(6, el.getQuantite());
             insert.executeUpdate();
             return num;
         } catch (DevisChantierDbException | SQLException ex) {

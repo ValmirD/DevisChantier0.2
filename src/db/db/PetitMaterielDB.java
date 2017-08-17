@@ -125,7 +125,7 @@ public class PetitMaterielDB {
             update.setString(2, el.getType());
             update.setString(3, el.getReference());
             update.setDouble(4, el.getPrixHtva());
-            update.setInt(11, el.getId());
+            update.setInt(5, el.getId());
             update.executeUpdate();
         } catch (DevisChantierDbException | SQLException ex) {
             throw new DevisChantierDbException("PetitMateriel, modification impossible:\n" + ex.getMessage());

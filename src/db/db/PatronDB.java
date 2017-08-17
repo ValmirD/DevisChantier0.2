@@ -120,7 +120,7 @@ public class PatronDB {
             java.sql.PreparedStatement insert;
             insert = connexion.prepareStatement(
                     "Insert into Patron(idPatron, password, nom, prenom, dateNaissance, numeroTelephone, numeroTelephonePro, email) "
-                    + "values(?, ?, ?)");
+                    + "values(?, ?, ?, ?, ?, ?, ?, ?)");
             insert.setInt(1, num);
             insert.setString(2, el.getPassword());
             insert.setString(3, el.getNom());

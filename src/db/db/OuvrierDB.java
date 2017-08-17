@@ -130,7 +130,7 @@ public class OuvrierDB {
             update.setBoolean(7, el.isPermis());
             update.setDate(8, el.getEntreeFonction());
             update.setDouble(9, el.getCout());
-            update.setInt(11, el.getId());
+            update.setInt(10, el.getId());
             update.executeUpdate();
         } catch (DevisChantierDbException | SQLException ex) {
             throw new DevisChantierDbException("Ouvrier, modification impossible:\n" + ex.getMessage());

@@ -96,7 +96,8 @@ public class EnginDuChantierDB {
             update.setDate(3, el.getDebutDisponibilite());
             update.setDate(4, el.getFinDisponibilite());
             update.setDouble(5, el.getQuantite());
-            update.setDouble(11, el.getId());
+            update.setDouble(6, el.getNombreHeures());
+            update.setInt(7, el.getId());
             update.executeUpdate();
         } catch (DevisChantierDbException | SQLException ex) {
             throw new DevisChantierDbException("EnginDuChantier, modification impossible:\n" + ex.getMessage());

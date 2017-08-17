@@ -35,6 +35,9 @@ import db.dto.ClientDto;
 
 import db.dto.DevisDto;
 
+import db.selDto.ChantierSel;
+import db.dto.ChantierDto;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -72,19 +75,22 @@ public class DevisChantier extends Application {
     public static void main(String[] args) {
         launch(args);
 
+        //COUT ENGIN
         EnginSel eng = new EnginSel(1);
         EnginDuChantierSel sel = new EnginDuChantierSel(1);
         Utilitaire.montantEngins(eng, sel);
 
+        //COUT MATERIAU
         MateriauSel mat = new MateriauSel(1);
         MateriauDuChantierSel macha = new MateriauDuChantierSel(1);
         Utilitaire.montantMateriaux(mat, macha);
-
+        
+        //COUT PETIT MATERIEL 
         PetitMaterielSel pemat = new PetitMaterielSel(1);
         PetitMaterielDuChantierSel pemacha = new PetitMaterielDuChantierSel(1);
         Utilitaire.montantPetitsMateriels(pemat, pemacha);
 
-        //AJOUT CODE REFERENCE
+        //COUT CODE REFERENCE
         CodeReferenceSel core = new CodeReferenceSel(1);
         CodeReferenceDuChantierSel corecha = new CodeReferenceDuChantierSel(1);
         Utilitaire.montantCodesReferences(core, corecha);
@@ -103,12 +109,12 @@ public class DevisChantier extends Application {
         ConducteurDuChantierSel concha = new ConducteurDuChantierSel(1);
         Utilitaire.montantConducteurs(con, concha);
         
-        //VOITURE
+        //COUT VOITURE
         VoitureSel voi = new VoitureSel(1);
         VoitureDuChantierSel voicha = new VoitureDuChantierSel(1);
         Utilitaire.montantVoitures(voi, voicha);
         
-        //CAMION
+        //COUT CAMION
         CamionSel cam = new CamionSel(1);
         CamionDuChantierSel camcha = new CamionDuChantierSel(1);
         Utilitaire.montantCamions(cam, camcha); 
@@ -116,8 +122,8 @@ public class DevisChantier extends Application {
         System.out.println(Utilitaire.montantCamions(cam, camcha));
         
         //AGE
-        OuvrierSel ouv2 = new OuvrierSel(1);
-        Utilitaire.calculAge(ouv2);
+        //OuvrierSel ouv2 = new OuvrierSel(1);
+        //Utilitaire.calculAge(ouv2);
         
         // METHODE CRUD >
 
@@ -140,6 +146,12 @@ public class DevisChantier extends Application {
         //DevisDto devisUpdated = new DevisDto(4, "Hello", "Waw", new java.sql.Date(2017-01-15), 1);
         //Utilitaire.updateDevis(devisUpdated);
         //Utilitaire.deleteDevis(4);
+        
+        //ChantierDto chantier = new ChantierDto(3, 1, 1, "Bruxelles", "Parc Cinquentenaire", "Mauvais temps", new Date(2017-02-01), new Date(2017-03-01), null, new Date(2017-03-05), null, false);
+        //Utilitaire.insertChantier(chantier);
+        //ChantierDto chantierUpdated = new ChantierDto(4, "Hello", "Waw", new java.sql.Date(2017-01-15), 1);
+        //Utilitaire.updateChantier(chantierUpdated);
+        //Utilitaire.deleteChantier(3);
         
         //ClientDto client = new ClientDto(5, "Marc", "Zotte", new java.sql.Date(1982-02-02), "0485321", "marc@beno.com");
         //Utilitaire.insertClient(client);

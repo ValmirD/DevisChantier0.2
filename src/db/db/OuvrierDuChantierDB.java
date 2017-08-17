@@ -94,7 +94,8 @@ public class OuvrierDuChantierDB {
             update.setInt(2, el.getIdOuvrier());
             update.setDate(3, el.getDateDebut());
             update.setDate(4, el.getDateFin());
-            update.setDouble(11, el.getNombreHeures());
+            update.setDouble(5, el.getNombreHeures());
+            update.setInt(6, el.getId());
             update.executeUpdate();
         } catch (DevisChantierDbException | SQLException ex) {
             throw new DevisChantierDbException("OuvrierDuChantier, modification impossible:\n" + ex.getMessage());
