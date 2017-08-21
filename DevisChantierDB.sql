@@ -24,46 +24,46 @@ drop table SEQUENCES;
 
 create table ENGIN (
 	idEngin numeric(10) primary key not null,
-	nom varchar(20),
+	nom varchar(20) not null,
 	type_ varchar(20),
 	reference varchar(20),
 	location boolean,
-	prixHeure double
+	prixHeure double not null
 );
 
 create table MATERIAU (
 	idMateriau numeric(10) primary key not null,
-	nom varchar(20),
+	nom varchar(20) not null,
 	type_ varchar(20),
 	reference varchar(20),
 	fourniture varchar(20),
 	siteProduction varchar(20),
-	prixHtva double
+	prixHtva double not null
 );
 
 create table PETITMATERIEL (
 	idPetitMateriel numeric(10) primary key not null, 
-	nom varchar(20),
+	nom varchar(20) not null,
 	type_ varchar(20),
 	reference varchar(20),
-	prixHtva double
+	prixHtva double not null
 );
 
 create table CODEREFERENCE (
 	idCodeReference numeric(10) primary key not null, 
-	reference varchar(20),
+	reference varchar(20) not null,
 	typeTravail varchar(20),
-	prixHtva double
+	prixHtva double not null
 );
 
 create table VOITURE (
 	idVoiture numeric(10) primary key not null, 
 	attacheRemorque boolean,
-	marque varchar(20),
-	modele varchar(20),
+	marque varchar(20) not null,
+	modele varchar(20) not null,
 	numeroChassis varchar(30) unique,
 	carburant varchar(20),
-	prixHtva double
+	prixHtva double not null
 	);
 
 create table CAMION (
@@ -71,68 +71,68 @@ create table CAMION (
 	categorie varchar(20),
 	tonnage numeric(10),
 	capacite double,
-	marque varchar(20),
-	modele varchar(20),
+	marque varchar(20) not null,
+	modele varchar(20) not null,
 	numeroChassis varchar(20) unique,
 	carburant varchar(20),
-	prixHtva double
+	prixHtva double not null
 	);
 
 create table OUVRIER (
 	idOuvrier numeric(10) primary key not null, 
-	nom varchar(20),
-	prenom varchar(20),
-	dateNaissance date,
-	numeroTelephone varchar(20) unique,
-	email varchar(20) unique,
-	remuneration double,
-	permis boolean,
-	entreeFonction date,
-	cout double
+	nom varchar(20) not null,
+	prenom varchar(20) not null,
+	dateNaissance date not null,
+	numeroTelephone varchar(20) unique not null,
+	email varchar(20) unique not null,
+	remuneration double not null,
+	permis boolean not null,
+	entreeFonction date not null,
+	cout double not null
 	);
 
 create table CLIENT (
 	idClient numeric(10) primary key not null, 
-	nom varchar(20),
-	prenom varchar(20),
-	dateNaissance date,
-	numeroTelephone varchar(20) unique,
-	email varchar(20) unique
+	nom varchar(20) not null,
+	prenom varchar(20) not null,
+	dateNaissance date not null,
+	numeroTelephone varchar(20) unique not null,
+	email varchar(20) unique not null
 	);
 	
 create table CONDUCTEUR(
 	idConducteur numeric(10) primary key not null,
-	password varchar(20),
-	nom varchar(20),
-	prenom varchar(20),
-	dateNaissance date,
-	numeroTelephone varchar(20) unique,
+	password varchar(20) not null,
+	nom varchar(20) not null,
+	prenom varchar(20) not null,
+	dateNaissance date not null,
+	numeroTelephone varchar(20) unique not null,
 	numeroTelephonePro varchar(20) unique,
-	email varchar(20) unique,
-	remuneration double,
-	permis boolean,
-	entreeFonction date,
-	cout double
+	email varchar(20) unique not null,
+	remuneration double not null,
+	permis boolean not null,
+	entreeFonction date not null,
+	cout double not null
 	);
 	
 create table PATRON (
 	idPatron numeric(10) primary key not null, 
-	password varchar(20),
-	nom varchar(20),
-	prenom varchar(20),
-	dateNaissance date,
-	numeroTelephone varchar(20) unique,
+	password varchar(20) not null,
+	nom varchar(20) not null,
+	prenom varchar(20) not null,
+	dateNaissance date not null,
+	numeroTelephone varchar(20) unique not null,
 	numeroTelephonePro varchar(20) unique,
-	email varchar(20) unique,
+	email varchar(20) unique not null,
 
     constraint fkPatron foreign key (idPatron) references CONDUCTEUR(idConducteur)
 	);
 	
 create table DEVIS (
 	idDevis numeric(10) primary key not null, 
-	designationDevis varchar(20),
+	designationDevis varchar(20) not null,
 	statut varchar(20),
-	dateDevis date,
+	dateDevis date not null,
 	idChantier numeric(10) not null
 	
 
@@ -142,8 +142,8 @@ create table CHANTIER (
 	idChantier numeric(10) primary key not null, 
     idClient numeric(10) not null,
     idDevis numeric(10) not null,
-    localisation varchar(20),
-	designationProjet varchar(20),
+    localisation varchar(20) not null,
+	designationProjet varchar(20) not null,
 	commentaire varchar(500),
 	dateCreationProjet date,
 	dateDebutPrevue date,
@@ -162,7 +162,7 @@ create table CONDUCTEURDUCHANTIER (
     idConducteur numeric(10) not null,
 	dateDebut date,
     dateFin date,
-    nombreHeures double,
+    nombreHeures double not null,
         
     constraint fkCONDUCTEURDUCHANTIER foreign key (idConducteur) references CONDUCTEUR(idConducteur),
     constraint fkCONDUCTEURDUCHANTIER2 foreign key (idChantier) references CHANTIER(idChantier)
@@ -174,7 +174,7 @@ create table OUVRIERDUCHANTIER (
     idOuvrier numeric(10) not null,
 	dateDebut date,
     dateFin date,
-    nombreHeures double,
+    nombreHeures double not null,
 
     constraint fkOUVRIERDUCHANTIER foreign key (idChantier) references CHANTIER(idChantier),
     constraint fkOUVRIERDUCHANTIER2 foreign key (idOuvrier) references OUVRIER(idOuvrier)
@@ -187,8 +187,8 @@ create table ENGINDUCHANTIER (
     idEngin numeric(10) not null,
 	debutDisponibilite date,
     finDisponibilite date,
-    nombreHeures double,
-    quantite double,
+    nombreHeures double not null,
+    quantite double not null,
 
     constraint fkENGINDUCHANTIER foreign key (idChantier) references CHANTIER(idChantier),
     constraint fkENGINDUCHANTIER2 foreign key (idEngin) references ENGIN(idEngin)
@@ -200,7 +200,7 @@ create table MATERIAUDUCHANTIER (
     idMateriau numeric(10) not null,
 	debutDisponibilite date,
     finDisponibilite date,
-    quantite double,
+    quantite double not null,
 
     constraint fkMATERIAUDUCHANTIER foreign key (idChantier) references CHANTIER(idChantier),
     constraint fkMATERIAUDUCHANTIER2 foreign key (idMateriau) references MATERIAU(idMateriau)
@@ -212,7 +212,7 @@ create table PETITMATERIELDUCHANTIER (
     idPetitMateriel numeric(10) not null,
 	debutDisponibilite date,
     finDisponibilite date,
-    quantite double,
+    quantite double not null,
 
     constraint fkPETITMATERIELDUCHANTIER foreign key (idChantier) references CHANTIER(idChantier),
     constraint fkPETITMATERIELDUCHANTIER2 foreign key (idPetitMateriel) references PETITMATERIEL(idPetitMateriel)
@@ -222,7 +222,7 @@ create table CODEREFERENCEDUCHANTIER (
 	idCODEREFERENCEDUCHANTIER numeric(10) primary key not null, 
     idChantier numeric(10) not null,
     idCodeReference numeric(10) not null,
-    quantite double,
+    quantite double not null,
 
     constraint fkCODEDEREFERENCEDUCHANTIER foreign key (idChantier) references CHANTIER(idChantier),
     constraint fkCODEDEREFERENCEDUCHANTIER2 foreign key (idCodeReference) references CODEREFERENCE(idCodeReference)
@@ -234,7 +234,7 @@ create table VOITUREDUCHANTIER (
     idVoiture numeric(10) not null,
     debutDisponibilite date,
     finDisponibilite date,
-	nombreJours numeric(10),
+	nombreJours numeric(10) not null,
 
     constraint fkVOITUREDUCHANTIER foreign key (idChantier) references CHANTIER(idChantier),
     constraint fkVOITUREDUCHANTIER2 foreign key (idVoiture) references VOITURE(idVoiture)
@@ -244,7 +244,7 @@ create table CAMIONDUCHANTIER (
 	idCAMIONDUCHANTIER numeric(10) primary key not null, 
     idChantier numeric(10) not null,
     idCamion numeric(10) not null,
-    nombreHeures double,
+    nombreHeures double not null,
     debutDisponibilite date,
     finDisponibilite date,
 

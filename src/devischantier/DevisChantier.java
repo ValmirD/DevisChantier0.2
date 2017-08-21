@@ -122,8 +122,8 @@ public class DevisChantier extends Application {
         System.out.println(Utilitaire.montantCamions(cam, camcha));
         
         //AGE
-        //OuvrierSel ouv2 = new OuvrierSel(1);
-        //Utilitaire.calculAge(ouv2);
+        OuvrierSel ouv2 = new OuvrierSel(1);
+        Utilitaire.calculAge(ouv2);
         
         // METHODE CRUD >
 

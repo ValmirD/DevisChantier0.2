@@ -115,6 +115,29 @@ public class Utilitaire {
     }   
     
     /*EnginsDuChantier*/
+    public static void insertEnginDuChantier(EnginDuChantierDto engcha){
+        try {
+            FacadeDB.addEnginDuChantier(engcha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void deleteEnginDuChantier(int idEngcha){
+        try {
+            FacadeDB.deleteEnginDuChantier(idEngcha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void updateEnginDuChantier(EnginDuChantierDto engcha){
+        try {
+            FacadeDB.updateEnginDuChantier(engcha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }       
     
     /*Materiaux*/
     public static double montantMateriaux(MateriauSel sel1, MateriauDuChantierSel sel2){
@@ -161,6 +184,29 @@ public class Utilitaire {
     }    
     
     /*MateriauxDuChantier*/
+    public static void insertMateriauDuChantier(MateriauDuChantierDto matcha){
+        try {
+            FacadeDB.addMateriauDuChantier(matcha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void deleteMateriauDuChantier(int idMatcha){
+        try {
+            FacadeDB.deleteEnginDuChantier(idMatcha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void updateMateriauDuChantier(MateriauDuChantierDto matcha){
+        try {
+            FacadeDB.updateMateriauDuChantier(matcha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }   
     
     /*Petits Materiels*/
     public static double montantPetitsMateriels(PetitMaterielSel sel1, PetitMaterielDuChantierSel sel2){
@@ -190,9 +236,9 @@ public class Utilitaire {
         }
     }
     
-    public static void deletePetitMateriel(int idpemat){
+    public static void deletePetitMateriel(int idPemat){
         try {
-            FacadeDB.deletePetitMateriel(idpemat);                              
+            FacadeDB.deletePetitMateriel(idPemat);                              
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
@@ -207,6 +253,29 @@ public class Utilitaire {
     } 
     
     /*PetitsMaterielsDuChantier*/
+    public static void insertPetitMaterielDuChantier(PetitMaterielDuChantierDto pematcha){
+        try {
+            FacadeDB.addPetitMaterielDuChantier(pematcha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void deletePetitMaterielDuChantier(int idPematcha){
+        try {
+            FacadeDB.deletePetitMaterielDuChantier(idPematcha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void updatePetitMaterielDuChantier(PetitMaterielDuChantierDto pematcha){
+        try {
+            FacadeDB.updatePetitMaterielDuChantier(pematcha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    } 
     
     /*Codes References*/
     public static double montantCodesReferences(CodeReferenceSel sel1, CodeReferenceDuChantierSel sel2){
@@ -270,21 +339,43 @@ public class Utilitaire {
     }
     
     /*CodesReferencesDuChantier*/
+    public static void insertCodeReferenceDuChantier(CodeReferenceDuChantierDto corecha){
+        try {
+            FacadeDB.addCodeReferenceDuChantier(corecha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     
+    public static void deleteCodeReferenceDuChantier(int idCorecha){
+        try {
+            FacadeDB.deleteCodeReferenceDuChantier(idCorecha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void updateCodeReferenceDuChantier(CodeReferenceDuChantierDto corecha){
+        try {
+            FacadeDB.updateCodeReferenceDuChantier(corecha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }       
 
     /*Ouvriers*/
     public static Date calculAge(OuvrierSel sel1){
-        Date dateNai = null;
-
+        Date creation = null;
         try {
             OuvrierDto ouv = FacadeDB.findOuvrierBySel(sel1);
-            dateNai = ouv.getDateNaissance();
-            System.out.println(dateNai);
+            creation = ouv.getDateNaissance();
+
+            
             
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
-        return dateNai;
+        return creation;
     }  
     
     public static double montantOuvriers(OuvrierSel sel1, OuvrierDuChantierSel sel2){
@@ -305,9 +396,55 @@ public class Utilitaire {
         }
         return montantTot;
     }
+    
+    public static void insertOuvrier(OuvrierDto ouv){
+        try {
+            FacadeDB.addOuvrier(ouv);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void deleteOuvrier(int idOuv){
+        try {
+            FacadeDB.deleteOuvrier(idOuv);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void updateOuvrier(OuvrierDto ouv){
+        try {
+            FacadeDB.updateOuvrier(ouv);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }     
 
-    /*OuvriersDuChantier*/ 
-
+    /*OuvrierDuChantier*/ 
+    public static void insertOuvrierDuChantier(OuvrierDuChantierDto ouvcha){
+        try {
+            FacadeDB.addOuvrierDuChantier(ouvcha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void deleteOuvrierDuChantier(int idOuvcha){
+        try {
+            FacadeDB.deleteOuvrierDuChantier(idOuvcha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void updateOuvrierDuChantier(OuvrierDuChantierDto ouvcha){
+        try {
+            FacadeDB.updateOuvrierDuChantier(ouvcha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    } 
 
     
     /*Conducteurs*/
@@ -330,7 +467,54 @@ public class Utilitaire {
         return montantTot;
     }  
 
-    /*ConducteursDuChantier*/
+    public static void insertConducteur(ConducteurDto con){
+        try {
+            FacadeDB.addConducteur(con);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void deleteConducteur(int idCon){
+        try {
+            FacadeDB.deleteConducteur(idCon);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void updateConducteur(ConducteurDto con){
+        try {
+            FacadeDB.updateConducteur(con);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }  
+    
+    /*ConducteurDuChantier*/
+    public static void insertConducteurDuChantier(ConducteurDuChantierDto concha){
+        try {
+            FacadeDB.addConducteurDuChantier(concha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void deleteConducteurDuChantier(int idConcha){
+        try {
+            FacadeDB.deleteConducteurDuChantier(idConcha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void updateConducteurDuChantier(ConducteurDuChantierDto concha){
+        try {
+            FacadeDB.updateConducteurDuChantier(concha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }      
     
     /*Clients*/
     public static void insertClient(ClientDto cli){
@@ -341,9 +525,9 @@ public class Utilitaire {
         }
     }
     
-    public static void deleteClient(int cli){
+    public static void deleteClient(int idCli){
         try {
-            FacadeDB.deleteClient(cli);                              
+            FacadeDB.deleteClient(idCli);                              
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
@@ -402,6 +586,29 @@ public class Utilitaire {
     }     
     
     /*VoituresDuChantier*/
+    public static void insertVoitureDuChantier(VoitureDuChantierDto voicha){
+        try {
+            FacadeDB.addVoitureDuChantier(voicha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void deleteVoitureDuChantier(int idVoicha){
+        try {
+            FacadeDB.deleteVoitureDuChantier(idVoicha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void updateVoitureDuChantier(VoitureDuChantierDto voicha){
+        try {
+            FacadeDB.updateVoitureDuChantier(voicha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }   
     
     /*Camions*/    
     public static double montantCamions(CamionSel cam, CamionDuChantierSel sel){
@@ -448,7 +655,29 @@ public class Utilitaire {
     }    
     
     /*CamionsDuChantier*/
+    public static void insertCamionDuChantier(CamionDuChantierDto camcha){
+        try {
+            FacadeDB.addCamionDuChantier(camcha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     
+    public static void deleteCamionDuChantier(int idCamcha){
+        try {
+            FacadeDB.deleteCamionDuChantier(idCamcha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public static void updateCamionDuChantier(CamionDuChantierDto camcha){
+        try {
+            FacadeDB.updateCamionDuChantier(camcha);                              
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }        
     
     /*Devis*/
     public static void insertDevis(DevisDto dev){
@@ -475,7 +704,7 @@ public class Utilitaire {
         }
     }      
     
-    /*Devis*/
+    /*Chantier*/
     public static void insertChantier(ChantierDto cha){
         try {
             FacadeDB.addChantier(cha);                              
