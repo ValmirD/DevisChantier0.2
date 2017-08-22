@@ -27,7 +27,7 @@ public class CamionFormController implements Initializable {
 
     @FXML
     private AnchorPane pane;
-    
+
     @FXML
     private TextField categorie;
     @FXML
@@ -82,6 +82,8 @@ public class CamionFormController implements Initializable {
 
     @FXML
     private void annulation(ActionEvent event) {
+        Stage stage = (Stage) pane.getScene().getWindow();
+        stage.close();
     }
 
 }

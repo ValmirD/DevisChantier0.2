@@ -55,9 +55,9 @@ public class CamionOverviewController implements Initializable {
     @FXML
     private Label capacite;
     @FXML
-    private Button valider;
+    private Button nouveau;
     @FXML
-    private Button annuler;
+    private Button editer;
 
     @FXML
     private TableView<CamionDto> table;
@@ -72,6 +72,7 @@ public class CamionOverviewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        editer.setDisable(true);
         displayList();
 
     }
@@ -94,6 +95,29 @@ public class CamionOverviewController implements Initializable {
 
     @FXML
     private void gererEditer(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(DevisChantier.class.getResource("CamionFormEditer.fxml"));
+        AnchorPane camionInfo;
+        try {
+            camionInfo = (AnchorPane) loader.load();
+
+            //passer paramètres au controller suivant
+            if (id != null) {
+                //CamionFormController controller = loader.<CamionFormController>getController();
+                //controller.initVariables(Integer.parseInt(id.getText()));
+            }
+
+            //à mettre dans le controller d'éditeur de camion, ainsi que l'attribut de classe -> private int idCamion.
+            
+              /**public void initVariables(int idCamion) { this.idCamion = idCamion;
+              }**/
+            Stage stage = new Stage();
+            Scene scene = new Scene(camionInfo);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML
@@ -114,6 +138,7 @@ public class CamionOverviewController implements Initializable {
                 @Override
                 public void handle(javafx.scene.input.MouseEvent event) {
                     CamionDto camion = table.getSelectionModel().selectedItemProperty().get();
+                    editer.setDisable(false);
                     id.setText(camion.getId().toString());
                     categorie.setText(camion.getCategorie());
                     marque.setText(camion.getMarque());
