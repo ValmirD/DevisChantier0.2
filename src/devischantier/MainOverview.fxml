@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.layout.AnchorPane?>
 
+
 <AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.MainOverviewController">
    <children>
       <Button id="ChantierOverview" fx:id="chantier" layoutX="323.0" layoutY="43.0" mnemonicParsing="false" onAction="#afficherPage" prefHeight="25.0" prefWidth="150.0" text="Chantier" />

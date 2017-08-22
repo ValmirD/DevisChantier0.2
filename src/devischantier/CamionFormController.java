@@ -28,6 +28,7 @@ public class CamionFormController implements Initializable {
     @FXML
     private AnchorPane pane;
 
+    @FXML
     private TextField categorie;
     private TextField marque;
     private TextField modele;
