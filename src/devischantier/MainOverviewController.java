@@ -67,7 +67,7 @@ public class MainOverviewController implements Initializable {
             rootLayout = (BorderPane) loader.load();
             scene = new Scene(loader.getRoot());
         } catch (IOException ex) {
-            Logger.getLogger(MainOverviewController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ex.getMessage()");
         }
     }
 
@@ -83,7 +83,7 @@ public class MainOverviewController implements Initializable {
             overview = (AnchorPane) loader.load();
             rootLayout.setCenter(overview);
         } catch (IOException ex) {
-            Logger.getLogger(MainOverviewController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ex.getMessage()");
         }
 
     }
@@ -99,44 +99,143 @@ public class MainOverviewController implements Initializable {
             overview = (AnchorPane) loader.load();
             rootLayout.setCenter(overview);
         } catch (IOException ex) {
-            Logger.getLogger(MainOverviewController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ex.getMessage()");
         }
     }
 
     @FXML
     private void afficherMateriaux(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(DevisChantier.class.getResource("MateriauOverview.fxml"));
+        AnchorPane overview;
+        try {
+            stage = (Stage) devis.getScene().getWindow();
+            stage.setScene(scene);
+            overview = (AnchorPane) loader.load();
+            rootLayout.setCenter(overview);
+        } catch (IOException ex) {
+            System.out.println("ex.getMessage()");
+        }
     }
 
     @FXML
     private void afficherPetitsMateriaux(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(DevisChantier.class.getResource("PetitMaterielOverview.fxml"));
+        AnchorPane overview;
+        try {
+            stage = (Stage) devis.getScene().getWindow();
+            stage.setScene(scene);
+            overview = (AnchorPane) loader.load();
+            rootLayout.setCenter(overview);
+        } catch (IOException ex) {
+            System.out.println("ex.getMessage()");
+        }
     }
 
     @FXML
     private void afficherCodesRef(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(DevisChantier.class.getResource("CodeReferenceOverview.fxml"));
+        AnchorPane overview;
+        try {
+            stage = (Stage) devis.getScene().getWindow();
+            stage.setScene(scene);
+            overview = (AnchorPane) loader.load();
+            rootLayout.setCenter(overview);
+        } catch (IOException ex) {
+            System.out.println("ex.getMessage()");
+        }
     }
 
     @FXML
     private void afficherVoitures(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(DevisChantier.class.getResource("VoitureOverview.fxml"));
+        AnchorPane overview;
+        try {
+            stage = (Stage) devis.getScene().getWindow();
+            stage.setScene(scene);
+            overview = (AnchorPane) loader.load();
+            rootLayout.setCenter(overview);
+        } catch (IOException ex) {
+            System.out.println("ex.getMessage()");
+        }
     }
 
     @FXML
     private void afficherCamions(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(DevisChantier.class.getResource("CamionOverview1.fxml"));
+        AnchorPane overview;
+        try {
+            stage = (Stage) devis.getScene().getWindow();
+            stage.setScene(scene);
+            overview = (AnchorPane) loader.load();
+            rootLayout.setCenter(overview);
+        } catch (IOException ex) {
+            System.out.println("ex.getMessage()");
+        }
     }
 
     @FXML
     private void afficherOuvriers(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(DevisChantier.class.getResource("OuvrierOverview.fxml"));
+        AnchorPane overview;
+        try {
+            stage = (Stage) devis.getScene().getWindow();
+            stage.setScene(scene);
+            overview = (AnchorPane) loader.load();
+            rootLayout.setCenter(overview);
+        } catch (IOException ex) {
+            System.out.println("ex.getMessage()");
+        }
     }
 
     @FXML
     private void afficherConducteurs(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(DevisChantier.class.getResource("ConducteurOverview.fxml"));
+        AnchorPane overview;
+        try {
+            stage = (Stage) devis.getScene().getWindow();
+            stage.setScene(scene);
+            overview = (AnchorPane) loader.load();
+            rootLayout.setCenter(overview);
+        } catch (IOException ex) {
+            System.out.println("ex.getMessage()");
+        }
     }
 
     @FXML
     private void afficherClients(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(DevisChantier.class.getResource("ClientOverview.fxml"));
+        AnchorPane overview;
+        try {
+            stage = (Stage) devis.getScene().getWindow();
+            stage.setScene(scene);
+            overview = (AnchorPane) loader.load();
+            rootLayout.setCenter(overview);
+        } catch (IOException ex) {
+            System.out.println("ex.getMessage()");
+        }
     }
 
     @FXML
     private void afficherDevis(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(DevisChantier.class.getResource("DevisOverview.fxml"));
+        AnchorPane overview;
+        try {
+            stage = (Stage) devis.getScene().getWindow();
+            stage.setScene(scene);
+            overview = (AnchorPane) loader.load();
+            rootLayout.setCenter(overview);
+        } catch (IOException ex) {
+            System.out.println("ex.getMessage()");
+        }
     }
 
 }
