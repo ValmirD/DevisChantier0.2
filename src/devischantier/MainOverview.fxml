@@ -10,7 +10,7 @@
       <ButtonBar buttonMinWidth="110.0" layoutX="33.0" layoutY="160.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
           <Button id="EnginOverview" fx:id="engins" mnemonicParsing="false" onAction="#afficherPage" text="Engins" />
-            <Button id="MateriauxOverview" fx:id="materiaux" mnemonicParsing="false" onAction="#afficherPage" text="Matériaux" />
+            <Button id="MateriauOverview" fx:id="materiaux" mnemonicParsing="false" onAction="#afficherPage" text="Matériaux" />
             <Button id="PetitMaterielOverview" fx:id="petitsMateriaux" mnemonicParsing="false" onAction="#afficherPage" prefHeight="25.0" prefWidth="109.0" text="Petits matériels" />
             <Button id="CodeReferenceOverview" fx:id="codesRef" mnemonicParsing="false" onAction="#afficherPage" text="Codes références" />
             <Button id="VoitureOverview" fx:id="voitures" minWidth="-Infinity" mnemonicParsing="false" onAction="#afficherPage" prefWidth="100.0" text="Voitures" />

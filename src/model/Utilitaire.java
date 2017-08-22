@@ -630,12 +630,14 @@ public class Utilitaire {
         return montantTot;
     }
 
-    public static void insertCamion(CamionDto cam){
+    public static boolean insertCamion(CamionDto cam){
         try {
-            FacadeDB.addCamion(cam);                              
+            FacadeDB.addCamion(cam);  
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
     
     public static void deleteCamion(int idCam){

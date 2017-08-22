@@ -17,7 +17,7 @@
             <Menu fx:id="ressources" mnemonicParsing="false" text="Ressources">
               <items>
                 <MenuItem id="ChantierOverview" fx:id="chantiers" mnemonicParsing="false" onAction="#goToWindow" text="Chantiers" />
-                  <MenuItem id="MateriauxOverview" fx:id="materiaux" mnemonicParsing="false" onAction="#goToWindow" text="Matériaux" />
+                  <MenuItem id="MateriauOverview" fx:id="materiaux" mnemonicParsing="false" onAction="#goToWindow" text="Matériaux" />
                   <MenuItem id="PetitMaterielOverview" fx:id="petitsMateriels" mnemonicParsing="false" onAction="#goToWindow" text="Petits matériels" />
                   <MenuItem id="CodeReferenceOverview" fx:id="codesReferences" mnemonicParsing="false" onAction="#goToWindow" text="Codes Références" />
                   <MenuItem id="EnginOverview" fx:id="engins" mnemonicParsing="false" onAction="#goToWindow" text="Engins" />
@@ -31,7 +31,7 @@
             </Menu>
           <Menu fx:id="aPropos" mnemonicParsing="false" text="A propos">
                <items>
-                  <MenuItem fx:id="informations" mnemonicParsing="false" text="Informations" />
+                  <MenuItem id="informationsOverview" fx:id="informations" mnemonicParsing="false" onAction="#goToWindow" text="Informations" />
                </items></Menu>
         </menus>
       </MenuBar>
