@@ -17,10 +17,10 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView layoutX="-12.0" layoutY="49.0" prefHeight="298.0" prefWidth="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="idMarqueModele" layoutX="-12.0" layoutY="49.0" prefHeight="298.0" prefWidth="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Marque" />
-                      <TableColumn prefWidth="75.0" text="Modèle" />
+                      <TableColumn fx:id="idMarque" prefWidth="75.0" text="Marque" />
+                      <TableColumn fx:id="idModele" prefWidth="75.0" text="Modèle" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -51,22 +51,22 @@
                         <Label text="Marque" GridPane.rowIndex="2" />
                         <Label text="Modèle" GridPane.rowIndex="3" />
                         <Label text="Numéro de chassis" GridPane.rowIndex="4" />
-                        <Label text="Label" GridPane.columnIndex="1" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="id" text="Label" GridPane.columnIndex="1" />
+                        <Label fx:id="attache" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="marque" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="modele" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="chassis" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label text="Carburant" GridPane.rowIndex="5" />
                         <Label text="Prix hors TVA" GridPane.rowIndex="6" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="carburant" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="prix" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
                   <ButtonBar layoutX="54.0" layoutY="250.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                     <buttons>
-                      <Button mnemonicParsing="false" text="Nouveau" />
-                        <Button mnemonicParsing="false" text="Editer" />
-                        <Button mnemonicParsing="false" text="Supprimer" />
+                      <Button fx:id="nouveau" mnemonicParsing="false" onAction="#gererNouveau" text="Nouveau" />
+                        <Button fx:id="editer" mnemonicParsing="false" onAction="#gererEditer" text="Editer" />
+                        <Button fx:id="supprimer" mnemonicParsing="false" onAction="#gererSupprimer" text="Supprimer" />
                     </buttons>
                   </ButtonBar>
                </children>
