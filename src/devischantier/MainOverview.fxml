@@ -4,26 +4,26 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.MainOverviewController">
    <children>
-      <Button layoutX="323.0" layoutY="43.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Chantier" />
+      <Button fx:id="chantier" layoutX="323.0" layoutY="43.0" mnemonicParsing="false" onAction="#afficherChantier" prefHeight="25.0" prefWidth="150.0" text="Chantier" />
       <ButtonBar buttonMinWidth="110.0" layoutX="33.0" layoutY="160.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button mnemonicParsing="false" text="Engins" />
-            <Button mnemonicParsing="false" text="Matériaux" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Petits matériels" />
-            <Button mnemonicParsing="false" text="Codes références" />
-            <Button mnemonicParsing="false" text="Voitures" />
-            <Button mnemonicParsing="false" text="Camions" />
+          <Button fx:id="engins" mnemonicParsing="false" onAction="#afficherEngins" text="Engins" />
+            <Button fx:id="materiaux" mnemonicParsing="false" onAction="#afficherMateriaux" text="Matériaux" />
+            <Button fx:id="petitsMateriaux" mnemonicParsing="false" onAction="#afficherPetitsMateriaux" prefHeight="25.0" prefWidth="109.0" text="Petits matériels" />
+            <Button fx:id="codesRef" mnemonicParsing="false" onAction="#afficherCodesRef" text="Codes références" />
+            <Button fx:id="voitures" minWidth="-Infinity" mnemonicParsing="false" onAction="#afficherVoitures" prefWidth="100.0" text="Voitures" />
+            <Button fx:id="camions" mnemonicParsing="false" onAction="#afficherCamions" text="Camions" />
         </buttons>
       </ButtonBar>
       <ButtonBar buttonMinWidth="110.0" layoutX="215.0" layoutY="207.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button mnemonicParsing="false" text="Ouvriers" />
-            <Button mnemonicParsing="false" text="Conducteurs" />
-            <Button mnemonicParsing="false" text="Clients" />
+          <Button fx:id="ouvriers" mnemonicParsing="false" onAction="#afficherOuvriers" text="Ouvriers" />
+            <Button fx:id="conducteurs" mnemonicParsing="false" onAction="#afficherConducteurs" text="Conducteurs" />
+            <Button fx:id="clients" mnemonicParsing="false" onAction="#afficherClients" text="Clients" />
         </buttons>
       </ButtonBar>
-      <Button layoutX="323.0" layoutY="84.0" mnemonicParsing="false" prefWidth="150.0" text="Devis" />
+      <Button fx:id="devis" layoutX="323.0" layoutY="84.0" mnemonicParsing="false" onAction="#afficherDevis" prefWidth="150.0" text="Devis" />
    </children>
 </AnchorPane>

@@ -29,6 +29,13 @@ public class ConducteurSel {
         this.idConducteur = idConducteur;
     }    
 
+    public ConducteurSel(int idConducteur, String password) {
+        this.idConducteur = idConducteur;
+        this.password = password;
+    }
+    
+    
+
     public int getIdConducteur() {
         return idConducteur;
     }
