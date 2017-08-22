@@ -5,7 +5,7 @@
  */
 package devischantier;
 
-import db.dto.CamionDto;
+import db.dto.MateriauDto;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -21,37 +21,30 @@ import model.Utilitaire;
 /**
  * FXML Controller class
  *
- * @author Marco
+ * @author Vali
  */
-public class CamionFormController implements Initializable {
+public class MateriauFormController implements Initializable {
 
     @FXML
     private AnchorPane pane;
-
-    private TextField categorie;
-    private TextField marque;
-    private TextField modele;
-    private TextField chassis;
-    private TextField carburant;
+    @FXML
+    private TextField nom;
+    @FXML
+    private TextField type;
+    @FXML
+    private TextField reference;
+    @FXML
+    private TextField fourniture;
+    @FXML
+    private TextField production;
+    @FXML
     private TextField prix;
-    private TextField tonnage;
-    private TextField capacite;
     @FXML
     private Button valider;
     @FXML
     private Button annuler;
     @FXML
     private Label message;
-    @FXML
-    private TextField nom;
-    @FXML
-    private TextField prenom;
-    @FXML
-    private TextField naissance;
-    @FXML
-    private TextField telephone;
-    @FXML
-    private TextField email;
 
     /**
      * Initializes the controller class.
@@ -64,22 +57,19 @@ public class CamionFormController implements Initializable {
     @FXML
     private void validation(ActionEvent event) {
         try {
-            int ton = Integer.parseInt(tonnage.getText());
-            double cap = Integer.parseInt(capacite.getText());
-            double prixCamion = Integer.parseInt(prix.getText());
-            CamionDto camion = new CamionDto(10000, categorie.getText(), ton, cap, marque.getText(), modele.getText(), chassis.getText(), carburant.getText(), prixCamion);
-            if (Utilitaire.insertCamion(camion)) {
-                message.setText("Camion ajouté avec succès !");
+            double prixMateriau = Integer.parseInt(prix.getText());
+            MateriauDto materiau = new MateriauDto(10000, nom.getText(), type.getText(), reference.getText(), fourniture.getText(), production.getText(), prixMateriau);
+            if (Utilitaire.insertMateriau(materiau)) {
+                message.setText("Materiau ajouté avec succès !");
                 Stage stage = (Stage) pane.getScene().getWindow();
                 stage.close();
             } else {
-                message.setText("Erreur : le camion n'a pas pu être ajouté ...!");
+                message.setText("Erreur : le materiau n'a pas pu être ajouté ...!");
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-            message.setText("Erreur : le camion n'a pas pu être ajouté !");
+            message.setText("Erreur : le materiau n'a pas pu être ajouté !");
         }
-
     }
 
     @FXML

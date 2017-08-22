@@ -5,7 +5,7 @@
  */
 package devischantier;
 
-import db.dto.CamionDto;
+import db.dto.VoitureDto;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -21,37 +21,28 @@ import model.Utilitaire;
 /**
  * FXML Controller class
  *
- * @author Marco
+ * @author Vali
  */
-public class CamionFormController implements Initializable {
+public class VoitureFormController implements Initializable {
 
     @FXML
     private AnchorPane pane;
-
-    private TextField categorie;
+    @FXML
     private TextField marque;
+    @FXML
     private TextField modele;
+    @FXML
     private TextField chassis;
+    @FXML
     private TextField carburant;
+    @FXML
     private TextField prix;
-    private TextField tonnage;
-    private TextField capacite;
     @FXML
     private Button valider;
     @FXML
     private Button annuler;
     @FXML
     private Label message;
-    @FXML
-    private TextField nom;
-    @FXML
-    private TextField prenom;
-    @FXML
-    private TextField naissance;
-    @FXML
-    private TextField telephone;
-    @FXML
-    private TextField email;
 
     /**
      * Initializes the controller class.
@@ -64,22 +55,19 @@ public class CamionFormController implements Initializable {
     @FXML
     private void validation(ActionEvent event) {
         try {
-            int ton = Integer.parseInt(tonnage.getText());
-            double cap = Integer.parseInt(capacite.getText());
-            double prixCamion = Integer.parseInt(prix.getText());
-            CamionDto camion = new CamionDto(10000, categorie.getText(), ton, cap, marque.getText(), modele.getText(), chassis.getText(), carburant.getText(), prixCamion);
-            if (Utilitaire.insertCamion(camion)) {
-                message.setText("Camion ajouté avec succès !");
+            double prixVoiture = Integer.parseInt(prix.getText());
+            VoitureDto voiture = new VoitureDto(10000, marque.getText(), modele.getText(), chassis.getText(), carburant.getText(), prixVoiture);
+            if (Utilitaire.insertVoiture(voiture)) {
+                message.setText("Voiture ajouté avec succès !");
                 Stage stage = (Stage) pane.getScene().getWindow();
                 stage.close();
             } else {
-                message.setText("Erreur : le camion n'a pas pu être ajouté ...!");
+                message.setText("Erreur : le voiture n'a pas pu être ajouté ...!");
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-            message.setText("Erreur : le camion n'a pas pu être ajouté !");
+            message.setText("Erreur : le voiture n'a pas pu être ajouté !");
         }
-
     }
 
     @FXML

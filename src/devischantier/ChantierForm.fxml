@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="pane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.CamionFormController">
+<AnchorPane fx:id="pane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.ChantierFormController">
    <children>
       <GridPane AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
         <columnConstraints>
@@ -24,24 +24,27 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Catégorie" />
-            <Label text="Marque" GridPane.rowIndex="3" />
-            <Label text="Modèle" GridPane.rowIndex="4" />
-            <Label text="Numéro de chassis" GridPane.rowIndex="5" />
-            <Label text="Carburant" GridPane.rowIndex="6" />
-            <Label text="Prix hors TVA" GridPane.rowIndex="7" />
-            <Label text="Tonnage" GridPane.rowIndex="1" />
-            <Label text="Capacité" GridPane.rowIndex="2" />
-            <TextField fx:id="categorie" GridPane.columnIndex="1" />
-            <TextField fx:id="tonnage" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="capacite" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="marque" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="modele" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="chassis" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="carburant" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField fx:id="prix" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label text="Date de début prévue" />
+            <Label text="Date de fin effective" GridPane.rowIndex="3" />
+            <Label text="Localisation" GridPane.rowIndex="4" />
+            <Label text="Désignation" GridPane.rowIndex="5" />
+            <Label text="Commentaire" GridPane.rowIndex="6" />
+            <Label text="Date de création du projet" GridPane.rowIndex="7" />
+            <Label text="Date de début effective" GridPane.rowIndex="1" />
+            <Label text="Date de fin prévue" GridPane.rowIndex="2" />
+            <TextField fx:id="debutPrevue" GridPane.columnIndex="1" />
+            <TextField fx:id="debutEffective" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="finPrevue" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="finEffective" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="localisation" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="designation" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="commentaire" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="dateCreation" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label text="Validation du projet" GridPane.rowIndex="8" />
+            <TextField fx:id="validation" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
       </GridPane>
       <Button fx:id="valider" layoutX="400.0" layoutY="338.0" mnemonicParsing="false" onAction="#validation" text="Valider" />

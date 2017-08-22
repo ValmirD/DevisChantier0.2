@@ -5,8 +5,9 @@
  */
 package devischantier;
 
-import db.dto.CamionDto;
+import db.dto.ConducteurDto;
 import java.net.URL;
+import java.sql.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,27 +22,12 @@ import model.Utilitaire;
 /**
  * FXML Controller class
  *
- * @author Marco
+ * @author Vali
  */
-public class CamionFormController implements Initializable {
+public class ConducteurFormController implements Initializable {
 
     @FXML
     private AnchorPane pane;
-
-    private TextField categorie;
-    private TextField marque;
-    private TextField modele;
-    private TextField chassis;
-    private TextField carburant;
-    private TextField prix;
-    private TextField tonnage;
-    private TextField capacite;
-    @FXML
-    private Button valider;
-    @FXML
-    private Button annuler;
-    @FXML
-    private Label message;
     @FXML
     private TextField nom;
     @FXML
@@ -51,7 +37,21 @@ public class CamionFormController implements Initializable {
     @FXML
     private TextField telephone;
     @FXML
+    private TextField telephonePro;
+    @FXML
     private TextField email;
+    @FXML
+    private TextField entree;
+    @FXML
+    private TextField cout;
+    @FXML
+    private TextField remuneration;
+    @FXML
+    private Button valider;
+    @FXML
+    private Button annuler;
+    @FXML
+    private Label message;
 
     /**
      * Initializes the controller class.
@@ -59,33 +59,32 @@ public class CamionFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }
+    }    
 
     @FXML
     private void validation(ActionEvent event) {
-        try {
+/*                try {
             int ton = Integer.parseInt(tonnage.getText());
             double cap = Integer.parseInt(capacite.getText());
-            double prixCamion = Integer.parseInt(prix.getText());
-            CamionDto camion = new CamionDto(10000, categorie.getText(), ton, cap, marque.getText(), modele.getText(), chassis.getText(), carburant.getText(), prixCamion);
-            if (Utilitaire.insertCamion(camion)) {
-                message.setText("Camion ajouté avec succès !");
+            double prixConducteur = Integer.parseInt(prix.getText());
+            ConducteurDto conducteur = new ConducteurDto(10000, categorie.getText(), ton, cap, marque.getText(), modele.getText(), chassis.getText(), carburant.getText(), prixConducteur);
+            if (Utilitaire.insertConducteur(conducteur)) {
+                message.setText("Conducteur ajouté avec succès !");
                 Stage stage = (Stage) pane.getScene().getWindow();
                 stage.close();
             } else {
-                message.setText("Erreur : le camion n'a pas pu être ajouté ...!");
+                message.setText("Erreur : le conducteur n'a pas pu être ajouté ...!");
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-            message.setText("Erreur : le camion n'a pas pu être ajouté !");
-        }
-
+            message.setText("Erreur : le conducteur n'a pas pu être ajouté !");
+        }*/
     }
 
     @FXML
     private void annulation(ActionEvent event) {
-        Stage stage = (Stage) pane.getScene().getWindow();
+                Stage stage = (Stage) pane.getScene().getWindow();
         stage.close();
     }
-
+    
 }

@@ -27,7 +27,6 @@ create table ENGIN (
 	nom varchar(20) not null,
 	type_ varchar(20),
 	reference varchar(20),
-	location boolean,
 	prixHeure double not null
 );
 
@@ -58,7 +57,6 @@ create table CODEREFERENCE (
 
 create table VOITURE (
 	idVoiture numeric(10) primary key not null, 
-	attacheRemorque boolean,
 	marque varchar(20) not null,
 	modele varchar(20) not null,
 	numeroChassis varchar(30) unique,
@@ -86,7 +84,6 @@ create table OUVRIER (
 	numeroTelephone varchar(20) unique not null,
 	email varchar(20) unique not null,
 	remuneration double not null,
-	permis boolean not null,
 	entreeFonction date not null,
 	cout double
 	);
@@ -277,12 +274,12 @@ Insert into CODEREFERENCE Values (1, 'ER25698', 'Canalisation', 15);
 Insert into CONDUCTEUR Values (1, 'root', 'Laurent', 'Cordenier', '1990-09-11', '0485658999', '0499321587', 'laurent@melin.com', 3300, true, '2013-02-01', null);
 Insert into CONDUCTEUR Values (2, 'root', 'Marco', 'Schinazi', '1990-09-11', '048562525029', '04993525287', 'marco@melin.com', 3200, true, '2013-02-01', null);
 Insert into DEVIS Values (1, 'Parc de Woluwe', 'En validation', '2017-07-15', 1);
-Insert into ENGIN Values (1, 'Grue', 'Gravier', 'REZ89851', true, 20);
+Insert into ENGIN Values (1, 'Grue', 'Gravier', 'REZ89851', 20);
 Insert into MATERIAU Values (1, 'Sable', 'Terrassement', '698.325.21', 'Externe', 'Hulpe', 10);
-Insert into OUVRIER Values (1, 'Jack', 'Bauer', '1988-05-03', '0477235987', 'jackbauer@melin.be', 1745, true, '2001-11-05', null);
+Insert into OUVRIER Values (1, 'Jack', 'Bauer', '1988-05-03', '0477235987', 'jackbauer@melin.be', 1745, '2001-11-05', null);
 Insert into PATRON Values (1);
 Insert into PETITMATERIEL Values (1, 'Marteau', 'Nivellement', '2REZEDD', 5);
-Insert into VOITURE Values (1, true, 'Ford', 'Transporter', '36d5d5d48sd', 'Diesel', 19);
+Insert into VOITURE Values (1, 'Ford', 'Transporter', '36d5d5d48sd', 'Diesel', 19);
 
 Insert into CHANTIER Values (1, 1, 1, 'Bruxelles', 'parc de la woluwe', 'Cest un bon projet', '2017-02-01','2017-03-03', null,'2017-03-27', null, false);
 

@@ -5,7 +5,7 @@
  */
 package devischantier;
 
-import db.dto.CamionDto;
+import db.dto.CodeReferenceDto;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -21,37 +21,24 @@ import model.Utilitaire;
 /**
  * FXML Controller class
  *
- * @author Marco
+ * @author Vali
  */
-public class CamionFormController implements Initializable {
+public class CodeReferenceFormController implements Initializable {
 
     @FXML
     private AnchorPane pane;
-
-    private TextField categorie;
-    private TextField marque;
-    private TextField modele;
-    private TextField chassis;
-    private TextField carburant;
+    @FXML
+    private TextField reference;
+    @FXML
+    private TextField typeTravail;
+    @FXML
     private TextField prix;
-    private TextField tonnage;
-    private TextField capacite;
     @FXML
     private Button valider;
     @FXML
     private Button annuler;
     @FXML
     private Label message;
-    @FXML
-    private TextField nom;
-    @FXML
-    private TextField prenom;
-    @FXML
-    private TextField naissance;
-    @FXML
-    private TextField telephone;
-    @FXML
-    private TextField email;
 
     /**
      * Initializes the controller class.
@@ -64,22 +51,19 @@ public class CamionFormController implements Initializable {
     @FXML
     private void validation(ActionEvent event) {
         try {
-            int ton = Integer.parseInt(tonnage.getText());
-            double cap = Integer.parseInt(capacite.getText());
-            double prixCamion = Integer.parseInt(prix.getText());
-            CamionDto camion = new CamionDto(10000, categorie.getText(), ton, cap, marque.getText(), modele.getText(), chassis.getText(), carburant.getText(), prixCamion);
-            if (Utilitaire.insertCamion(camion)) {
-                message.setText("Camion ajouté avec succès !");
+            double prixCodeReference = Integer.parseInt(prix.getText());
+            CodeReferenceDto codeReference = new CodeReferenceDto(10000, reference.getText(), typeTravail.getText(), prixCodeReference);
+            if (Utilitaire.insertCodeReference(codeReference)) {
+                message.setText("CodeReference ajouté avec succès !");
                 Stage stage = (Stage) pane.getScene().getWindow();
                 stage.close();
             } else {
-                message.setText("Erreur : le camion n'a pas pu être ajouté ...!");
+                message.setText("Erreur : le codeReference n'a pas pu être ajouté ...!");
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-            message.setText("Erreur : le camion n'a pas pu être ajouté !");
+            message.setText("Erreur : le codeReference n'a pas pu être ajouté !");
         }
-
     }
 
     @FXML

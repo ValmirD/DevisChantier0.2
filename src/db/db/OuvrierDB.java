@@ -26,7 +26,7 @@ public class OuvrierDB {
     public static List<OuvrierDto> getCollection(OuvrierSel sel) throws DevisChantierDbException {
         List<OuvrierDto> al = new ArrayList<>();
         try {
-            String query = "Select idOuvrier, nom, prenom, dateNaissance, numeroTelephone, email, remuneration, permis, entreeFonction, cout FROM Ouvrier ";
+            String query = "Select idOuvrier, nom, prenom, dateNaissance, numeroTelephone, email, remuneration, entreeFonction, cout FROM Ouvrier ";
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement stmt;
             String where = "";
@@ -77,7 +77,6 @@ public class OuvrierDB {
                 al.add(new OuvrierDto(
                         rs.getInt("idOuvrier"), 
                         rs.getDouble("remuneration"), 
-                        rs.getBoolean("permis"),
                         rs.getString("nom"),
                         rs.getString("prenom"),
                         rs.getDate("dateNaissance"),
@@ -115,7 +114,6 @@ public class OuvrierDB {
                     + "numeroTelephone=?, "
                     + "email=?, "
                     + "remuneration=?, "
-                    + "permis=?, "
                     + "entreeFonction=?, "
                     + "cout=? "
                     + "where idOuvrier=?";
@@ -127,10 +125,9 @@ public class OuvrierDB {
             update.setString(4, el.getNumeroTelephone());
             update.setString(5, el.getEmail());
             update.setDouble(6, el.getRemuneration());
-            update.setBoolean(7, el.isPermis());
-            update.setDate(8, el.getEntreeFonction());
-            update.setDouble(9, el.getCout());
-            update.setInt(10, el.getId());
+            update.setDate(7, el.getEntreeFonction());
+            update.setDouble(8, el.getCout());
+            update.setInt(9, el.getId());
             update.executeUpdate();
         } catch (DevisChantierDbException | SQLException ex) {
             throw new DevisChantierDbException("Ouvrier, modification impossible:\n" + ex.getMessage());
@@ -143,8 +140,8 @@ public class OuvrierDB {
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement insert;
             insert = connexion.prepareStatement(
-                    "Insert into Ouvrier(idOuvrier, nom, prenom, dateNaissance, numeroTelephone, email, remuneration, permis, entreeFonction, cout) "
-                    + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    "Insert into Ouvrier(idOuvrier, nom, prenom, dateNaissance, numeroTelephone, email, remuneration, entreeFonction, cout) "
+                    + "values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
             insert.setInt(1, num);
             insert.setString(2, el.getNom());
             insert.setString(3, el.getPrenom());
@@ -152,9 +149,8 @@ public class OuvrierDB {
             insert.setString(5, el.getNumeroTelephone());
             insert.setString(6, el.getEmail());
             insert.setDouble(7, el.getRemuneration());
-            insert.setBoolean(8, el.isPermis());
-            insert.setDate(9, el.getEntreeFonction());
-            insert.setDouble(10, el.getCout());
+            insert.setDate(8, el.getEntreeFonction());
+            insert.setDouble(9, el.getCout());
             insert.executeUpdate();
             return num;
         } catch (DevisChantierDbException | SQLException ex) {

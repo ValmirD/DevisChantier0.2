@@ -26,7 +26,7 @@ public class EnginDB {
     public static List<EnginDto> getCollection(EnginSel sel) throws DevisChantierDbException {
         List<EnginDto> al = new ArrayList<>();
         try {
-            String query = "Select idEngin, nom, type_, reference, location, prixHeure  FROM Engin ";
+            String query = "Select idEngin, nom, type_, reference, prixHeure  FROM Engin ";
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement stmt;
             String where = "";
@@ -80,7 +80,6 @@ public class EnginDB {
                         rs.getString("nom"), 
                         rs.getString("type_"), 
                         rs.getString("reference"),
-                        rs.getBoolean("location"),
                         rs.getDouble("prixHeure")                  
                 )
                 );
@@ -109,7 +108,6 @@ public class EnginDB {
                     + "nom=?, "
                     + "type_=?, "
                     + "reference=?, "
-                    + "location=?, "
                     + "prixHeure=? "
                     + "where idEngin=?";
             System.out.println(sql);
@@ -117,9 +115,8 @@ public class EnginDB {
             update.setString(1, el.getNom());
             update.setString(2, el.getType());
             update.setString(3, el.getReference());
-            update.setBoolean(4, el.isLocation());
-            update.setDouble(5, el.getPrixHeure());
-            update.setInt(6, el.getId());
+            update.setDouble(4, el.getPrixHeure());
+            update.setInt(5, el.getId());
             update.executeUpdate();
         } catch (DevisChantierDbException | SQLException ex) {
             throw new DevisChantierDbException("Engin, modification impossible:\n" + ex.getMessage());
@@ -132,14 +129,13 @@ public class EnginDB {
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement insert;
             insert = connexion.prepareStatement(
-                    "Insert into Engin(idEngin, nom, type_, reference, location, prixHeure) "
-                    + "values(?, ?, ?, ?, ?, ?)");
+                    "Insert into Engin(idEngin, nom, type_, reference, prixHeure) "
+                    + "values(?, ?, ?, ?, ?)");
             insert.setInt(1, num);
             insert.setString(2, el.getNom());
             insert.setString(3, el.getType());
             insert.setString(4, el.getReference());
-            insert.setBoolean(5, el.isLocation());
-            insert.setDouble(6, el.getPrixHeure());
+            insert.setDouble(5, el.getPrixHeure());
             insert.executeUpdate();
             return num;
         } catch (DevisChantierDbException | SQLException ex) {

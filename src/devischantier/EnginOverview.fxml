@@ -40,7 +40,6 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
@@ -48,14 +47,12 @@
                         <Label text="Nom" GridPane.rowIndex="1" />
                         <Label text="Type" GridPane.rowIndex="2" />
                         <Label text="Référence" GridPane.rowIndex="3" />
-                        <Label text="Location" GridPane.rowIndex="4" />
                         <Label fx:id="id" text="Label" GridPane.columnIndex="1" />
                         <Label fx:id="nom" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="type" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label fx:id="reference" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="location" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label fx:id="prix" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label text="Prix par heure" GridPane.rowIndex="5" />
+                        <Label fx:id="prix" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label text="Prix par heure" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
                   <ButtonBar layoutX="54.0" layoutY="250.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">

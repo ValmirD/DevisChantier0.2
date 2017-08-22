@@ -11,26 +11,20 @@ package db.dto;
  */
 public class VoitureDto extends EntityDto<Integer> {
     
-    private boolean attacheRemorque;
     private String marque;
     private String modele;
     private String numeroChassis;
     private String carburant;
     private double prixHtva;
     
-    public VoitureDto(int idVoiture, boolean attacheRemorque, String marque, String modele, String numeroChassis, String carburant, double prixHtva) {
+    public VoitureDto(int idVoiture, String marque, String modele, String numeroChassis, String carburant, double prixHtva) {
         this.id = idVoiture;
-        this.attacheRemorque = attacheRemorque;
         this.marque = marque;
         this.modele = modele;
         this.numeroChassis = numeroChassis;
         this.carburant = carburant;
         this.prixHtva = prixHtva;
     }    
-
-    public boolean isAttacheRemorque() {
-        return attacheRemorque;
-    }
 
     public String getMarque() {
         return marque;
@@ -40,7 +34,7 @@ public class VoitureDto extends EntityDto<Integer> {
         return modele;
     }
 
-    public String getNumeroDeChassis() {
+    public String getNumeroChassis() {
         return numeroChassis;
     }
 
@@ -52,9 +46,7 @@ public class VoitureDto extends EntityDto<Integer> {
         return prixHtva;
     }
 
-    public void setAttacheRemorque(boolean attacheRemorque) {
-        this.attacheRemorque = attacheRemorque;
-    }
+
 
 
     
