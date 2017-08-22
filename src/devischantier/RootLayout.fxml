@@ -5,7 +5,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="borderPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.RootLayoutController">
+<BorderPane fx:id="borderPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.RootLayoutController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -16,10 +16,23 @@
                </items></Menu>
             <Menu fx:id="ressources" mnemonicParsing="false" text="Ressources">
               <items>
-                <MenuItem fx:id="engin" mnemonicParsing="false" text="Engin" />
+                <MenuItem fx:id="chantiers" mnemonicParsing="false" text="Chantiers" />
+                  <MenuItem fx:id="materiaux" mnemonicParsing="false" text="Matériaux" />
+                  <MenuItem fx:id="petitsMateriels" mnemonicParsing="false" text="Petits matériels" />
+                  <MenuItem fx:id="codesReferences" mnemonicParsing="false" text="Codes Références" />
+                  <MenuItem fx:id="engins" mnemonicParsing="false" text="Engins" />
+                  <MenuItem fx:id="camions" mnemonicParsing="false" text="Camions" />
+                  <MenuItem fx:id="voitures" mnemonicParsing="false" text="Voitures" />
+                  <MenuItem fx:id="conducteurs" mnemonicParsing="false" text="Conducteurs" />
+                  <MenuItem fx:id="ouvriers" mnemonicParsing="false" text="Ouvriers" />
+                  <MenuItem fx:id="client" mnemonicParsing="false" text="Client" />
+                  <MenuItem fx:id="devis" mnemonicParsing="false" text="Devis" />
               </items>
             </Menu>
-          <Menu fx:id="about" mnemonicParsing="false" text="About" />
+          <Menu fx:id="aPropos" mnemonicParsing="false" text="A propos">
+               <items>
+                  <MenuItem fx:id="informations" mnemonicParsing="false" text="Informations" />
+               </items></Menu>
         </menus>
       </MenuBar>
    </top>
