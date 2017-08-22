@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -72,26 +73,11 @@ public class MainOverviewController implements Initializable {
     }
 
     @FXML
-    private void afficherChantier(ActionEvent event) {
+    private void afficherPage(ActionEvent event) {
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(DevisChantier.class.getResource("ChantierOverview.fxml"));
-        AnchorPane overview;
-        try {
-            stage = (Stage) devis.getScene().getWindow();
-            stage.setScene(scene);
-            overview = (AnchorPane) loader.load();
-            rootLayout.setCenter(overview);
-        } catch (IOException ex) {
-            System.out.println("ex.getMessage()");
-        }
-
-    }
-
-    @FXML
-    private void afficherEngins(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(DevisChantier.class.getResource("EnginOverview.fxml"));
+        Button item = (Button) event.getSource();
+        loader.setLocation(DevisChantier.class.getResource(item.getId() + ".fxml"));
         AnchorPane overview;
         try {
             stage = (Stage) devis.getScene().getWindow();
@@ -102,140 +88,4 @@ public class MainOverviewController implements Initializable {
             System.out.println("ex.getMessage()");
         }
     }
-
-    @FXML
-    private void afficherMateriaux(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(DevisChantier.class.getResource("MateriauOverview.fxml"));
-        AnchorPane overview;
-        try {
-            stage = (Stage) devis.getScene().getWindow();
-            stage.setScene(scene);
-            overview = (AnchorPane) loader.load();
-            rootLayout.setCenter(overview);
-        } catch (IOException ex) {
-            System.out.println("ex.getMessage()");
-        }
-    }
-
-    @FXML
-    private void afficherPetitsMateriaux(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(DevisChantier.class.getResource("PetitMaterielOverview.fxml"));
-        AnchorPane overview;
-        try {
-            stage = (Stage) devis.getScene().getWindow();
-            stage.setScene(scene);
-            overview = (AnchorPane) loader.load();
-            rootLayout.setCenter(overview);
-        } catch (IOException ex) {
-            System.out.println("ex.getMessage()");
-        }
-    }
-
-    @FXML
-    private void afficherCodesRef(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(DevisChantier.class.getResource("CodeReferenceOverview.fxml"));
-        AnchorPane overview;
-        try {
-            stage = (Stage) devis.getScene().getWindow();
-            stage.setScene(scene);
-            overview = (AnchorPane) loader.load();
-            rootLayout.setCenter(overview);
-        } catch (IOException ex) {
-            System.out.println("ex.getMessage()");
-        }
-    }
-
-    @FXML
-    private void afficherVoitures(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(DevisChantier.class.getResource("VoitureOverview.fxml"));
-        AnchorPane overview;
-        try {
-            stage = (Stage) devis.getScene().getWindow();
-            stage.setScene(scene);
-            overview = (AnchorPane) loader.load();
-            rootLayout.setCenter(overview);
-        } catch (IOException ex) {
-            System.out.println("ex.getMessage()");
-        }
-    }
-
-    @FXML
-    private void afficherCamions(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(DevisChantier.class.getResource("CamionOverview1.fxml"));
-        AnchorPane overview;
-        try {
-            stage = (Stage) devis.getScene().getWindow();
-            stage.setScene(scene);
-            overview = (AnchorPane) loader.load();
-            rootLayout.setCenter(overview);
-        } catch (IOException ex) {
-            System.out.println("ex.getMessage()");
-        }
-    }
-
-    @FXML
-    private void afficherOuvriers(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(DevisChantier.class.getResource("OuvrierOverview.fxml"));
-        AnchorPane overview;
-        try {
-            stage = (Stage) devis.getScene().getWindow();
-            stage.setScene(scene);
-            overview = (AnchorPane) loader.load();
-            rootLayout.setCenter(overview);
-        } catch (IOException ex) {
-            System.out.println("ex.getMessage()");
-        }
-    }
-
-    @FXML
-    private void afficherConducteurs(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(DevisChantier.class.getResource("ConducteurOverview.fxml"));
-        AnchorPane overview;
-        try {
-            stage = (Stage) devis.getScene().getWindow();
-            stage.setScene(scene);
-            overview = (AnchorPane) loader.load();
-            rootLayout.setCenter(overview);
-        } catch (IOException ex) {
-            System.out.println("ex.getMessage()");
-        }
-    }
-
-    @FXML
-    private void afficherClients(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(DevisChantier.class.getResource("ClientOverview.fxml"));
-        AnchorPane overview;
-        try {
-            stage = (Stage) devis.getScene().getWindow();
-            stage.setScene(scene);
-            overview = (AnchorPane) loader.load();
-            rootLayout.setCenter(overview);
-        } catch (IOException ex) {
-            System.out.println("ex.getMessage()");
-        }
-    }
-
-    @FXML
-    private void afficherDevis(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(DevisChantier.class.getResource("DevisOverview.fxml"));
-        AnchorPane overview;
-        try {
-            stage = (Stage) devis.getScene().getWindow();
-            stage.setScene(scene);
-            overview = (AnchorPane) loader.load();
-            rootLayout.setCenter(overview);
-        } catch (IOException ex) {
-            System.out.println("ex.getMessage()");
-        }
-    }
-
 }

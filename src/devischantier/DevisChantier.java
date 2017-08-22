@@ -36,7 +36,7 @@ public class DevisChantier extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Gestion des devis");
 
-        initRootLayout();
+       // initRootLayout();
 
         showLoginOverview();
     }
@@ -44,7 +44,7 @@ public class DevisChantier extends Application {
     /**
      * Initializes the root layout.
      */
-    public void initRootLayout() {
+   /** public void initRootLayout() {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
@@ -58,7 +58,7 @@ public class DevisChantier extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }**/
 
     /**
      * Shows the Client overview inside the root layout.
@@ -71,7 +71,10 @@ public class DevisChantier extends Application {
             AnchorPane loginOverview = (AnchorPane) loader.load();
 
             // Set person overview into the center of root layout.
-            rootLayout.setCenter(loginOverview);
+            //rootLayout.setCenter(loginOverview);
+            Scene scene = new Scene(loginOverview);
+            primaryStage.setScene(scene);
+            primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

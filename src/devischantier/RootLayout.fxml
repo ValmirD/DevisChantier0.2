@@ -5,28 +5,28 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="borderPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.RootLayoutController">
+<BorderPane fx:id="borderPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.RootLayoutController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu fx:id="navigation" mnemonicParsing="false" text="Navigation">
                <items>
-                  <MenuItem fx:id="mainWindow" mnemonicParsing="false" onAction="#backToMainMenu" text="Acceuil" />
+                  <MenuItem id="MainOverview" fx:id="mainWindow" mnemonicParsing="false" onAction="#goToWindow" text="Acceuil" />
                   <MenuItem fx:id="close" mnemonicParsing="false" onAction="#closeApplication" text="Close" />
                </items></Menu>
             <Menu fx:id="ressources" mnemonicParsing="false" text="Ressources">
               <items>
-                <MenuItem fx:id="chantiers" mnemonicParsing="false" text="Chantiers" />
-                  <MenuItem fx:id="materiaux" mnemonicParsing="false" text="Matériaux" />
-                  <MenuItem fx:id="petitsMateriels" mnemonicParsing="false" text="Petits matériels" />
-                  <MenuItem fx:id="codesReferences" mnemonicParsing="false" text="Codes Références" />
-                  <MenuItem fx:id="engins" mnemonicParsing="false" text="Engins" />
-                  <MenuItem fx:id="camions" mnemonicParsing="false" text="Camions" />
-                  <MenuItem fx:id="voitures" mnemonicParsing="false" text="Voitures" />
-                  <MenuItem fx:id="conducteurs" mnemonicParsing="false" text="Conducteurs" />
-                  <MenuItem fx:id="ouvriers" mnemonicParsing="false" text="Ouvriers" />
-                  <MenuItem fx:id="client" mnemonicParsing="false" text="Client" />
-                  <MenuItem fx:id="devis" mnemonicParsing="false" text="Devis" />
+                <MenuItem id="ChantierOverview" fx:id="chantiers" mnemonicParsing="false" onAction="#goToWindow" text="Chantiers" />
+                  <MenuItem id="MateriauxOverview" fx:id="materiaux" mnemonicParsing="false" onAction="#goToWindow" text="Matériaux" />
+                  <MenuItem id="PetitMaterielOverview" fx:id="petitsMateriels" mnemonicParsing="false" onAction="#goToWindow" text="Petits matériels" />
+                  <MenuItem id="CodeReferenceOverview" fx:id="codesReferences" mnemonicParsing="false" onAction="#goToWindow" text="Codes Références" />
+                  <MenuItem id="EnginOverview" fx:id="engins" mnemonicParsing="false" onAction="#goToWindow" text="Engins" />
+                  <MenuItem id="CamionOverview" fx:id="camions" mnemonicParsing="false" onAction="#goToWindow" text="Camions" />
+                  <MenuItem id="VoitureOverview" fx:id="voitures" mnemonicParsing="false" onAction="#goToWindow" text="Voitures" />
+                  <MenuItem id="ConducteurOverview" fx:id="conducteurs" mnemonicParsing="false" onAction="#goToWindow" text="Conducteurs" />
+                  <MenuItem id="OuvrierOverview" fx:id="ouvriers" mnemonicParsing="false" onAction="#goToWindow" text="Ouvriers" />
+                  <MenuItem id="ClientOverview" fx:id="client" mnemonicParsing="false" onAction="#goToWindow" text="Client" />
+                  <MenuItem id="DevisOverview" fx:id="devis" mnemonicParsing="false" onAction="#goToWindow" text="Devis" />
               </items>
             </Menu>
           <Menu fx:id="aPropos" mnemonicParsing="false" text="A propos">

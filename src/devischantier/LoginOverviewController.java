@@ -14,8 +14,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import db.business.FacadeDB;
 import db.dto.ConducteurDto;
+import db.dto.PatronDto;
 import db.exception.DevisChantierBusinessException;
 import db.selDto.ConducteurSel;
+import db.selDto.PatronSel;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,6 +46,8 @@ public class LoginOverviewController implements Initializable {
 
     @FXML
     private Label loginError;
+    
+    boolean isPatron = false;
 
     /**
      * Initializes the controller class.
@@ -56,10 +60,16 @@ public class LoginOverviewController implements Initializable {
     @FXML
     private void GererConnection(ActionEvent event) {
         ConducteurDto conducteur;
+        PatronDto patron;
         ConducteurSel sel = new ConducteurSel(Integer.parseInt(loginId.getText()), loginPass.getText());
+        PatronSel pat = new PatronSel(Integer.parseInt(loginId.getText()));
         try {
             conducteur = FacadeDB.findConducteurBySel(sel);
+            patron = FacadeDB.findPatronBySel(pat);
             if (conducteur != null) {
+                if(patron != null){
+                    isPatron = true;
+                }
                 FXMLLoader l = new FXMLLoader();
                 l.setLocation(DevisChantier.class.getResource("RootLayout.fxml"));
                 BorderPane rootLayout = (BorderPane) l.load();
