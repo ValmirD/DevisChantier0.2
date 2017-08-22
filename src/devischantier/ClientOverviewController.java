@@ -64,7 +64,7 @@ public class ClientOverviewController implements Initializable {
     @FXML
     private void gererNouveau(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(DevisChantier.class.getResource("ClientFormNouveau.fxml"));
+        loader.setLocation(DevisChantier.class.getResource("ClientForm.fxml"));
         AnchorPane camionInfo;
         try {
             camionInfo = (AnchorPane) loader.load();

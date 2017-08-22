@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package devischantier;
 
 import db.dto.ClientDto;
 import java.net.URL;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -56,8 +57,12 @@ public class ClientFormController implements Initializable {
 
     @FXML
     private void validation(ActionEvent event) {
-/*        try {
-            ClientDto client = new ClientDto(10000, nom.getText(), prenom.getText(), telephone.getText(), email.getText(), naissance.getValue());
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date parsed = (java.util.Date) format.parse(naissance.getValue().toString());
+            java.sql.Date date = new Date(parsed.getTime());
+            
+            ClientDto client = new ClientDto(10000, nom.getText(), prenom.getText(), date, telephone.getText(), email.getText());
             if (Utilitaire.insertClient(client)) {
                 message.setText("Client ajouté avec succès !");
                 Stage stage = (Stage) pane.getScene().getWindow();
@@ -68,7 +73,7 @@ public class ClientFormController implements Initializable {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             message.setText("Erreur : le client n'a pas pu être ajouté !");
-        }*/
+        }
     }
 
     @FXML
