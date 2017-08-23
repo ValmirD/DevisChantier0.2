@@ -5,13 +5,13 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="borderPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.RootLayoutController">
+<BorderPane fx:id="borderPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.RootLayoutController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu fx:id="navigation" mnemonicParsing="false" text="Navigation">
                <items>
-                  <MenuItem id="MainOverview" fx:id="mainWindow" mnemonicParsing="false" onAction="#goToWindow" text="Acceuil" />
+                  <MenuItem id="MainOverview" fx:id="mainWindow" mnemonicParsing="false" onAction="#goToWindow" text="Accueil" />
                   <MenuItem fx:id="close" mnemonicParsing="false" onAction="#closeApplication" text="Close" />
                </items></Menu>
             <Menu fx:id="ressources" mnemonicParsing="false" text="Ressources">
