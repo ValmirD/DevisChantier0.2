@@ -27,6 +27,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Utilitaire;
 
 /**
  * FXML Controller class
@@ -59,6 +60,8 @@ public class ClientOverviewController implements Initializable {
     private Button editer;
     @FXML
     private Button supprimer;
+    @FXML
+    private Label message;
 
     /**
      * Initializes the controller class.
@@ -103,7 +106,7 @@ public class ClientOverviewController implements Initializable {
             //à mettre dans le controller d'éditeur de engin, ainsi que l'attribut de classe -> private int idEngin.
             /**
              * public void initVariables(int idEngin) { this.idEngin = idEngin;
-              }*
+             * }*
              */
             Stage stage = new Stage();
             Scene scene = new Scene(enginInfo);
@@ -116,11 +119,17 @@ public class ClientOverviewController implements Initializable {
 
     @FXML
     private void gererSupprimer(ActionEvent event) {
+        ClientDto client = idNomPrenom.getSelectionModel().selectedItemProperty().get();
+        if (Utilitaire.deleteClient(client.getId())) {
+            message.setText("Suppression avec succès !");
+        } else {
+            message.setText("Erreur de suppression ...!");
+        }
     }
 
     @FXML
     private void displayList() {
-        idNom.setCellValueFactory(new PropertyValueFactory<>("nom")); 
+        idNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         idPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         try {
             Collection<ClientDto> clients = FacadeDB.getAllClient();

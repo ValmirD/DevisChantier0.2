@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="pane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.CamionFormController">
+<AnchorPane fx:id="pane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.CamionFormEditerController">
    <children>
       <GridPane AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
         <columnConstraints>
@@ -34,7 +34,7 @@
             <Label text="Prix hors TVA" GridPane.rowIndex="7" />
             <Label text="Tonnage" GridPane.rowIndex="1" />
             <Label text="Capacité" GridPane.rowIndex="2" />
-            <TextField fx:id="categorie" GridPane.columnIndex="1" />
+            <TextField fx:id="categorie" text="333" GridPane.columnIndex="1" />
             <TextField fx:id="tonnage" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="capacite" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="marque" GridPane.columnIndex="1" GridPane.rowIndex="3" />

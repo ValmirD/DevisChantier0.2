@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.EnginOverviewController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" layoutX="153.0" layoutY="70.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -63,6 +62,7 @@
                         <Button fx:id="supprimer" mnemonicParsing="false" onAction="#gererSupprimer" text="Supprimer" />
                     </buttons>
                   </ButtonBar>
+                  <Label fx:id="message" layoutX="112.0" layoutY="243.0" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="20.0" />
                </children>
             </AnchorPane>
         </items>

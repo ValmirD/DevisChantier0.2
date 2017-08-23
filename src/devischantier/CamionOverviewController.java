@@ -28,6 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Utilitaire;
 
 /**
  * FXML Controller class
@@ -58,6 +59,8 @@ public class CamionOverviewController implements Initializable {
     private Button nouveau;
     @FXML
     private Button editer;
+    @FXML
+    private Label message;
 
     @FXML
     private TableView<CamionDto> table;
@@ -108,9 +111,11 @@ public class CamionOverviewController implements Initializable {
             }
 
             //à mettre dans le controller d'éditeur de camion, ainsi que l'attribut de classe -> private int idCamion.
-            
-              /**public void initVariables(int idCamion) { this.idCamion = idCamion;
-              }**/
+            /**
+             * public void initVariables(int idCamion) { 
+             * this.idCamion = idCamion;
+              }*
+             */
             Stage stage = new Stage();
             Scene scene = new Scene(camionInfo);
             stage.setScene(scene);
@@ -122,11 +127,17 @@ public class CamionOverviewController implements Initializable {
 
     @FXML
     private void gererSupprimer(ActionEvent event) {
+        CamionDto camion = table.getSelectionModel().selectedItemProperty().get();
+        if (Utilitaire.deleteCamion(camion.getId())) {
+            message.setText("Suppression avec succès !");
+        } else {
+            message.setText("Erreur de suppression ...!");
+        }
     }
 
     @FXML
     private void displayList() {
-        colonneMarque.setCellValueFactory(new PropertyValueFactory<>("marque")); 
+        colonneMarque.setCellValueFactory(new PropertyValueFactory<>("marque"));
         colonneId.setCellValueFactory(new PropertyValueFactory<>("id"));
         try {
             Collection<CamionDto> camions = FacadeDB.getAllCamion();
@@ -146,6 +157,7 @@ public class CamionOverviewController implements Initializable {
                     chassis.setText(camion.getNumeroChassis());
                     prix.setText(Double.toString(camion.getPrixHtva()));
                     tonnage.setText(Integer.toString(camion.getTonnage()));
+                    carburant.setText(camion.getCarburant());
                     capacite.setText(Double.toString(camion.getCapacite()));
                 }
             });

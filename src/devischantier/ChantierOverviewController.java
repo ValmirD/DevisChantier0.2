@@ -27,11 +27,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Utilitaire;
 
 /**
  * FXML Controller class
  *
- * @author Marco
+ * @author Vali
  */
 public class ChantierOverviewController implements Initializable {
 
@@ -71,6 +72,8 @@ public class ChantierOverviewController implements Initializable {
     private Button editer;
     @FXML
     private Button supprimer;
+    @FXML
+    private Label message;
 
     /**
      * Initializes the controller class.
@@ -128,6 +131,12 @@ public class ChantierOverviewController implements Initializable {
 
     @FXML
     private void gererSupprimer(ActionEvent event) {
+        ChantierDto chantier = idDesignationID.getSelectionModel().selectedItemProperty().get();
+        if (Utilitaire.deleteChantier(chantier.getId())) {
+            message.setText("Suppression avec succès !");
+        } else {
+            message.setText("Erreur de suppression ...!");
+        }
     }
 
     @FXML

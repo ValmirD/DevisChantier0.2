@@ -6,7 +6,7 @@
 package devischantier;
 
 import db.business.FacadeDB;
-import db.dto.DevisDto;
+import db.dto.MateriauDto;
 import db.exception.DevisChantierBusinessException;
 import java.io.IOException;
 import java.net.URL;
@@ -34,24 +34,28 @@ import model.Utilitaire;
  *
  * @author Vali
  */
-public class DevisOverviewController implements Initializable {
+public class MateriauOverviewController1 implements Initializable {
 
     @FXML
-    private TableView<DevisDto> idDesignationId;
+    private TableView<MateriauDto> idTableNom;
     @FXML
-    private TableColumn<DevisDto, String> idDesignation;
+    private TableColumn<MateriauDto, String> idColonneNom;
     @FXML
-    private TableColumn<DevisDto, String> idIdentification;
+    private TableColumn<MateriauDto, String> idColonneId;
     @FXML
-    private Label idDevis;
+    private Label id;
     @FXML
-    private Label idChantier;
+    private Label nom;
     @FXML
-    private Label statut;
+    private Label type;
     @FXML
-    private Label date;
+    private Label reference;
     @FXML
-    private Label designation;
+    private Label fourniture;
+    @FXML
+    private Label production;
+    @FXML
+    private Label prix;
     @FXML
     private Button nouveau;
     @FXML
@@ -74,12 +78,12 @@ public class DevisOverviewController implements Initializable {
     @FXML
     private void gererNouveau(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(DevisChantier.class.getResource("DevisFormNouveau.fxml"));
-        AnchorPane enginInfo;
+        loader.setLocation(DevisChantier.class.getResource("MateriauFormNouveau.fxml"));
+        AnchorPane materiauInfo;
         try {
-            enginInfo = (AnchorPane) loader.load();
+            materiauInfo = (AnchorPane) loader.load();
             Stage stage = new Stage();
-            Scene scene = new Scene(enginInfo);
+            Scene scene = new Scene(materiauInfo);
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
@@ -90,24 +94,24 @@ public class DevisOverviewController implements Initializable {
     @FXML
     private void gererEditer(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(DevisChantier.class.getResource("DevisFormEditer.fxml"));
-        AnchorPane enginInfo;
+        loader.setLocation(DevisChantier.class.getResource("MateriauFormEditer.fxml"));
+        AnchorPane materiauInfo;
         try {
-            enginInfo = (AnchorPane) loader.load();
+            materiauInfo = (AnchorPane) loader.load();
 
             //passer paramètres au controller suivant
-            if (idDevis != null) {
-                //EnginFormController controller = loader.<EnginFormController>getController();
+            if (id != null) {
+                //MateriauFormController controller = loader.<MateriauFormController>getController();
                 //controller.initVariables(Integer.parseInt(id.getText()));
             }
 
-            //à mettre dans le controller d'éditeur de engin, ainsi que l'attribut de classe -> private int idEngin.
+            //à mettre dans le controller d'éditeur de materiau, ainsi que l'attribut de classe -> private int idMateriau.
             /**
-             * public void initVariables(int idEngin) { this.idEngin = idEngin;
-             * }*
+             * public void initVariables(int idMateriau) { this.idMateriau =
+             * idMateriau; }*
              */
             Stage stage = new Stage();
-            Scene scene = new Scene(enginInfo);
+            Scene scene = new Scene(materiauInfo);
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
@@ -117,35 +121,36 @@ public class DevisOverviewController implements Initializable {
 
     @FXML
     private void gererSupprimer(ActionEvent event) {
-        DevisDto devis = idDesignationId.getSelectionModel().selectedItemProperty().get();
-        if (Utilitaire.deleteDevis(devis.getId())) {
+        MateriauDto materiau = idTableNom.getSelectionModel().selectedItemProperty().get();
+        if (Utilitaire.deleteMateriau(materiau.getId())) {
             message.setText("Suppression avec succès !");
         } else {
             message.setText("Erreur de suppression ...!");
         }
-
     }
 
     @FXML
     private void displayList() {
-        idDesignation.setCellValueFactory(new PropertyValueFactory<>("designationDevis"));
-        idIdentification.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idColonneNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        idColonneId.setCellValueFactory(new PropertyValueFactory<>("id"));
         try {
-            Collection<DevisDto> devis = FacadeDB.getAllDevis();
-            ObservableList<DevisDto> data = FXCollections.observableArrayList(devis);
-            idDesignationId.setItems(data);
+            Collection<MateriauDto> materiaus = FacadeDB.getAllMateriau();
+            ObservableList<MateriauDto> data = FXCollections.observableArrayList(materiaus);
+            idTableNom.setItems(data);
 
-            idDesignationId.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+            idTableNom.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
 
                 @Override
                 public void handle(javafx.scene.input.MouseEvent event) {
-                    DevisDto devis = idDesignationId.getSelectionModel().selectedItemProperty().get();
+                    MateriauDto materiau = idTableNom.getSelectionModel().selectedItemProperty().get();
                     editer.setDisable(false);
-                    idDevis.setText(devis.getId().toString());
-                    idChantier.setText(devis.getId().toString());
-                    statut.setText(devis.getStatut());
-                    designation.setText(devis.getDesignationDevis());
-                    date.setText(devis.getDateDevis().toString());
+                    id.setText(materiau.getId().toString());
+                    nom.setText(materiau.getNom());
+                    type.setText(materiau.getType());
+                    reference.setText(materiau.getReference());
+                    fourniture.setText(materiau.getFourniture());
+                    production.setText(materiau.getSiteProduction());
+                    prix.setText(Double.toString(materiau.getPrixHtva()));
                 }
             });
         } catch (DevisChantierBusinessException ex) {

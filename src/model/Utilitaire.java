@@ -97,20 +97,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deleteEngin(int idEng) {
+    public static boolean deleteEngin(int idEng) {
         try {
             FacadeDB.deleteEngin(idEng);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updateEngin(EnginDto eng) {
+    public static boolean updateEngin(EnginDto eng) {
         try {
             FacadeDB.updateEngin(eng);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
     /*EnginsDuChantier*/
@@ -124,20 +128,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deleteEnginDuChantier(int idEngcha) {
+    public static boolean deleteEnginDuChantier(int idEngcha) {
         try {
             FacadeDB.deleteEnginDuChantier(idEngcha);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updateEnginDuChantier(EnginDuChantierDto engcha) {
+    public static boolean updateEnginDuChantier(EnginDuChantierDto engcha) {
         try {
             FacadeDB.updateEnginDuChantier(engcha);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
     /*Materiaux*/
@@ -170,20 +178,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deleteMateriau(int idMat) {
+    public static boolean deleteMateriau(int idMat) {
         try {
             FacadeDB.deleteEngin(idMat);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updateMateriau(MateriauDto mat) {
+    public static boolean updateMateriau(MateriauDto mat) {
         try {
             FacadeDB.updateMateriau(mat);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
     /*MateriauxDuChantier*/
@@ -197,20 +209,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deleteMateriauDuChantier(int idMatcha) {
+    public static boolean deleteMateriauDuChantier(int idMatcha) {
         try {
             FacadeDB.deleteEnginDuChantier(idMatcha);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updateMateriauDuChantier(MateriauDuChantierDto matcha) {
+    public static boolean updateMateriauDuChantier(MateriauDuChantierDto matcha) {
         try {
             FacadeDB.updateMateriauDuChantier(matcha);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
     /*Petits Materiels*/
@@ -243,20 +259,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deletePetitMateriel(int idPemat) {
+    public static boolean deletePetitMateriel(int idPemat) {
         try {
             FacadeDB.deletePetitMateriel(idPemat);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updatePetitMateriel(PetitMaterielDto pemat) {
+    public static boolean updatePetitMateriel(PetitMaterielDto pemat) {
         try {
             FacadeDB.updatePetitMateriel(pemat);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
     /*PetitsMaterielsDuChantier*/
@@ -270,20 +290,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deletePetitMaterielDuChantier(int idPematcha) {
+    public static boolean deletePetitMaterielDuChantier(int idPematcha) {
         try {
             FacadeDB.deletePetitMaterielDuChantier(idPematcha);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updatePetitMaterielDuChantier(PetitMaterielDuChantierDto pematcha) {
+    public static boolean updatePetitMaterielDuChantier(PetitMaterielDuChantierDto pematcha) {
         try {
             FacadeDB.updatePetitMaterielDuChantier(pematcha);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
     /*Codes References*/
@@ -316,20 +340,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deleteCodeReference(int idpemat) {
+    public static boolean deleteCodeReference(int idpemat) {
         try {
             FacadeDB.deleteCodeReference(idpemat);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updateCodeReference(CodeReferenceDto core) {
+    public static boolean updateCodeReference(CodeReferenceDto core) {
         try {
             FacadeDB.updateCodeReference(core);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
     public static double supplement(CodeReferenceSel sel1, CodeReferenceDuChantierSel sel2, int supp) {
@@ -360,20 +388,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deleteCodeReferenceDuChantier(int idCorecha) {
+    public static boolean deleteCodeReferenceDuChantier(int idCorecha) {
         try {
             FacadeDB.deleteCodeReferenceDuChantier(idCorecha);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updateCodeReferenceDuChantier(CodeReferenceDuChantierDto corecha) {
+    public static boolean updateCodeReferenceDuChantier(CodeReferenceDuChantierDto corecha) {
         try {
             FacadeDB.updateCodeReferenceDuChantier(corecha);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
     /*Ouvriers*/
@@ -418,20 +450,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deleteOuvrier(int idOuv) {
+    public static boolean deleteOuvrier(int idOuv) {
         try {
             FacadeDB.deleteOuvrier(idOuv);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updateOuvrier(OuvrierDto ouv) {
+    public static boolean updateOuvrier(OuvrierDto ouv) {
         try {
             FacadeDB.updateOuvrier(ouv);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
     /*OuvrierDuChantier*/
@@ -445,20 +481,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deleteOuvrierDuChantier(int idOuvcha) {
+    public static boolean deleteOuvrierDuChantier(int idOuvcha) {
         try {
             FacadeDB.deleteOuvrierDuChantier(idOuvcha);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updateOuvrierDuChantier(OuvrierDuChantierDto ouvcha) {
+    public static boolean updateOuvrierDuChantier(OuvrierDuChantierDto ouvcha) {
         try {
             FacadeDB.updateOuvrierDuChantier(ouvcha);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
     /*Conducteurs*/
@@ -491,20 +531,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deleteConducteur(int idCon) {
+    public static boolean deleteConducteur(int idCon) {
         try {
             FacadeDB.deleteConducteur(idCon);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updateConducteur(ConducteurDto con) {
+    public static boolean updateConducteur(ConducteurDto con) {
         try {
             FacadeDB.updateConducteur(con);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
     /*ConducteurDuChantier*/
@@ -518,20 +562,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deleteConducteurDuChantier(int idConcha) {
+    public static boolean deleteConducteurDuChantier(int idConcha) {
         try {
             FacadeDB.deleteConducteurDuChantier(idConcha);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updateConducteurDuChantier(ConducteurDuChantierDto concha) {
+    public static boolean updateConducteurDuChantier(ConducteurDuChantierDto concha) {
         try {
             FacadeDB.updateConducteurDuChantier(concha);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
     /*Clients*/
@@ -545,20 +593,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deleteClient(int idCli) {
+    public static boolean deleteClient(int idCli) {
         try {
             FacadeDB.deleteClient(idCli);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updateClient(ClientDto cli) {
+    public static boolean updateClient(ClientDto cli) {
         try {
             FacadeDB.updateClient(cli);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
     /*Voitures*/
@@ -591,20 +643,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deleteVoiture(int idVoi) {
+    public static boolean deleteVoiture(int idVoi) {
         try {
             FacadeDB.deleteVoiture(idVoi);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updateVoiture(VoitureDto voi) {
+    public static boolean updateVoiture(VoitureDto voi) {
         try {
             FacadeDB.updateVoiture(voi);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
     /*VoituresDuChantier*/
@@ -618,20 +674,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deleteVoitureDuChantier(int idVoicha) {
+    public static boolean deleteVoitureDuChantier(int idVoicha) {
         try {
             FacadeDB.deleteVoitureDuChantier(idVoicha);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updateVoitureDuChantier(VoitureDuChantierDto voicha) {
+    public static boolean updateVoitureDuChantier(VoitureDuChantierDto voicha) {
         try {
             FacadeDB.updateVoitureDuChantier(voicha);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
     /*Camions*/
@@ -664,20 +724,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deleteCamion(int idCam) {
+    public static boolean deleteCamion(int idCam) {
         try {
             FacadeDB.deleteCamion(idCam);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updateCamion(CamionDto cam) {
+    public static boolean updateCamion(CamionDto cam) {
         try {
             FacadeDB.updateCamion(cam);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
     /*CamionsDuChantier*/
@@ -691,20 +755,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deleteCamionDuChantier(int idCamcha) {
+    public static boolean deleteCamionDuChantier(int idCamcha) {
         try {
             FacadeDB.deleteCamionDuChantier(idCamcha);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updateCamionDuChantier(CamionDuChantierDto camcha) {
+    public static boolean updateCamionDuChantier(CamionDuChantierDto camcha) {
         try {
             FacadeDB.updateCamionDuChantier(camcha);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
     /*Devis*/
@@ -718,20 +786,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deleteDevis(int idDev) {
+    public static boolean deleteDevis(int idDev) {
         try {
             FacadeDB.deleteDevis(idDev);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updateDevis(DevisDto dev) {
+    public static boolean updateDevis(DevisDto dev) {
         try {
             FacadeDB.updateDevis(dev);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
     /*Chantier*/
@@ -745,20 +817,24 @@ public class Utilitaire {
         return false;
     }
 
-    public static void deleteChantier(int idCha) {
+    public static boolean deleteChantier(int idCha) {
         try {
             FacadeDB.deleteChantier(idCha);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
-    public static void updateChantier(ChantierDto cha) {
+    public static boolean updateChantier(ChantierDto cha) {
         try {
             FacadeDB.updateChantier(cha);
+            return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 
 }

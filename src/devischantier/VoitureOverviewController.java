@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package devischantier;
 
 import db.business.FacadeDB;
@@ -28,11 +27,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Utilitaire;
 
 /**
  * FXML Controller class
  *
- * @author Marco
+ * @author Vali
  */
 public class VoitureOverviewController implements Initializable {
 
@@ -60,11 +60,13 @@ public class VoitureOverviewController implements Initializable {
     private Button editer;
     @FXML
     private Button supprimer;
+    @FXML
+    private Label message;
 
     /**
      * Initializes the controller class.
      */
- @Override
+  @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         editer.setDisable(true);
@@ -103,9 +105,10 @@ public class VoitureOverviewController implements Initializable {
             }
 
             //à mettre dans le controller d'éditeur de voiture, ainsi que l'attribut de classe -> private int idVoiture.
-            
-              /**public void initVariables(int idVoiture) { this.idVoiture = idVoiture;
-              }**/
+            /**
+             * public void initVariables(int idVoiture) { this.idVoiture =
+             * idVoiture; }*
+             */
             Stage stage = new Stage();
             Scene scene = new Scene(voitureInfo);
             stage.setScene(scene);
@@ -117,11 +120,17 @@ public class VoitureOverviewController implements Initializable {
 
     @FXML
     private void gererSupprimer(ActionEvent event) {
+        VoitureDto voiture = idMarqueModele.getSelectionModel().selectedItemProperty().get();
+        if (Utilitaire.deleteVoiture(voiture.getId())) {
+            message.setText("Suppression avec succès !");
+        } else {
+            message.setText("Erreur de suppression ...!");
+        }
     }
 
     @FXML
     private void displayList() {
-        idMarque.setCellValueFactory(new PropertyValueFactory<>("marque")); 
+        idMarque.setCellValueFactory(new PropertyValueFactory<>("marque"));
         idModele.setCellValueFactory(new PropertyValueFactory<>("modele"));
         try {
             Collection<VoitureDto> voitures = FacadeDB.getAllVoiture();
@@ -146,5 +155,4 @@ public class VoitureOverviewController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
-
 }

@@ -27,6 +27,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Utilitaire;
 
 /**
  * FXML Controller class
@@ -67,6 +68,8 @@ public class ConducteurOverviewController implements Initializable {
     private Button editer;
     @FXML
     private Button supprimer;
+    @FXML
+    private Label message;
 
     /**
      * Initializes the controller class.
@@ -112,8 +115,7 @@ public class ConducteurOverviewController implements Initializable {
             //à mettre dans le controller d'éditeur de conducteur, ainsi que l'attribut de classe -> private int idConducteur.
             /**
              * public void initVariables(int idConducteur) { this.idConducteur =
-             * idConducteur;
-              }*
+             * idConducteur; }*
              */
             Stage stage = new Stage();
             Scene scene = new Scene(conducteurInfo);
@@ -126,6 +128,12 @@ public class ConducteurOverviewController implements Initializable {
 
     @FXML
     private void gererSupprimer(ActionEvent event) {
+        ConducteurDto conducteur = idNomPrenom.getSelectionModel().selectedItemProperty().get();
+        if (Utilitaire.deleteConducteur(conducteur.getId())) {
+            message.setText("Suppression avec succès !");
+        } else {
+            message.setText("Erreur de suppression ...!");
+        }
     }
 
     @FXML

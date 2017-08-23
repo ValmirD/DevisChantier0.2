@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package devischantier;
 
 import db.business.FacadeDB;
@@ -28,6 +27,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Utilitaire;
 
 /**
  * FXML Controller class
@@ -68,11 +68,13 @@ public class OuvrierOverviewController implements Initializable {
     private Button editer;
     @FXML
     private Button supprimer;
+    @FXML
+    private Label message;
 
     /**
      * Initializes the controller class.
      */
-       @Override
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         editer.setDisable(true);
@@ -113,8 +115,7 @@ public class OuvrierOverviewController implements Initializable {
             //à mettre dans le controller d'éditeur de ouvrier, ainsi que l'attribut de classe -> private int idOuvrier.
             /**
              * public void initVariables(int idOuvrier) { this.idOuvrier =
-             * idOuvrier;
-              }*
+             * idOuvrier; }*
              */
             Stage stage = new Stage();
             Scene scene = new Scene(ouvrierInfo);
@@ -127,6 +128,12 @@ public class OuvrierOverviewController implements Initializable {
 
     @FXML
     private void gererSupprimer(ActionEvent event) {
+        OuvrierDto ouvrier = idNomPrenom.getSelectionModel().selectedItemProperty().get();
+        if (Utilitaire.deleteOuvrier(3)) {
+            message.setText("Suppression avec succès !");
+        } else {
+            message.setText("Erreur de suppression ...!");
+        }
     }
 
     @FXML

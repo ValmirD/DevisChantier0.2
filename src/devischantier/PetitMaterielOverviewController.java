@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package devischantier;
 
 import db.business.FacadeDB;
@@ -28,6 +27,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Utilitaire;
 
 /**
  * FXML Controller class
@@ -56,11 +56,13 @@ public class PetitMaterielOverviewController implements Initializable {
     private Button editer;
     @FXML
     private Button supprimer;
+    @FXML
+    private Label message;
 
     /**
      * Initializes the controller class.
      */
-   @Override
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         editer.setDisable(true);
@@ -99,8 +101,8 @@ public class PetitMaterielOverviewController implements Initializable {
 
             //à mettre dans le controller d'éditeur de petitMateriel, ainsi que l'attribut de classe -> private int idPetitMateriel.
             /**
-             * public void initVariables(int idPetitMateriel) { this.idPetitMateriel =
-             * idPetitMateriel; }*
+             * public void initVariables(int idPetitMateriel) {
+             * this.idPetitMateriel = idPetitMateriel; }*
              */
             Stage stage = new Stage();
             Scene scene = new Scene(petitMaterielInfo);
@@ -113,6 +115,12 @@ public class PetitMaterielOverviewController implements Initializable {
 
     @FXML
     private void gererSupprimer(ActionEvent event) {
+        PetitMaterielDto petitMateriel = idTableNom.getSelectionModel().selectedItemProperty().get();
+        if (Utilitaire.deletePetitMateriel(petitMateriel.getId())) {
+            message.setText("Suppression avec succès !");
+        } else {
+            message.setText("Erreur de suppression ...!");
+        }
     }
 
     @FXML
