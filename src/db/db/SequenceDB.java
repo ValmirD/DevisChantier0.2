@@ -3,7 +3,9 @@ package db.db;
 import db.exception.DevisChantierDbException;
 
 /**
+ * 
  * Classe d'accès au gestionnaire de persistance pour les Séquences
+ * @author Vali
  */
 public class SequenceDB {
 

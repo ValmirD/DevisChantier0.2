@@ -14,6 +14,7 @@ import java.util.Collection;
 /**
  *
  * @author Vali
+ * Classe utilitaire des méthodes de gestion d'un camion
  */
 public class CamionBL {
     

@@ -20,7 +20,7 @@ public class CamionDto extends EntityDto<Integer> {
     private String carburant;
     private double prixHtva;
     
-
+    
     public CamionDto(int idCamion, String categorie, int tonnage, double capacite, String marque, String modele, String numeroChassis, String carburant, double prixHtva) {
         this.id = idCamion;
         this.categorie = categorie;

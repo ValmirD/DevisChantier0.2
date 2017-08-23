@@ -53,6 +53,7 @@ import db.selDto.VoitureDuChantierSel;
 /**
  *
  * @author Vali
+ * Classe reprenant les méthodes destinées à l'utilisateur
  */
 public class FacadeDB {
     
