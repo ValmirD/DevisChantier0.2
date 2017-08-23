@@ -6,7 +6,10 @@
 package devischantier;
 
 import db.dto.ConducteurDto;
+import java.math.BigInteger;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
@@ -79,7 +82,17 @@ public class ConducteurFormController implements Initializable {
             java.util.Date parsed2 = (java.util.Date) format.parse(entree.getValue().toString());
             java.sql.Date date2 = new Date(parsed2.getTime());
 
-            ConducteurDto conducteur = new ConducteurDto(10000, password.getText(), telephonePro.getText(), telephone.getText(), remuneration1, nom.getText(), prenom.getText(), date, email.getText(), date2, cout1);
+            //hash du password
+            String hash = password.getText();
+            try {
+                MessageDigest digest = MessageDigest.getInstance("SHA-1");
+                digest.update(hash.getBytes(), 0, hash.length());
+                hash = new BigInteger(1, digest.digest()).toString(16);
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+
+            ConducteurDto conducteur = new ConducteurDto(10000, hash, telephonePro.getText(), telephone.getText(), remuneration1, nom.getText(), prenom.getText(), date, email.getText(), date2, cout1);
             if (Utilitaire.insertConducteur(conducteur)) {
                 message.setText("Conducteur ajouté avec succès !");
                 Stage stage = (Stage) pane.getScene().getWindow();

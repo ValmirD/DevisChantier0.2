@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package devischantier;
 
 import java.net.URL;
@@ -20,6 +19,9 @@ import db.exception.DevisChantierBusinessException;
 import db.selDto.ConducteurSel;
 import db.selDto.PatronSel;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
@@ -47,7 +49,7 @@ public class LoginOverviewController implements Initializable {
 
     @FXML
     private Label loginError;
-    
+
     boolean isPatron = false;
 
     /**
@@ -62,13 +64,24 @@ public class LoginOverviewController implements Initializable {
     private void GererConnection(ActionEvent event) {
         ConducteurDto conducteur;
         PatronDto patron;
-        ConducteurSel sel = new ConducteurSel(Integer.parseInt(loginId.getText()), loginPass.getText());
+        
+        //hash du password
+        String hash = loginPass.getText();
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-1");
+            digest.update(hash.getBytes(), 0, hash.length());
+            hash = new BigInteger(1, digest.digest()).toString(16);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        ConducteurSel sel = new ConducteurSel(Integer.parseInt(loginId.getText()), hash);
         PatronSel pat = new PatronSel(Integer.parseInt(loginId.getText()));
         try {
             conducteur = FacadeDB.findConducteurBySel(sel);
             patron = FacadeDB.findPatronBySel(pat);
             if (conducteur != null) {
-                if(patron != null){
+                if (patron != null) {
                     isPatron = true;
                 }
                 FXMLLoader l = new FXMLLoader();

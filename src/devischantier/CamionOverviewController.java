@@ -8,7 +8,6 @@ package devischantier;
 import db.business.FacadeDB;
 import db.dto.CamionDto;
 import db.exception.DevisChantierBusinessException;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;

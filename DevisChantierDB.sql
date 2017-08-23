@@ -82,7 +82,7 @@ create table OUVRIER (
 	prenom varchar(20) not null,
 	dateNaissance date not null,
 	numeroTelephone varchar(20) unique not null,
-	email varchar(20) unique not null,
+	email varchar(50) unique not null,
 	remuneration double not null,
 	entreeFonction date not null,
 	cout double
@@ -94,18 +94,18 @@ create table CLIENT (
 	prenom varchar(20) not null,
 	dateNaissance date not null,
 	numeroTelephone varchar(20) unique not null,
-	email varchar(20) unique not null
+	email varchar(50) unique not null
 	);
 	
 create table CONDUCTEUR(
 	idConducteur numeric(10) primary key not null,
-	password varchar(20) not null,
+	password varchar(50) not null,
 	nom varchar(20) not null,
 	prenom varchar(20) not null,
 	dateNaissance date not null,
 	numeroTelephone varchar(20) unique not null,
 	numeroTelephonePro varchar(20) unique,
-	email varchar(20) unique not null,
+	email varchar(50) unique not null,
 	remuneration double not null,
 	entreeFonction date not null,
 	cout double
