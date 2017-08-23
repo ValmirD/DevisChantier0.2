@@ -32,7 +32,7 @@ import model.Utilitaire;
 /**
  * FXML Controller class
  *
- * @author Marco
+ * @author Vali
  */
 public class OuvrierOverviewController implements Initializable {
 
@@ -108,15 +108,9 @@ public class OuvrierOverviewController implements Initializable {
 
             //passer paramètres au controller suivant
             if (id != null) {
-                //OuvrierFormController controller = loader.<OuvrierFormController>getController();
-                //controller.initVariables(Integer.parseInt(id.getText()));
-            }
-
-            //à mettre dans le controller d'éditeur de ouvrier, ainsi que l'attribut de classe -> private int idOuvrier.
-            /**
-             * public void initVariables(int idOuvrier) { this.idOuvrier =
-             * idOuvrier; }*
-             */
+                CamionFormEditerController controller = loader.<CamionFormEditerController>getController();
+                controller.initVariables(Integer.parseInt(id.getText()));
+            } 
             Stage stage = new Stage();
             Scene scene = new Scene(ouvrierInfo);
             stage.setScene(scene);

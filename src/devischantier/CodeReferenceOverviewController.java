@@ -94,16 +94,9 @@ public class CodeReferenceOverviewController implements Initializable {
 
             //passer paramètres au controller suivant
             if (id != null) {
-                //CodeReferenceFormController controller = loader.<CodeReferenceFormController>getController();
-                //controller.initVariables(Integer.parseInt(id.getText()));
-            }
-
-            //à mettre dans le controller d'éditeur de codeReference, ainsi que l'attribut de classe -> private int idCodeReference.
-            /**
-             * public void initVariables(int idCodeReference) {
-             * this.idCodeReference = idCodeReference;
-              }*
-             */
+                CamionFormEditerController controller = loader.<CamionFormEditerController>getController();
+                controller.initVariables(Integer.parseInt(id.getText()));
+            } 
             Stage stage = new Stage();
             Scene scene = new Scene(codeReferenceInfo);
             stage.setScene(scene);

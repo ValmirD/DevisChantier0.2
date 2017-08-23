@@ -32,7 +32,7 @@ import model.Utilitaire;
 /**
  * FXML Controller class
  *
- * @author Marco
+ * @author Vali
  */
 public class PetitMaterielOverviewController implements Initializable {
 
@@ -95,15 +95,9 @@ public class PetitMaterielOverviewController implements Initializable {
 
             //passer paramètres au controller suivant
             if (id != null) {
-                //PetitMaterielFormController controller = loader.<PetitMaterielFormController>getController();
-                //controller.initVariables(Integer.parseInt(id.getText()));
-            }
-
-            //à mettre dans le controller d'éditeur de petitMateriel, ainsi que l'attribut de classe -> private int idPetitMateriel.
-            /**
-             * public void initVariables(int idPetitMateriel) {
-             * this.idPetitMateriel = idPetitMateriel; }*
-             */
+                CamionFormEditerController controller = loader.<CamionFormEditerController>getController();
+                controller.initVariables(Integer.parseInt(id.getText()));
+            } 
             Stage stage = new Stage();
             Scene scene = new Scene(petitMaterielInfo);
             stage.setScene(scene);

@@ -100,15 +100,9 @@ public class VoitureOverviewController implements Initializable {
 
             //passer paramètres au controller suivant
             if (id != null) {
-                //VoitureFormController controller = loader.<VoitureFormController>getController();
-                //controller.initVariables(Integer.parseInt(id.getText()));
-            }
-
-            //à mettre dans le controller d'éditeur de voiture, ainsi que l'attribut de classe -> private int idVoiture.
-            /**
-             * public void initVariables(int idVoiture) { this.idVoiture =
-             * idVoiture; }*
-             */
+                CamionFormEditerController controller = loader.<CamionFormEditerController>getController();
+                controller.initVariables(Integer.parseInt(id.getText()));
+            } 
             Stage stage = new Stage();
             Scene scene = new Scene(voitureInfo);
             stage.setScene(scene);

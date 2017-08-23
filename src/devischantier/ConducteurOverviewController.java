@@ -108,15 +108,9 @@ public class ConducteurOverviewController implements Initializable {
 
             //passer paramètres au controller suivant
             if (id != null) {
-                //ConducteurFormController controller = loader.<ConducteurFormController>getController();
-                //controller.initVariables(Integer.parseInt(id.getText()));
-            }
-
-            //à mettre dans le controller d'éditeur de conducteur, ainsi que l'attribut de classe -> private int idConducteur.
-            /**
-             * public void initVariables(int idConducteur) { this.idConducteur =
-             * idConducteur; }*
-             */
+                CamionFormEditerController controller = loader.<CamionFormEditerController>getController();
+                controller.initVariables(Integer.parseInt(id.getText()));
+            } 
             Stage stage = new Stage();
             Scene scene = new Scene(conducteurInfo);
             stage.setScene(scene);

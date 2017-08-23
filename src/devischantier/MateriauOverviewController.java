@@ -101,15 +101,9 @@ public class MateriauOverviewController implements Initializable {
 
             //passer paramètres au controller suivant
             if (id != null) {
-                //MateriauFormController controller = loader.<MateriauFormController>getController();
-                //controller.initVariables(Integer.parseInt(id.getText()));
-            }
-
-            //à mettre dans le controller d'éditeur de materiau, ainsi que l'attribut de classe -> private int idMateriau.
-            /**
-             * public void initVariables(int idMateriau) { this.idMateriau =
-             * idMateriau; }*
-             */
+                CamionFormEditerController controller = loader.<CamionFormEditerController>getController();
+                controller.initVariables(Integer.parseInt(id.getText()));
+            } 
             Stage stage = new Stage();
             Scene scene = new Scene(materiauInfo);
             stage.setScene(scene);

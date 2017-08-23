@@ -99,15 +99,9 @@ public class ClientOverviewController implements Initializable {
 
             //passer paramètres au controller suivant
             if (id != null) {
-                //EnginFormController controller = loader.<EnginFormController>getController();
-                //controller.initVariables(Integer.parseInt(id.getText()));
+                CamionFormEditerController controller = loader.<CamionFormEditerController>getController();
+                controller.initVariables(Integer.parseInt(id.getText()));
             }
-
-            //à mettre dans le controller d'éditeur de engin, ainsi que l'attribut de classe -> private int idEngin.
-            /**
-             * public void initVariables(int idEngin) { this.idEngin = idEngin;
-             * }*
-             */
             Stage stage = new Stage();
             Scene scene = new Scene(enginInfo);
             stage.setScene(scene);
