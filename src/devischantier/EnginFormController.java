@@ -5,11 +5,7 @@
  */
 package devischantier;
 
-import db.business.FacadeDB;
-import db.dto.PetitMaterielDto;
-import db.dto.PetitMaterielDto;
-import db.exception.DevisChantierBusinessException;
-import db.selDto.PetitMaterielSel;
+import db.dto.EnginDto;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -27,7 +23,7 @@ import model.Utilitaire;
  *
  * @author Vali
  */
-public class PetitMaterielFormEditerController implements Initializable {
+public class EnginFormController implements Initializable {
 
     @FXML
     private AnchorPane pane;
@@ -46,8 +42,6 @@ public class PetitMaterielFormEditerController implements Initializable {
     @FXML
     private Label message;
 
-    private int idPetitMateriel;
-
     /**
      * Initializes the controller class.
      */
@@ -56,35 +50,21 @@ public class PetitMaterielFormEditerController implements Initializable {
         // TODO
     }
 
-    public void initVariables(int idPetitMateriel) {
-        this.idPetitMateriel = idPetitMateriel;
-
-        try {
-            PetitMaterielDto petitMateriel = FacadeDB.findPetitMaterielBySel(new PetitMaterielSel(idPetitMateriel));
-            nom.setText(petitMateriel.getNom());
-            type.setText(petitMateriel.getType());
-            reference.setText(petitMateriel.getReference());
-            prix.setText(Double.toString(petitMateriel.getPrixHtva()));
-        } catch (DevisChantierBusinessException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
     @FXML
     private void validation(ActionEvent event) {
         try {
-            double prixPetitMateriel = Double.parseDouble(prix.getText());
-            PetitMaterielDto petitMateriel = new PetitMaterielDto(idPetitMateriel, nom.getText(), type.getText(), reference.getText(), prixPetitMateriel);
-            if (Utilitaire.updatePetitMateriel(petitMateriel)) {
-                message.setText("PetitMateriel ajouté avec succès !");
+            double prixEngin = Double.parseDouble(prix.getText());
+            EnginDto engin = new EnginDto(10000, nom.getText(), type.getText(), reference.getText(), prixEngin);
+            if (Utilitaire.insertEngin(engin)) {
+                message.setText("Engin ajouté avec succès !");
                 Stage stage = (Stage) pane.getScene().getWindow();
                 stage.close();
             } else {
-                message.setText("Erreur : le petitMateriel n'a pas pu être ajouté ...!");
+                message.setText("Erreur : le engin n'a pas pu être ajouté ...!");
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-            message.setText("Erreur : le petitMateriel n'a pas pu être ajouté !");
+            message.setText("Erreur : le engin n'a pas pu être ajouté !");
         }
     }
 

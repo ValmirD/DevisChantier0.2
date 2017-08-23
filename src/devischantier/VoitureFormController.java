@@ -56,7 +56,7 @@ public class VoitureFormController implements Initializable {
     @FXML
     private void validation(ActionEvent event) {
         try {
-            double prixVoiture = Integer.parseInt(prix.getText());
+            double prixVoiture = Double.parseDouble(prix.getText());
             VoitureDto voiture = new VoitureDto(10000, marque.getText(), modele.getText(), chassis.getText(), carburant.getText(), prixVoiture);
             if (Utilitaire.insertVoiture(voiture)) {
                 message.setText("Voiture ajouté avec succès !");

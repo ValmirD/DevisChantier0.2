@@ -5,7 +5,13 @@
  */
 package devischantier;
 
+import db.business.FacadeDB;
+import db.dto.ChantierDto;
+import db.exception.DevisChantierBusinessException;
+import db.selDto.ChantierSel;
 import java.net.URL;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +22,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import model.Utilitaire;
 
 /**
  * FXML Controller class
@@ -51,24 +59,73 @@ public class ChantierFormEditerController implements Initializable {
     @FXML
     private Label message;
 
+    private int idChantier;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
-    @FXML
-    private void gererValidation(ActionEvent event) {
+    public void initVariables(int idChantier) {
+        this.idChantier = idChantier;
+/*
+        try {
+            ChantierDto chantiers = FacadeDB.findChantierBySel(new ChantierSel(idChantier));
+            debutPrevue.setText(chantiers.getDateDebutPrevue().toString());
+            debutEffective.setText(chantiers.getDateDebutEffective().toString());
+            finPrevue.setText(chantiers.getDateFinPrevue().toString());
+            finEffective.setText(chantiers.getDateFinEffective().toString());
+            dateCreation.setText(chantiers.getDateCreationProjet().toString());
+            localisation.setText(chantiers.getLocalisation());
+            designation.setText(chantiers.getDesignationProjet());
+            commentaire.setText(chantiers.getCommentaire());
+            validation.setText(Boolean.toString(chantiers.isValidationProjet()));
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }*/
     }
 
     @FXML
     private void validation(ActionEvent event) {
+        try {
+
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date parsed1 = (java.util.Date) format.parse(dateCreation.getValue().toString());
+            java.sql.Date date1 = new Date(parsed1.getTime());
+
+            java.util.Date parsed2 = (java.util.Date) format.parse(debutPrevue.getValue().toString());
+            java.sql.Date date2 = new Date(parsed2.getTime());
+
+            java.util.Date parsed3 = (java.util.Date) format.parse(debutEffective.getValue().toString());
+            java.sql.Date date3 = new Date(parsed3.getTime());
+
+            java.util.Date parsed4 = (java.util.Date) format.parse(finPrevue.getValue().toString());
+            java.sql.Date date4 = new Date(parsed4.getTime());
+
+            java.util.Date parsed5 = (java.util.Date) format.parse(finEffective.getValue().toString());
+            java.sql.Date date5 = new Date(parsed5.getTime());
+
+            ChantierDto chantier = new ChantierDto(idChantier, 1, 1, localisation.getText(), designation.getText(), commentaire.getText(), date1, date2, date3, date4, date5, true);
+            if (Utilitaire.updateChantier(chantier)) {
+                message.setText("Chantier ajouté avec succès !");
+                Stage stage = (Stage) pane.getScene().getWindow();
+                stage.close();
+            } else {
+                message.setText("Erreur : le chantier n'a pas pu être ajouté ...!");
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            message.setText("Erreur : le chantier n'a pas pu être ajouté !");
+        }
     }
 
     @FXML
     private void annulation(ActionEvent event) {
+        Stage stage = (Stage) pane.getScene().getWindow();
+        stage.close();
     }
-    
+
 }

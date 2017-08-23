@@ -108,7 +108,7 @@ public class ConducteurOverviewController implements Initializable {
 
             //passer paramètres au controller suivant
             if (id != null) {
-                CamionFormEditerController controller = loader.<CamionFormEditerController>getController();
+                ConducteurFormEditerController controller = loader.<ConducteurFormEditerController>getController();
                 controller.initVariables(Integer.parseInt(id.getText()));
             } 
             Stage stage = new Stage();

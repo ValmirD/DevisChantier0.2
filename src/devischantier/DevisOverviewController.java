@@ -97,7 +97,7 @@ public class DevisOverviewController implements Initializable {
 
             //passer paramètres au controller suivant
             if (idDevis != null) {
-                CamionFormEditerController controller = loader.<CamionFormEditerController>getController();
+                DevisFormEditerController controller = loader.<DevisFormEditerController>getController();
                 controller.initVariables(Integer.parseInt(idDevis.getText()));
             } 
             Stage stage = new Stage();

@@ -26,13 +26,13 @@ public class MateriauDB {
     public static List<MateriauDto> getCollection(MateriauSel sel) throws DevisChantierDbException {
         List<MateriauDto> al = new ArrayList<>();
         try {
-            String query = "Select idmateriau, nom, type_, reference, fourniture, siteProduction, prixHtva FROM Materiau ";
+            String query = "Select idMateriau, nom, type_, reference, fourniture, siteProduction, prixHtva FROM Materiau ";
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement stmt;
             String where = "";
             /*Pour une valeur numerique */
             if (sel.getIdMateriau() != 0) {
-                where = where + " idmateriau = ? ";
+                where = where + " idMateriau = ? ";
             }
             
             /*Pour une valeur string */
@@ -42,39 +42,7 @@ public class MateriauDB {
                 }
                 where = where + " nom like ? ";
             }
-            
-            /*Pour une valeur string */
-            if (sel.getType()!= null && !sel.getType().equals("")) {
-                if (!where.equals("")) {
-                    where = where + " AND ";
-                }
-                where = where + " type_ like ? ";
-            }
-            
-            /*Pour une valeur string */
-            if (sel.getReference()!= null && !sel.getReference().equals("")) {
-                if (!where.equals("")) {
-                    where = where + " AND ";
-                }
-                where = where + " reference like ? ";
-            }            
              
-            /*Pour une valeur string */
-            if (sel.getSiteProduction()!= null && !sel.getSiteProduction().equals("")) {
-                if (!where.equals("")) {
-                    where = where + " AND ";
-                }
-                where = where + " siteProduction like ? ";
-            }
-            
-            /*Pour une valeur string */
-            if (sel.getFourniture()!= null && !sel.getFourniture().equals("")) {
-                if (!where.equals("")) {
-                    where = where + " AND ";
-                }
-                where = where + " fourniture like ? ";
-            }            
-            
             if (where.length() != 0) {
                 where = " where " + where;
                 query = query + where;
@@ -88,23 +56,7 @@ public class MateriauDB {
                 if (sel.getNom() != null && !sel.getNom().equals("")) {
                     stmt.setString(i, sel.getNom() + "%");
                     i++;
-                }
-                if (sel.getType() != null && !sel.getType().equals("")) {
-                    stmt.setString(i, sel.getType() + "%");
-                    i++;
-                }
-                if (sel.getReference() != null && !sel.getReference().equals("")) {
-                    stmt.setString(i, sel.getReference() + "%");
-                    i++;
-                }
-                if (sel.getSiteProduction() != null && !sel.getSiteProduction().equals("")) {
-                    stmt.setString(i, sel.getSiteProduction() + "%");
-                    i++;
-                }
-                if (sel.getFourniture() != null && !sel.getFourniture().equals("")) {
-                    stmt.setString(i, sel.getFourniture() + "%");
-                    i++;
-                }            
+                }  
             } else {
                 stmt = connexion.prepareStatement(query);
             }

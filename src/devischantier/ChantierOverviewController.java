@@ -110,7 +110,7 @@ public class ChantierOverviewController implements Initializable {
             enginInfo = (AnchorPane) loader.load();
 
             if (idChantier != null) {
-                CamionFormEditerController controller = loader.<CamionFormEditerController>getController();
+                ChantierFormEditerController controller = loader.<ChantierFormEditerController>getController();
                 controller.initVariables(Integer.parseInt(idChantier.getText()));
             } 
             

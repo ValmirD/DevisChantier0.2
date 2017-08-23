@@ -5,7 +5,11 @@
  */
 package devischantier;
 
+import db.business.FacadeDB;
 import db.dto.ConducteurDto;
+import db.dto.ConducteurDto;
+import db.exception.DevisChantierBusinessException;
+import db.selDto.ConducteurSel;
 import java.math.BigInteger;
 import java.net.URL;
 import java.security.MessageDigest;
@@ -30,7 +34,7 @@ import model.Utilitaire;
  *
  * @author Vali
  */
-public class ConducteurFormController implements Initializable {
+public class ConducteurFormEditerController implements Initializable {
 
     @FXML
     private AnchorPane pane;
@@ -39,15 +43,11 @@ public class ConducteurFormController implements Initializable {
     @FXML
     private TextField prenom;
     @FXML
-    private DatePicker naissance;
-    @FXML
     private TextField telephone;
     @FXML
     private TextField telephonePro;
     @FXML
     private TextField email;
-    @FXML
-    private DatePicker entree;
     @FXML
     private TextField cout;
     @FXML
@@ -55,11 +55,17 @@ public class ConducteurFormController implements Initializable {
     @FXML
     private PasswordField password;
     @FXML
+    private DatePicker naissance;
+    @FXML
+    private DatePicker entree;
+    @FXML
     private Button valider;
     @FXML
     private Button annuler;
     @FXML
     private Label message;
+
+    private int idConducteur;
 
     /**
      * Initializes the controller class.
@@ -67,6 +73,25 @@ public class ConducteurFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+
+    public void initVariables(int idConducteur) {
+        this.idConducteur = idConducteur;
+/*
+        try {
+            ConducteurDto conducteur = FacadeDB.findConducteurBySel(new ConducteurSel(idConducteur));
+            nom.setText(conducteur.getNom());
+            prenom.setText(conducteur.getPrenom());
+            naissance.setText(conducteur.getDateNaissance().toString());
+            telephone.setText(conducteur.getNumeroTelephone());
+            telephonePro.setText(conducteur.getNumeroTelephonePro());
+            email.setText(conducteur.getEmail());
+            entree.setText(conducteur.getEntreeFonction().toString());
+            cout.setText(Double.toString(conducteur.getCout()));
+            remuneration.setText(Double.toString(conducteur.getRemuneration()));
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }*/
     }
 
     @FXML
@@ -92,8 +117,8 @@ public class ConducteurFormController implements Initializable {
                 e.printStackTrace();
             }
 
-            ConducteurDto conducteur = new ConducteurDto(10000, hash, telephonePro.getText(), telephone.getText(), remuneration1, nom.getText(), prenom.getText(), date, email.getText(), date2, cout1);
-            if (Utilitaire.insertConducteur(conducteur)) {
+            ConducteurDto conducteur = new ConducteurDto(idConducteur, hash, telephonePro.getText(), telephone.getText(), remuneration1, nom.getText(), prenom.getText(), date, email.getText(), date2, cout1);
+            if (Utilitaire.updateConducteur(conducteur)) {
                 message.setText("Conducteur ajouté avec succès !");
                 Stage stage = (Stage) pane.getScene().getWindow();
                 stage.close();

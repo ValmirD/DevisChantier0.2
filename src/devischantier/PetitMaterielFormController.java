@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package devischantier;
 
 import db.dto.PetitMaterielDto;
@@ -49,12 +48,12 @@ public class PetitMaterielFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void validation(ActionEvent event) {
-                try {
-            double prixPetitMateriel = Integer.parseInt(prix.getText());
+        try {
+            double prixPetitMateriel = Double.parseDouble(prix.getText());
             PetitMaterielDto petitMateriel = new PetitMaterielDto(10000, nom.getText(), type.getText(), reference.getText(), prixPetitMateriel);
             if (Utilitaire.insertPetitMateriel(petitMateriel)) {
                 message.setText("PetitMateriel ajouté avec succès !");
@@ -71,8 +70,8 @@ public class PetitMaterielFormController implements Initializable {
 
     @FXML
     private void annulation(ActionEvent event) {
-                Stage stage = (Stage) pane.getScene().getWindow();
+        Stage stage = (Stage) pane.getScene().getWindow();
         stage.close();
     }
-    
+
 }

@@ -64,8 +64,8 @@ public class OuvrierFormController implements Initializable {
     @FXML
     private void validation(ActionEvent event) {
         try {
-            double cout1 = Integer.parseInt(cout.getText());
-            double remuneration1 = Integer.parseInt(remuneration.getText());
+            double cout1 = Double.parseDouble(cout.getText());
+            double remuneration1 = Double.parseDouble(remuneration.getText());
 
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date parsed = (java.util.Date) format.parse(entree.getValue().toString());

@@ -95,7 +95,7 @@ public class PetitMaterielOverviewController implements Initializable {
 
             //passer paramètres au controller suivant
             if (id != null) {
-                CamionFormEditerController controller = loader.<CamionFormEditerController>getController();
+                PetitMaterielFormEditerController controller = loader.<PetitMaterielFormEditerController>getController();
                 controller.initVariables(Integer.parseInt(id.getText()));
             } 
             Stage stage = new Stage();

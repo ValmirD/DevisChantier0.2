@@ -61,9 +61,9 @@ public class CamionFormController implements Initializable {
     @FXML
     private void validation(ActionEvent event) {
         try {
-            double prixCamion = Integer.parseInt(prix.getText());
+            double prixCamion = Double.parseDouble(prix.getText());
             int ton = Integer.parseInt(tonnage.getText());
-            double cap = Integer.parseInt(capacite.getText());
+            double cap = Double.parseDouble(capacite.getText());
             CamionDto camion = new CamionDto(10000, categorie.getText(), ton, cap, marque.getText(), modele.getText(), chassis.getText(), carburant.getText(), prixCamion);
             if (Utilitaire.insertCamion(camion)) {
                 message.setText("Camion ajouté avec succès !");

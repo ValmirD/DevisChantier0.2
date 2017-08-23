@@ -58,7 +58,7 @@ public class MateriauFormController implements Initializable {
     @FXML
     private void validation(ActionEvent event) {
         try {
-            double prixMateriau = Integer.parseInt(prix.getText());
+            double prixMateriau = Double.parseDouble(prix.getText());
             MateriauDto materiau = new MateriauDto(10000, nom.getText(), type.getText(), reference.getText(), fourniture.getText(), production.getText(), prixMateriau);
             if (Utilitaire.insertMateriau(materiau)) {
                 message.setText("Materiau ajouté avec succès !");

@@ -101,7 +101,7 @@ public class MateriauOverviewController implements Initializable {
 
             //passer paramètres au controller suivant
             if (id != null) {
-                CamionFormEditerController controller = loader.<CamionFormEditerController>getController();
+                MateriauFormEditerController controller = loader.<MateriauFormEditerController>getController();
                 controller.initVariables(Integer.parseInt(id.getText()));
             } 
             Stage stage = new Stage();
@@ -115,8 +115,8 @@ public class MateriauOverviewController implements Initializable {
 
     @FXML
     private void gererSupprimer(ActionEvent event) {
-        MateriauDto mate = idTableNom.getSelectionModel().selectedItemProperty().get();
-        if (Utilitaire.deleteMateriau(mate.getId())) {
+        MateriauDto materiau = idTableNom.getSelectionModel().selectedItemProperty().get();
+        if (Utilitaire.deleteMateriau(materiau.getId())) {
             message.setText("Suppression avec succès !");
         } else {
             message.setText("Erreur de suppression ...!");

@@ -5,7 +5,14 @@
  */
 package devischantier;
 
+import db.business.FacadeDB;
+import db.dto.ClientDto;
+import db.dto.ClientDto;
+import db.exception.DevisChantierBusinessException;
+import db.selDto.ClientSel;
 import java.net.URL;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +22,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import model.Utilitaire;
 
 /**
  * FXML Controller class
@@ -42,20 +51,56 @@ public class ClientFormEditerController implements Initializable {
     @FXML
     private Label message;
 
+    private int idClient;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+
+    public void initVariables(int idClient) {
+        this.idClient = idClient;
+        /*
+        try {
+            ClientDto clients = FacadeDB.findClientBySel(new ClientSel(idClient));
+            nom.setText(clients.getNom());
+            prenom.setText(clients.getPrenom());
+            naissance.setText(clients.getDateNaissance().toString());
+            telephone.setText(clients.getNumeroTelephone());
+            email.setText(clients.getEmail());
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }*/
+    }
 
     @FXML
     private void validation(ActionEvent event) {
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date parsed = (java.util.Date) format.parse(naissance.getValue().toString());
+            java.sql.Date date = new Date(parsed.getTime());
+
+            ClientDto client = new ClientDto(idClient, nom.getText(), prenom.getText(), date, telephone.getText(), email.getText());
+            if (Utilitaire.updateClient(client)) {
+                message.setText("Client ajouté avec succès !");
+                Stage stage = (Stage) pane.getScene().getWindow();
+                stage.close();
+            } else {
+                message.setText("Erreur : le client n'a pas pu être ajouté ...!");
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            message.setText("Erreur : le client n'a pas pu être ajouté !");
+        }
     }
 
     @FXML
     private void annulation(ActionEvent event) {
+        Stage stage = (Stage) pane.getScene().getWindow();
+        stage.close();
     }
-    
+
 }

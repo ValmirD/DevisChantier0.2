@@ -5,6 +5,11 @@
  */
 package devischantier;
 
+import db.business.FacadeDB;
+import db.dto.MateriauDto;
+import db.dto.MateriauDto;
+import db.exception.DevisChantierBusinessException;
+import db.selDto.MateriauSel;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -14,6 +19,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import model.Utilitaire;
 
 /**
  * FXML Controller class
@@ -43,20 +50,53 @@ public class MateriauFormEditerController implements Initializable {
     @FXML
     private Label message;
 
+    private int idMateriau;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+
+    public void initVariables(int idMateriau) {
+        this.idMateriau = idMateriau;
+
+        try {
+            MateriauDto materiau = FacadeDB.findMateriauBySel(new MateriauSel(idMateriau));
+            nom.setText(materiau.getNom());
+            type.setText(materiau.getType());
+            reference.setText(materiau.getReference());
+            fourniture.setText(materiau.getFourniture());
+            production.setText(materiau.getSiteProduction());
+            prix.setText(Double.toString(materiau.getPrixHtva()));
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
     @FXML
     private void validation(ActionEvent event) {
+        try {
+            double prixMateriau = Double.parseDouble(prix.getText());
+            MateriauDto materiau = new MateriauDto(idMateriau, nom.getText(), type.getText(), reference.getText(), fourniture.getText(), production.getText(), prixMateriau);
+            if (Utilitaire.updateMateriau(materiau)) {
+                message.setText("Materiau ajouté avec succès !");
+                Stage stage = (Stage) pane.getScene().getWindow();
+                stage.close();
+            } else {
+                message.setText("Erreur : le materiau n'a pas pu être ajouté ...!");
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            message.setText("Erreur : le materiau n'a pas pu être ajouté !");
+        }
     }
 
     @FXML
     private void annulation(ActionEvent event) {
+        Stage stage = (Stage) pane.getScene().getWindow();
+        stage.close();
     }
-    
 }

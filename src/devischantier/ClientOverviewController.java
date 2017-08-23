@@ -96,12 +96,12 @@ public class ClientOverviewController implements Initializable {
         AnchorPane enginInfo;
         try {
             enginInfo = (AnchorPane) loader.load();
-
-            //passer paramètres au controller suivant
+            
+            //passer l'id du camion actuellement sélectionné à ClientFormEditerController
             if (id != null) {
-                CamionFormEditerController controller = loader.<CamionFormEditerController>getController();
+                ClientFormEditerController controller = loader.<ClientFormEditerController>getController();
                 controller.initVariables(Integer.parseInt(id.getText()));
-            }
+            } 
             Stage stage = new Stage();
             Scene scene = new Scene(enginInfo);
             stage.setScene(scene);

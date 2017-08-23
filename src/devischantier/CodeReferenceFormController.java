@@ -52,7 +52,7 @@ public class CodeReferenceFormController implements Initializable {
     @FXML
     private void validation(ActionEvent event) {
         try {
-            double prixCodeReference = Integer.parseInt(prix.getText());
+            double prixCodeReference = Double.parseDouble(prix.getText());
             CodeReferenceDto codeReference = new CodeReferenceDto(10000, reference.getText(), typeTravail.getText(), prixCodeReference);
             if (Utilitaire.insertCodeReference(codeReference)) {
                 message.setText("CodeReference ajouté avec succès !");

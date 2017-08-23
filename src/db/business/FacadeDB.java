@@ -264,10 +264,9 @@ public class FacadeDB {
             
     }
 
-    public static ChantierDto findChantierById(int eId) throws DevisChantierBusinessException {
+    public static ChantierDto findChantierBySel(ChantierSel sel) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            ChantierSel sel = new ChantierSel(eId);
             Collection<ChantierDto> col = ChantierBL.findBySel(sel);
             ChantierDto ldto = null;
             if (col.size() == 1) {
@@ -832,10 +831,9 @@ public class FacadeDB {
             
     }
 
-    public static DevisDto findDevisById(int eId) throws DevisChantierBusinessException {
+    public static DevisDto findDevisBySel(DevisSel sel) throws DevisChantierBusinessException {
         try {
             DBManager.startTransaction();
-            DevisSel sel = new DevisSel(eId);
             Collection<DevisDto> col = DevisBL.findBySel(sel);
             DevisDto ldto = null;
             if (col.size() == 1) {
