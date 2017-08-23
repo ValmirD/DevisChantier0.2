@@ -107,7 +107,6 @@ create table CONDUCTEUR(
 	numeroTelephonePro varchar(20) unique,
 	email varchar(20) unique not null,
 	remuneration double not null,
-	permis boolean not null,
 	entreeFonction date not null,
 	cout double
 	);
@@ -271,8 +270,8 @@ Insert into SEQUENCES Values ('VOITUREDUCHANTIER',2);
 Insert into CAMION Values (1,'C', 2, 1500, 'Mercedes', 'Worker', 'ZE25695d2d5', 'Diesel', 99);
 Insert into CLIENT Values (1, 'Benoit', 'Marteans', '1960-02-04', '0488365222', 'benoit@hotmail.com');
 Insert into CODEREFERENCE Values (1, 'ER25698', 'Canalisation', 15);
-Insert into CONDUCTEUR Values (1, 'root', 'Laurent', 'Cordenier', '1990-09-11', '0485658999', '0499321587', 'laurent@melin.com', 3300, true, '2013-02-01', null);
-Insert into CONDUCTEUR Values (2, 'root', 'Marco', 'Schinazi', '1990-09-11', '048562525029', '04993525287', 'marco@melin.com', 3200, true, '2013-02-01', null);
+Insert into CONDUCTEUR Values (1, 'root', 'Laurent', 'Cordenier', '1990-09-11', '0485658999', '0499321587', 'laurent@melin.com', 3300, '2013-02-01', null);
+Insert into CONDUCTEUR Values (2, 'root', 'Marco', 'Schinazi', '1990-09-11', '048562525029', '04993525287', 'marco@melin.com', 3200, '2013-02-01', null);
 Insert into DEVIS Values (1, 'Parc de Woluwe', 'En validation', '2017-07-15', 1);
 Insert into ENGIN Values (1, 'Grue', 'Gravier', 'REZ89851', 20);
 Insert into MATERIAU Values (1, 'Sable', 'Terrassement', '698.325.21', 'Externe', 'Hulpe', 10);

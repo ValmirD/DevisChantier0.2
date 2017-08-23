@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package devischantier;
 
 import db.dto.DevisDto;
 import java.net.URL;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -31,7 +33,7 @@ public class DevisFormController implements Initializable {
     @FXML
     private TextField statut;
     @FXML
-    private TextField dateDevis;
+    private DatePicker dateDevis;
     @FXML
     private TextField designation;
     @FXML
@@ -51,9 +53,12 @@ public class DevisFormController implements Initializable {
 
     @FXML
     private void validation(ActionEvent event) {
-/*        try {
-            int date = Integer.parseInt(dateDevis.getText());
-            DevisDto devis = new DevisDto(10000, statut.getText(), date, designation.getText(), 1000);
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date parsed = (java.util.Date) format.parse(dateDevis.getValue().toString());
+            java.sql.Date date = new Date(parsed.getTime());
+            
+            DevisDto devis = new DevisDto(10000, statut.getText(), designation.getText(), date, 10000);
             if (Utilitaire.insertDevis(devis)) {
                 message.setText("Devis ajouté avec succès !");
                 Stage stage = (Stage) pane.getScene().getWindow();
@@ -64,7 +69,7 @@ public class DevisFormController implements Initializable {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             message.setText("Erreur : le devis n'a pas pu être ajouté !");
-        }*/
+        }
     }
 
     @FXML

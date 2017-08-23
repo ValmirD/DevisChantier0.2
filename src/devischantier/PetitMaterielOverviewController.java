@@ -6,10 +6,17 @@
 
 package devischantier;
 
+import db.business.FacadeDB;
+import db.dto.PetitMaterielDto;
+import db.exception.DevisChantierBusinessException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collection;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -29,9 +37,9 @@ import javafx.stage.Stage;
 public class PetitMaterielOverviewController implements Initializable {
 
     @FXML
-    private TableView<?> idTableNom;
+    private TableView<PetitMaterielDto> idTableNom;
     @FXML
-    private TableColumn<?, ?> idColonneNom;
+    private TableColumn<PetitMaterielDto, String> idColonneNom;
     @FXML
     private Label id;
     @FXML
@@ -52,20 +60,22 @@ public class PetitMaterielOverviewController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    @Override
+   @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        editer.setDisable(true);
+        displayList();
     }
 
     @FXML
     private void gererNouveau(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(DevisChantier.class.getResource("PetitMaterielFormNouveau.fxml"));
-        AnchorPane camionInfo;
+        AnchorPane petitMaterielInfo;
         try {
-            camionInfo = (AnchorPane) loader.load();
+            petitMaterielInfo = (AnchorPane) loader.load();
             Stage stage = new Stage();
-            Scene scene = new Scene(camionInfo);
+            Scene scene = new Scene(petitMaterielInfo);
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
@@ -75,10 +85,59 @@ public class PetitMaterielOverviewController implements Initializable {
 
     @FXML
     private void gererEditer(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(DevisChantier.class.getResource("PetitMaterielFormEditer.fxml"));
+        AnchorPane petitMaterielInfo;
+        try {
+            petitMaterielInfo = (AnchorPane) loader.load();
+
+            //passer paramètres au controller suivant
+            if (id != null) {
+                //PetitMaterielFormController controller = loader.<PetitMaterielFormController>getController();
+                //controller.initVariables(Integer.parseInt(id.getText()));
+            }
+
+            //à mettre dans le controller d'éditeur de petitMateriel, ainsi que l'attribut de classe -> private int idPetitMateriel.
+            /**
+             * public void initVariables(int idPetitMateriel) { this.idPetitMateriel =
+             * idPetitMateriel; }*
+             */
+            Stage stage = new Stage();
+            Scene scene = new Scene(petitMaterielInfo);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML
     private void gererSupprimer(ActionEvent event) {
     }
 
+    @FXML
+    private void displayList() {
+        idColonneNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        try {
+            Collection<PetitMaterielDto> petitMateriels = FacadeDB.getAllPetitMateriel();
+            ObservableList<PetitMaterielDto> data = FXCollections.observableArrayList(petitMateriels);
+            idTableNom.setItems(data);
+
+            idTableNom.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+
+                @Override
+                public void handle(javafx.scene.input.MouseEvent event) {
+                    PetitMaterielDto petitMateriel = idTableNom.getSelectionModel().selectedItemProperty().get();
+                    editer.setDisable(false);
+                    id.setText(petitMateriel.getId().toString());
+                    nom.setText(petitMateriel.getNom());
+                    type.setText(petitMateriel.getType());
+                    reference.setText(petitMateriel.getReference());
+                    prix.setText(Double.toString(petitMateriel.getPrixHtva()));
+                }
+            });
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

@@ -34,9 +34,9 @@ public class ChantierDto extends EntityDto<Integer> {
         this.commentaire = commentaire;
         this.dateCreationProjet = dateCreationProjet;
         this.dateDebutPrevue = dateDebutPrevue;
-        this.dateDebutPrevue = dateDebutEffective;
+        this.dateDebutEffective = dateDebutEffective;
         this.dateFinPrevue = dateFinPrevue;
-        this.dateFinPrevue = dateFinEffective;
+        this.dateFinEffective = dateFinEffective;
         this.validationProjet = validationProjet;
     }
 

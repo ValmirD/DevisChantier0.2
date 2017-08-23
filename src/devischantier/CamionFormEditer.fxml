@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="pane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.CamionFormController">
+<AnchorPane fx:id="pane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.CamionFormController">
    <children>
       <GridPane AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
         <columnConstraints>
@@ -45,7 +45,7 @@
          </children>
       </GridPane>
       <Button fx:id="valider" layoutX="400.0" layoutY="338.0" mnemonicParsing="false" onAction="#validation" text="Valider" />
-      <Button fx:id="annuler" layoutX="553.0" layoutY="338.0" mnemonicParsing="false" onAction="#annulation" text="Annuler" />
+      <Button fx:id="annuler" layoutX="466.0" layoutY="338.0" mnemonicParsing="false" onAction="#annulation" text="Annuler" />
       <Label fx:id="message" layoutX="27.0" layoutY="343.0" />
    </children>
 </AnchorPane>

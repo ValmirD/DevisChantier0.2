@@ -23,10 +23,9 @@ public class ConducteurDto extends EntityDto<Integer> {
     private String email;
     private Date entreeFonction;
     private double cout;
-    private boolean permis;
 
 
-    public ConducteurDto(int idConducteur, String password, String numeroTelephonePro, String numeroTelephone, double remuneration, String nom, String prenom, Date dateNaissance, String email, Date entreeFonction, double cout, boolean permis) {
+    public ConducteurDto(int idConducteur, String password, String numeroTelephonePro, String numeroTelephone, double remuneration, String nom, String prenom, Date dateNaissance, String email, Date entreeFonction, double cout) {
         this.id = idConducteur;
         this.password = password;
         this.numeroTelephonePro = numeroTelephonePro;
@@ -80,9 +79,6 @@ public class ConducteurDto extends EntityDto<Integer> {
         return cout;
     }
 
-    public boolean isPermis() {
-        return permis;
-    }
 
 
 }

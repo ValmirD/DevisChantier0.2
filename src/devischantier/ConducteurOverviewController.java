@@ -3,13 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package devischantier;
 
+import db.business.FacadeDB;
+import db.dto.ConducteurDto;
+import db.exception.DevisChantierBusinessException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collection;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,22 +24,23 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author Marco
+ * @author Vali
  */
 public class ConducteurOverviewController implements Initializable {
 
     @FXML
-    private TableView<?> idNomPrenom;
+    private TableView<ConducteurDto> idNomPrenom;
     @FXML
-    private TableColumn<?, ?> idNom;
+    private TableColumn<ConducteurDto, String> idNom;
     @FXML
-    private TableColumn<?, ?> idPrenom;
+    private TableColumn<ConducteurDto, String> idPrenom;
     @FXML
     private Label id;
     @FXML
@@ -67,17 +74,20 @@ public class ConducteurOverviewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        editer.setDisable(true);
+        displayList();
+
     }
 
     @FXML
     private void gererNouveau(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(DevisChantier.class.getResource("ConducteurFormNouveau.fxml"));
-        AnchorPane camionInfo;
+        AnchorPane conducteurInfo;
         try {
-            camionInfo = (AnchorPane) loader.load();
+            conducteurInfo = (AnchorPane) loader.load();
             Stage stage = new Stage();
-            Scene scene = new Scene(camionInfo);
+            Scene scene = new Scene(conducteurInfo);
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
@@ -87,10 +97,67 @@ public class ConducteurOverviewController implements Initializable {
 
     @FXML
     private void gererEditer(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(DevisChantier.class.getResource("ConducteurFormEditer.fxml"));
+        AnchorPane conducteurInfo;
+        try {
+            conducteurInfo = (AnchorPane) loader.load();
+
+            //passer paramètres au controller suivant
+            if (id != null) {
+                //ConducteurFormController controller = loader.<ConducteurFormController>getController();
+                //controller.initVariables(Integer.parseInt(id.getText()));
+            }
+
+            //à mettre dans le controller d'éditeur de conducteur, ainsi que l'attribut de classe -> private int idConducteur.
+            /**
+             * public void initVariables(int idConducteur) { this.idConducteur =
+             * idConducteur;
+              }*
+             */
+            Stage stage = new Stage();
+            Scene scene = new Scene(conducteurInfo);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML
     private void gererSupprimer(ActionEvent event) {
+    }
+
+    @FXML
+    private void displayList() {
+        idNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        idPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        try {
+            Collection<ConducteurDto> conducteurs = FacadeDB.getAllConducteur();
+            ObservableList<ConducteurDto> data = FXCollections.observableArrayList(conducteurs);
+            idNomPrenom.setItems(data);
+
+            idNomPrenom.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+
+                @Override
+                public void handle(javafx.scene.input.MouseEvent event) {
+                    ConducteurDto conducteur = idNomPrenom.getSelectionModel().selectedItemProperty().get();
+                    editer.setDisable(false);
+                    id.setText(conducteur.getId().toString());
+                    nom.setText(conducteur.getNom());
+                    prenom.setText(conducteur.getPrenom());
+                    naissance.setText(conducteur.getDateNaissance().toString());
+                    telephone.setText(conducteur.getNumeroTelephone());
+                    telephonePro.setText(conducteur.getNumeroTelephonePro());
+                    email.setText(conducteur.getEmail());
+                    entree.setText(conducteur.getEntreeFonction().toString());
+                    cout.setText(Double.toString(conducteur.getCout()));
+                    remuneration.setText(Double.toString(conducteur.getRemuneration()));
+                }
+            });
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
 }

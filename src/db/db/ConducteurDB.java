@@ -26,7 +26,7 @@ public class ConducteurDB {
     public static List<ConducteurDto> getCollection(ConducteurSel sel) throws DevisChantierDbException {
         List<ConducteurDto> al = new ArrayList<>();
         try {
-            String query = "Select idConducteur, password, nom, prenom, dateNaissance, numeroTelephone, numeroTelephonePro, email, remuneration, permis, entreeFonction, cout FROM Conducteur ";
+            String query = "Select idConducteur, password, nom, prenom, dateNaissance, numeroTelephone, numeroTelephonePro, email, remuneration, entreeFonction, cout FROM Conducteur ";
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement stmt;
             String where = "";
@@ -98,8 +98,7 @@ public class ConducteurDB {
                         rs.getDate("dateNaissance"),
                         rs.getString("email"),
                         rs.getDate("entreeFonction"),
-                        rs.getDouble("cout"),
-                        rs.getBoolean("permis")
+                        rs.getDouble("cout")
                 )
                 );
             }
@@ -132,7 +131,6 @@ public class ConducteurDB {
                     + "numeroTelephonePro=?, "
                     + "email=?, "
                     + "remuneration=?, "
-                    + "permis=?, "
                     + "entreeFonction=?, "
                     + "cout=? "
                     + "where idConducteur=?";
@@ -146,10 +144,9 @@ public class ConducteurDB {
             update.setString(6, el.getNumeroTelephonePro());
             update.setString(7, el.getEmail());
             update.setDouble(8, el.getRemuneration());
-            update.setBoolean(9, el.isPermis());
-            update.setDate(10, el.getEntreeFonction());
-            update.setDouble(11, el.getCout());
-            update.setInt(12, el.getId());
+            update.setDate(9, el.getEntreeFonction());
+            update.setDouble(10, el.getCout());
+            update.setInt(11, el.getId());
             update.executeUpdate();
         } catch (DevisChantierDbException | SQLException ex) {
             throw new DevisChantierDbException("Conducteur, modification impossible:\n" + ex.getMessage());
@@ -162,8 +159,8 @@ public class ConducteurDB {
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement insert;
             insert = connexion.prepareStatement(
-                    "Insert into Conducteur(idConducteur, password, nom, prenom, dateNaissance, numeroTelephone, numeroTelephonePro, email, remuneration, permis, entreeFonction, cout) "
-                    + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    "Insert into Conducteur(idConducteur, password, nom, prenom, dateNaissance, numeroTelephone, numeroTelephonePro, email, remuneration, entreeFonction, cout) "
+                    + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             insert.setInt(1, num);
             insert.setString(2, el.getPassword());
             insert.setString(3, el.getNom());
@@ -173,9 +170,8 @@ public class ConducteurDB {
             insert.setString(7, el.getNumeroTelephonePro());
             insert.setString(8, el.getEmail());
             insert.setDouble(9, el.getRemuneration());
-            insert.setBoolean(10, el.isPermis());
-            insert.setDate(11, el.getEntreeFonction());
-            insert.setDouble(12, el.getCout());
+            insert.setDate(10, el.getEntreeFonction());
+            insert.setDouble(11, el.getCout());
             insert.executeUpdate();
             return num;
         } catch (DevisChantierDbException | SQLException ex) {

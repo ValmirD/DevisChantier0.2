@@ -32,7 +32,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Marco
+ * @author Vali
  */
 public class CamionOverviewController implements Initializable {
 
@@ -126,7 +126,7 @@ public class CamionOverviewController implements Initializable {
 
     @FXML
     private void displayList() {
-        colonneMarque.setCellValueFactory(new PropertyValueFactory<>("marque")); //"marque" doit correspondre pile poil à l'attribut correspondant dans CamionDto
+        colonneMarque.setCellValueFactory(new PropertyValueFactory<>("marque")); 
         colonneId.setCellValueFactory(new PropertyValueFactory<>("id"));
         try {
             Collection<CamionDto> camions = FacadeDB.getAllCamion();

@@ -21,38 +21,34 @@ import model.Utilitaire;
 /**
  * FXML Controller class
  *
- * @author Marco
+ * @author Vali
  */
 public class CamionFormController implements Initializable {
 
     @FXML
     private AnchorPane pane;
-
     @FXML
     private TextField categorie;
-    private TextField marque;
-    private TextField modele;
-    private TextField chassis;
-    private TextField carburant;
-    private TextField prix;
+    @FXML
     private TextField tonnage;
+    @FXML
     private TextField capacite;
+    @FXML
+    private TextField marque;
+    @FXML
+    private TextField modele;
+    @FXML
+    private TextField chassis;
+    @FXML
+    private TextField carburant;
+    @FXML
+    private TextField prix;
     @FXML
     private Button valider;
     @FXML
     private Button annuler;
     @FXML
     private Label message;
-    @FXML
-    private TextField nom;
-    @FXML
-    private TextField prenom;
-    @FXML
-    private TextField naissance;
-    @FXML
-    private TextField telephone;
-    @FXML
-    private TextField email;
 
     /**
      * Initializes the controller class.
@@ -65,9 +61,9 @@ public class CamionFormController implements Initializable {
     @FXML
     private void validation(ActionEvent event) {
         try {
+            double prixCamion = Integer.parseInt(prix.getText());
             int ton = Integer.parseInt(tonnage.getText());
             double cap = Integer.parseInt(capacite.getText());
-            double prixCamion = Integer.parseInt(prix.getText());
             CamionDto camion = new CamionDto(10000, categorie.getText(), ton, cap, marque.getText(), modele.getText(), chassis.getText(), carburant.getText(), prixCamion);
             if (Utilitaire.insertCamion(camion)) {
                 message.setText("Camion ajouté avec succès !");
@@ -80,7 +76,6 @@ public class CamionFormController implements Initializable {
             System.out.println(ex.getMessage());
             message.setText("Erreur : le camion n'a pas pu être ajouté !");
         }
-
     }
 
     @FXML
