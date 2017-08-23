@@ -104,18 +104,11 @@ public class CamionOverviewController implements Initializable {
         try {
             camionInfo = (AnchorPane) loader.load();
 
-            //passer paramètres au controller suivant
+            //passer l'id du camion actuellement sélectionné à CamionFormEditerController
             if (id != null) {
-                //CamionFormController controller = loader.<CamionFormController>getController();
-                //controller.initVariables(Integer.parseInt(id.getText()));
-            }
-
-            //à mettre dans le controller d'éditeur de camion, ainsi que l'attribut de classe -> private int idCamion.
-            /**
-             * public void initVariables(int idCamion) { 
-             * this.idCamion = idCamion;
-              }*
-             */
+                CamionFormEditerController controller = loader.<CamionFormEditerController>getController();
+                controller.initVariables(Integer.parseInt(id.getText()));
+            } 
             Stage stage = new Stage();
             Scene scene = new Scene(camionInfo);
             stage.setScene(scene);
