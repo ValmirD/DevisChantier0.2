@@ -9,6 +9,7 @@ import db.business.FacadeDB;
 import db.dto.ChantierDto;
 import db.dto.DevisDto;
 import db.exception.DevisChantierBusinessException;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -19,7 +20,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -55,6 +58,8 @@ public class DevisFormController implements Initializable {
     private ListView<ChantierDto> listChantiers;
     
     private int idChantier;
+    @FXML
+    private Button ajoutOuvrier;
     
 
     /**
@@ -113,4 +118,19 @@ public class DevisFormController implements Initializable {
         stage.close();
     }
 
+    @FXML
+    private void goToDevisAjoutOuvrier(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(DevisChantier.class.getResource("DevisAjoutOuvrier.fxml"));
+        AnchorPane ouvrierInfo;
+        try {
+            ouvrierInfo = (AnchorPane) loader.load();
+            Stage stage = new Stage();
+            Scene scene = new Scene(ouvrierInfo);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }
