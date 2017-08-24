@@ -34,7 +34,7 @@
             <Label text="Prix hors TVA" GridPane.rowIndex="7" />
             <Label text="Tonnage" GridPane.rowIndex="1" />
             <Label text="Capacité" GridPane.rowIndex="2" />
-            <TextField fx:id="categorie" text="333" GridPane.columnIndex="1" />
+            <TextField fx:id="categorie" GridPane.columnIndex="1" />
             <TextField fx:id="tonnage" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="capacite" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="marque" GridPane.columnIndex="1" GridPane.rowIndex="3" />
