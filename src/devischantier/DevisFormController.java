@@ -58,7 +58,7 @@ public class DevisFormController implements Initializable {
             java.util.Date parsed = (java.util.Date) format.parse(dateDevis.getValue().toString());
             java.sql.Date date = new Date(parsed.getTime());
             
-            DevisDto devis = new DevisDto(10000, statut.getText(), designation.getText(), date, 10000);
+            DevisDto devis = new DevisDto(10000, designation.getText(), statut.getText(), date, 10000);
             if (Utilitaire.insertDevis(devis)) {
                 message.setText("Devis ajouté avec succès !");
                 Stage stage = (Stage) pane.getScene().getWindow();

@@ -180,7 +180,7 @@ public class Utilitaire {
 
     public static boolean deleteMateriau(int idMat) {
         try {
-            FacadeDB.deleteEngin(idMat);
+            FacadeDB.deleteMateriau(idMat);
             return true;
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());

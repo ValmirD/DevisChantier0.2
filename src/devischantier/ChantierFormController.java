@@ -67,6 +67,7 @@ public class ChantierFormController implements Initializable {
     @FXML
     private void gererValidation(ActionEvent event) {
 
+
     }
 
     @FXML
