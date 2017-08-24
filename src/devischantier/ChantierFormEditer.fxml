@@ -46,10 +46,10 @@
             <DatePicker fx:id="finPrevue" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <DatePicker fx:id="finEffective" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <DatePicker fx:id="dateCreation" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <CheckBox fx:id="validation" mnemonicParsing="false" onAction="#gererValidation" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <CheckBox fx:id="validation" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
       </GridPane>
-      <Button fx:id="valider" layoutX="400.0" layoutY="338.0" mnemonicParsing="false" onAction="#validation" text="Valider" />
+      <Button fx:id="valider" layoutX="400.0" layoutY="338.0" mnemonicParsing="false" onAction="#gererValidation" text="Valider" />
       <Button fx:id="annuler" layoutX="463.0" layoutY="338.0" mnemonicParsing="false" onAction="#annulation" text="Annuler" />
       <Label fx:id="message" layoutX="27.0" layoutY="343.0" />
    </children>

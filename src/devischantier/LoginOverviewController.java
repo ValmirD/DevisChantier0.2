@@ -53,8 +53,8 @@ public class LoginOverviewController implements Initializable {
     @FXML
     private Label loginError;
 
-    boolean isPatron = false;
-    
+    private boolean isPatron = false;
+
     boolean inscription = false;
 
     /**
@@ -65,10 +65,10 @@ public class LoginOverviewController implements Initializable {
         // TODO
         inscription();
     }
-    
-    private void inscription(){
+
+    private void inscription() {
         try {
-            if (FacadeDB.getAllPatron().isEmpty()){
+            if (FacadeDB.getAllPatron().isEmpty()) {
                 loginConnect.setText("s'inscrire");
                 inscription = true;
             }
@@ -76,21 +76,42 @@ public class LoginOverviewController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
-    
+
     @FXML
-    private void gererButton(ActionEvent event){
-        if (inscription == true){
-            gererInscription(event);
-        }
-        else{
-            gererConnection(event);
+    private void gererButton(ActionEvent event) {
+        FXMLLoader l = new FXMLLoader();
+        l.setLocation(DevisChantier.class.getResource("RootLayout.fxml"));
+        BorderPane rootLayout;
+        try {
+            rootLayout = (BorderPane) l.load();
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(DevisChantier.class.getResource("MainOverview.fxml"));
+            AnchorPane mainOverview;
+            mainOverview = (AnchorPane) loader.load();
+            rootLayout.setCenter(mainOverview);
+
+            if (inscription == true) {
+                gererInscription(event);
+            } else {
+                gererConnection(event);
+            }
+            if (loginId != null) {
+                MainOverviewController controller = loader.<MainOverviewController>getController();
+                controller.initVariables(Integer.parseInt(loginId.getText()), isPatron);
+            }
+            Scene scene = new Scene(l.getRoot());
+            Stage stage = (Stage) loginConnect.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException ex) {
+            Logger.getLogger(LoginOverviewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private void gererInscription(ActionEvent event){
+
+    private void gererInscription(ActionEvent event) {
         ConducteurDto conducteur;
         PatronDto patron;
-        
+
         //hash du password
         String hash = loginPass.getText();
         try {
@@ -100,38 +121,23 @@ public class LoginOverviewController implements Initializable {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        
-        conducteur = new ConducteurDto(Integer.parseInt(loginId.getText()), hash, "0", "0", 0, "Dupont", "Dupont",new Date(1), "", new Date(1), 0);
+
+        conducteur = new ConducteurDto(Integer.parseInt(loginId.getText()), hash, "0", "0", 0, "Dupont", "Dupont", new Date(1), "", new Date(1), 0);
         Utilitaire.insertConducteur(conducteur);
         patron = new PatronDto(Integer.parseInt(loginId.getText()));
         try {
             FacadeDB.addPatron(patron);
             isPatron = true;
-            FXMLLoader l = new FXMLLoader();
-                l.setLocation(DevisChantier.class.getResource("RootLayout.fxml"));
-                BorderPane rootLayout = (BorderPane) l.load();
 
-                Scene scene = new Scene(l.getRoot());
-                Stage stage = (Stage) loginConnect.getScene().getWindow();
-                stage.setScene(scene);
-
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(DevisChantier.class.getResource("MainOverview.fxml"));
-                AnchorPane mainOverview = (AnchorPane) loader.load();
-
-                rootLayout.setCenter(mainOverview);
-                
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
-        } catch (IOException ex) {
-            Logger.getLogger(LoginOverviewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     private void gererConnection(ActionEvent event) {
         ConducteurDto conducteur;
         PatronDto patron;
-        
+
         //hash du password
         String hash = loginPass.getText();
         try {
@@ -151,27 +157,10 @@ public class LoginOverviewController implements Initializable {
                 if (patron != null) {
                     isPatron = true;
                 }
-                FXMLLoader l = new FXMLLoader();
-                l.setLocation(DevisChantier.class.getResource("RootLayout.fxml"));
-                BorderPane rootLayout = (BorderPane) l.load();
-
-                Scene scene = new Scene(l.getRoot());
-                Stage stage = (Stage) loginConnect.getScene().getWindow();
-                stage.setScene(scene);
-
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(DevisChantier.class.getResource("MainOverview.fxml"));
-                AnchorPane mainOverview = (AnchorPane) loader.load();
-
-                rootLayout.setCenter(mainOverview);
-
             } else {
                 loginError.setText("Votre ID ou mot de passe est incorrect");
             }
-
         } catch (DevisChantierBusinessException ex) {
-            Logger.getLogger(LoginOverviewController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
             Logger.getLogger(LoginOverviewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

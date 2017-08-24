@@ -55,6 +55,9 @@ public class MainOverviewController implements Initializable {
     BorderPane rootLayout;
     Scene scene;
     Stage stage;
+    
+    private boolean isPatron;
+    private int loginId;
 
     /**
      * Initializes the controller class.
@@ -71,6 +74,11 @@ public class MainOverviewController implements Initializable {
         } catch (IOException ex) {
             System.out.println("ex.getMessage()");
         }
+    }
+    
+    public void initVariables(int id, boolean isPatron){
+        this.isPatron = isPatron;
+        this.loginId = id;
     }
 
     @FXML

@@ -24,7 +24,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -66,6 +65,8 @@ public class ChantierFormController implements Initializable {
     private Label message;
     @FXML
     private ListView<ClientDto> listClients;
+    
+    private int idClient;
 
     /**
      * Initializes the controller class.
@@ -101,7 +102,7 @@ public class ChantierFormController implements Initializable {
             java.util.Date parsed5 = (java.util.Date) format.parse(finEffective.getValue().toString());
             java.sql.Date date5 = new Date(parsed5.getTime());
 
-            ChantierDto chantier = new ChantierDto(10000, 1, localisation.getText(), designation.getText(), commentaire.getText(), date1, date2, date3, date4, date5, true);
+            ChantierDto chantier = new ChantierDto(10000, idClient, localisation.getText(), designation.getText(), commentaire.getText(), date1, date2, date3, date4, date5, validation.isSelected());
             if (Utilitaire.insertChantier(chantier)) {
                 message.setText("Chantier ajouté avec succès !");
                 Stage stage = (Stage) pane.getScene().getWindow();
@@ -119,25 +120,13 @@ public class ChantierFormController implements Initializable {
         try {
             Collection<ClientDto> clients = FacadeDB.getAllClient();
             ObservableList<ClientDto> data = FXCollections.observableArrayList(clients);
-            System.out.println(data.get(0));
             listClients.setItems(data);
-            listClients.setCellFactory((ListView<ClientDto> param) -> new ListCell<ClientDto>() {
-                @Override
-                protected void updateItem(ClientDto item, boolean empty) {
-                    super.updateItem(item, true);
-                    if (empty || item == null || (item.getNom() + " " + item.getPrenom()) == null) {
-                        setText(null);
-                    } else {
-                        setText(item.getNom() + " " + item.getPrenom());
-                    }
-                }
-            });
             listClients.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
 
                 @Override
                 public void handle(javafx.scene.input.MouseEvent event) {
                     ClientDto client = listClients.getSelectionModel().selectedItemProperty().get();
-                    
+                    idClient = client.getId();
                 }
             });
 

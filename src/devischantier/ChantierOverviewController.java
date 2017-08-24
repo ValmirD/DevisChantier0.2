@@ -156,11 +156,16 @@ public class ChantierOverviewController implements Initializable {
                     if (chantiers.getDateDebutEffective() != null) {
                         dateEffective.setText(chantiers.getDateDebutEffective().toString());
                     }
+                    else{
+                        dateEffective.setText("/");
+                    }
                     dateFinPrevue.setText(chantiers.getDateFinPrevue().toString());
                     if (chantiers.getDateFinEffective() != null) {
                         dateFinEffective.setText(chantiers.getDateFinEffective().toString());
                     }
-
+                    else{
+                        dateFinEffective.setText("/");
+                    }
                     dateCreation.setText(chantiers.getDateCreationProjet().toString());
                     localisation.setText(chantiers.getLocalisation());
                     designation.setText(chantiers.getDesignationProjet());

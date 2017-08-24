@@ -5,17 +5,26 @@
  */
 package devischantier;
 
+import db.business.FacadeDB;
+import db.dto.ChantierDto;
 import db.dto.DevisDto;
+import db.exception.DevisChantierBusinessException;
 import java.net.URL;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -42,6 +51,11 @@ public class DevisFormController implements Initializable {
     private Button annuler;
     @FXML
     private Label message;
+    @FXML
+    private ListView<ChantierDto> listChantiers;
+    
+    private int idChantier;
+    
 
     /**
      * Initializes the controller class.
@@ -49,6 +63,7 @@ public class DevisFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        displayChantiers();
     }
 
     @FXML
@@ -58,7 +73,7 @@ public class DevisFormController implements Initializable {
             java.util.Date parsed = (java.util.Date) format.parse(dateDevis.getValue().toString());
             java.sql.Date date = new Date(parsed.getTime());
             
-            DevisDto devis = new DevisDto(10000, designation.getText(), statut.getText(), date, 10000);
+            DevisDto devis = new DevisDto(10000, designation.getText(), statut.getText(), date, idChantier);
             if (Utilitaire.insertDevis(devis)) {
                 message.setText("Devis ajouté avec succès !");
                 Stage stage = (Stage) pane.getScene().getWindow();
@@ -72,6 +87,26 @@ public class DevisFormController implements Initializable {
         }
     }
 
+    private void displayChantiers() {
+        try {
+            Collection<ChantierDto> chantiers = FacadeDB.getAllChantier();
+            ObservableList<ChantierDto> data = FXCollections.observableArrayList(chantiers);
+            listChantiers.setItems(data);
+            listChantiers.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+                @Override
+                public void handle(javafx.scene.input.MouseEvent event) {
+                    ChantierDto chantier = listChantiers.getSelectionModel().selectedItemProperty().get();
+                    idChantier = chantier.getId();
+                    System.out.println(idChantier);
+                }
+            });
+
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    
     @FXML
     private void annulation(ActionEvent event) {
         Stage stage = (Stage) pane.getScene().getWindow();

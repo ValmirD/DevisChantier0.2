@@ -139,7 +139,7 @@ public class DevisOverviewController implements Initializable {
                     designation.setText(devis.getDesignationDevis());
                     statut.setText(devis.getStatut());
                     date.setText(devis.getDateDevis().toString());
-                    idChantier.setText(devis.getId().toString());
+                    idChantier.setText(Integer.toString(devis.getIdChantier()));
                 }
             });
         } catch (DevisChantierBusinessException ex) {

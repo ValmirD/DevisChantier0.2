@@ -98,7 +98,7 @@ public class ChantierFormEditerController implements Initializable {
             int day2 = Integer.parseInt(d2.format(date2));
             LocalDate dateN2 = LocalDate.of(year2, month2, day2);
 
-            java.util.Date date3 = format.parse(chantiers.getDateFinPrevue().toString());
+            java.util.Date date3 = format.parse(chantiers.getDateDebutEffective().toString());
             SimpleDateFormat y3 = new SimpleDateFormat("yyyy");
             int year3 = Integer.parseInt(y3.format(date3));
             SimpleDateFormat m3 = new SimpleDateFormat("MM");
@@ -116,7 +116,7 @@ public class ChantierFormEditerController implements Initializable {
             int day4 = Integer.parseInt(d4.format(date4));
             LocalDate dateN4 = LocalDate.of(year4, month4, day4);
 
-            java.util.Date date5 = format.parse(chantiers.getDateFinPrevue().toString());
+            java.util.Date date5 = format.parse(chantiers.getDateFinEffective().toString());
             SimpleDateFormat y5 = new SimpleDateFormat("yyyy");
             int year5 = Integer.parseInt(y5.format(date5));
             SimpleDateFormat m5 = new SimpleDateFormat("MM");
@@ -142,7 +142,7 @@ public class ChantierFormEditerController implements Initializable {
     }
 
     @FXML
-    private void validation(ActionEvent event) {
+    private void gererValidation(ActionEvent event) {
         try {
 
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
