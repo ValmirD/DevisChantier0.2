@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.ConducteurOverviewController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.ConducteurOverviewController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" layoutX="153.0" layoutY="70.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -30,7 +30,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Label layoutX="104.0" layoutY="51.0" text="Details :" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                  <Label layoutX="104.0" layoutY="51.0" text="CONDUCTEUR" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
                   <GridPane layoutX="43.0" layoutY="104.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -79,6 +79,29 @@
                     </buttons>
                   </ButtonBar>
                   <Label fx:id="message" layoutX="178.0" layoutY="346.0" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="20.0" />
+                  <Label text="CHANTIER ACTUEL" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="5.0" />
+                  <GridPane AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="ID Chantier" />
+                        <Label text="Date de début de disponibilité" GridPane.rowIndex="1" />
+                        <Label text="Date de fin de disponibilité" GridPane.rowIndex="2" />
+                        <Label text="Nombre d'heures" GridPane.rowIndex="3" />
+                        <Label fx:id="idChantier" text="Label" GridPane.columnIndex="1" />
+                        <Label fx:id="debutDisponibilite" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="finDisponibilite" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="quantite" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     </children>
+                  </GridPane>
                </children>
             </AnchorPane>
         </items>
