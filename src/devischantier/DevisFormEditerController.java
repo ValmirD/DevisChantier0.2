@@ -7,12 +7,16 @@ package devischantier;
 
 import db.business.FacadeDB;
 import db.dto.DevisDto;
+import db.exception.DevisChantierBusinessException;
 import db.selDto.DevisSel;
 import java.net.URL;
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -58,15 +62,25 @@ public class DevisFormEditerController implements Initializable {
 
     public void initVariables(int idDevis) {
         this.idDevis = idDevis;
-/*
         try {
             DevisDto devis = FacadeDB.findDevisBySel(new DevisSel(idDevis));
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date date = format.parse(devis.getDateDevis().toString());
+            SimpleDateFormat y = new SimpleDateFormat("yyyy");
+            int year = Integer.parseInt(y.format(date));
+            SimpleDateFormat m = new SimpleDateFormat("MM");
+            int month = Integer.parseInt(m.format(date));
+            SimpleDateFormat d = new SimpleDateFormat("dd");
+            int day = Integer.parseInt(d.format(date));
+            LocalDate dateN = LocalDate.of(year, month, day);
             statut.setText(devis.getStatut());
             designation.setText(devis.getDesignationDevis());
-            dateDevis.setText(devis.getDateDevis().toString());
-        } catch (DevisChantierBusinessException ex) {
+            dateDevis.setValue(dateN);
+         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
-        }*/
+        } catch (ParseException ex) {
+            Logger.getLogger(ClientFormEditerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -74,9 +88,9 @@ public class DevisFormEditerController implements Initializable {
         try {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date parsed = (java.util.Date) format.parse(dateDevis.getValue().toString());
-            java.sql.Date date = new Date(parsed.getTime());
+            java.sql.Date date = new Date(parsed.getTime());         
 
-            DevisDto devis = new DevisDto(idDevis, statut.getText(), designation.getText(), date, 10000);
+            DevisDto devis = new DevisDto(idDevis, designation.getText(), statut.getText(), date, 1000);
             if (Utilitaire.updateDevis(devis)) {
                 message.setText("Devis ajouté avec succès !");
                 Stage stage = (Stage) pane.getScene().getWindow();

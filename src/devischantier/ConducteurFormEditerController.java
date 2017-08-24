@@ -15,8 +15,12 @@ import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -77,21 +81,42 @@ public class ConducteurFormEditerController implements Initializable {
 
     public void initVariables(int idConducteur) {
         this.idConducteur = idConducteur;
-/*
+
         try {
             ConducteurDto conducteur = FacadeDB.findConducteurBySel(new ConducteurSel(idConducteur));
+                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date date = format.parse(conducteur.getDateNaissance().toString());
+            SimpleDateFormat y = new SimpleDateFormat("yyyy");
+            int year = Integer.parseInt(y.format(date));
+            SimpleDateFormat m = new SimpleDateFormat("MM");
+            int month = Integer.parseInt(m.format(date));
+            SimpleDateFormat d = new SimpleDateFormat("dd");
+            int day = Integer.parseInt(d.format(date));
+            LocalDate dateN = LocalDate.of(year, month, day);
+
+            java.util.Date date2 = format.parse(conducteur.getDateNaissance().toString());
+            SimpleDateFormat y2 = new SimpleDateFormat("yyyy");
+            int year2 = Integer.parseInt(y2.format(date2));
+            SimpleDateFormat m2 = new SimpleDateFormat("MM");
+            int month2 = Integer.parseInt(m2.format(date2));
+            SimpleDateFormat d2 = new SimpleDateFormat("dd");
+            int day2 = Integer.parseInt(d2.format(date2));
+            LocalDate dateN2 = LocalDate.of(year2, month2, day2);
+                       
             nom.setText(conducteur.getNom());
             prenom.setText(conducteur.getPrenom());
-            naissance.setText(conducteur.getDateNaissance().toString());
+            naissance.setValue(dateN);
             telephone.setText(conducteur.getNumeroTelephone());
             telephonePro.setText(conducteur.getNumeroTelephonePro());
             email.setText(conducteur.getEmail());
-            entree.setText(conducteur.getEntreeFonction().toString());
+            entree.setValue(dateN2);
             cout.setText(Double.toString(conducteur.getCout()));
             remuneration.setText(Double.toString(conducteur.getRemuneration()));
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
-        }*/
+        } catch (ParseException ex) {
+            Logger.getLogger(ConducteurFormEditerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML

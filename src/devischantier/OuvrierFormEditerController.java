@@ -12,8 +12,12 @@ import db.exception.DevisChantierBusinessException;
 import db.selDto.OuvrierSel;
 import java.net.URL;
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -69,20 +73,41 @@ public class OuvrierFormEditerController implements Initializable {
 
     public void initVariables(int idOuvrier) {
         this.idOuvrier = idOuvrier;
-/*
+
         try {
             OuvrierDto ouvrier = FacadeDB.findOuvrierBySel(new OuvrierSel(idOuvrier));
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date date = format.parse(ouvrier.getDateNaissance().toString());
+            SimpleDateFormat y = new SimpleDateFormat("yyyy");
+            int year = Integer.parseInt(y.format(date));
+            SimpleDateFormat m = new SimpleDateFormat("MM");
+            int month = Integer.parseInt(m.format(date));
+            SimpleDateFormat d = new SimpleDateFormat("dd");
+            int day = Integer.parseInt(d.format(date));
+            LocalDate dateN = LocalDate.of(year, month, day);
+
+            java.util.Date date2 = format.parse(ouvrier.getDateNaissance().toString());
+            SimpleDateFormat y2 = new SimpleDateFormat("yyyy");
+            int year2 = Integer.parseInt(y2.format(date2));
+            SimpleDateFormat m2 = new SimpleDateFormat("MM");
+            int month2 = Integer.parseInt(m2.format(date2));
+            SimpleDateFormat d2 = new SimpleDateFormat("dd");
+            int day2 = Integer.parseInt(d2.format(date2));
+            LocalDate dateN2 = LocalDate.of(year2, month2, day2);
+
             nom.setText(ouvrier.getNom());
             prenom.setText(ouvrier.getPrenom());
-            naissance.setText(ouvrier.getDateNaissance().toString());
+            naissance.setValue(dateN);
             telephone.setText(ouvrier.getNumeroTelephone());
             email.setText(ouvrier.getEmail());
-            entree.setText(ouvrier.getEntreeFonction().toString());
+            entree.setValue(dateN2);
             cout.setText(Double.toString(ouvrier.getCout()));
             remuneration.setText(Double.toString(ouvrier.getRemuneration()));
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
-        }*/
+        } catch (ParseException ex) {
+            Logger.getLogger(OuvrierFormEditerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML

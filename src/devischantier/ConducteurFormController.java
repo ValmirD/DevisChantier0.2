@@ -35,6 +35,8 @@ public class ConducteurFormController implements Initializable {
     @FXML
     private AnchorPane pane;
     @FXML
+    private TextField id;
+    @FXML
     private TextField nom;
     @FXML
     private TextField prenom;
@@ -92,7 +94,7 @@ public class ConducteurFormController implements Initializable {
                 e.printStackTrace();
             }
 
-            ConducteurDto conducteur = new ConducteurDto(10000, hash, telephonePro.getText(), telephone.getText(), remuneration1, nom.getText(), prenom.getText(), date, email.getText(), date2, cout1);
+            ConducteurDto conducteur = new ConducteurDto(Integer.parseInt(id.getText()), hash, telephonePro.getText(), telephone.getText(), remuneration1, nom.getText(), prenom.getText(), date, email.getText(), date2, cout1);
             if (Utilitaire.insertConducteur(conducteur)) {
                 message.setText("Conducteur ajouté avec succès !");
                 Stage stage = (Stage) pane.getScene().getWindow();

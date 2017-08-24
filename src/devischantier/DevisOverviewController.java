@@ -99,7 +99,7 @@ public class DevisOverviewController implements Initializable {
             if (idDevis != null) {
                 DevisFormEditerController controller = loader.<DevisFormEditerController>getController();
                 controller.initVariables(Integer.parseInt(idDevis.getText()));
-            } 
+            }
             Stage stage = new Stage();
             Scene scene = new Scene(enginInfo);
             stage.setScene(scene);
@@ -135,11 +135,11 @@ public class DevisOverviewController implements Initializable {
                 public void handle(javafx.scene.input.MouseEvent event) {
                     DevisDto devis = idDesignationId.getSelectionModel().selectedItemProperty().get();
                     editer.setDisable(false);
-                    idDevis.setText(devis.getId().toString());
-                    idChantier.setText(devis.getId().toString());
-                    statut.setText(devis.getStatut());
+                    idDevis.setText(devis.getId().toString());                 
                     designation.setText(devis.getDesignationDevis());
+                    statut.setText(devis.getStatut());
                     date.setText(devis.getDateDevis().toString());
+                    idChantier.setText(devis.getId().toString());
                 }
             });
         } catch (DevisChantierBusinessException ex) {
