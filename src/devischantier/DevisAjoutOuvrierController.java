@@ -32,7 +32,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -88,12 +90,14 @@ public class DevisAjoutOuvrierController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-                displayList();
-    }    
-    
+        displayList();
+    }
+
     private void displayList() {
         idNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         idPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        idSelection.setCellValueFactory(new PropertyValueFactory<>("check"));
+        idSelection.setCellFactory(column -> new CheckBoxTableCell());
         try {
             Collection<OuvrierDto> ouvriers = FacadeDB.getAllOuvrier();
             ObservableList<OuvrierDto> data = FXCollections.observableArrayList(ouvriers);
@@ -114,24 +118,18 @@ public class DevisAjoutOuvrierController implements Initializable {
                     cout.setText(Double.toString(ouvrier.getCout()));
                     remuneration.setText(Double.toString(ouvrier.getRemuneration()));
                     displayChantiers();
+
                 }
             });
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
     }
-    
+
     private void displayChantiers() {
         try {
-            ObservableList<ChantierDto> data = FXCollections.observableArrayList();
-            OuvrierDuChantierSel os = new OuvrierDuChantierSel(Integer.parseInt(id.getText()), true);
-            Collection<OuvrierDuChantierDto> ocDto = FacadeDB.findOuvriersDuChantierBySel(os);
-            for (OuvrierDuChantierDto oc : ocDto) {
-                ChantierSel s = new ChantierSel(oc.getIdChantier());
-                ChantierDto chantier = FacadeDB.findChantierBySel(s);
-                data.add(chantier);
-            }
-            System.out.println(data.get(0));
+            Collection<ChantierDto> chantier = FacadeDB.getAllChantier();
+            ObservableList<ChantierDto> data = FXCollections.observableArrayList(chantier);
             listChantiers.setItems(data);
             listChantiers.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
 
@@ -181,9 +179,8 @@ public class DevisAjoutOuvrierController implements Initializable {
         }
     }
 
-
     @FXML
     private void gererValider(ActionEvent event) {
     }
-    
+
 }
