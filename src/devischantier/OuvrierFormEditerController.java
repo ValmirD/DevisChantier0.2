@@ -8,7 +8,9 @@ package devischantier;
 import db.business.FacadeDB;
 import db.dto.OuvrierDto;
 import db.dto.OuvrierDto;
+import db.dto.OuvrierDuChantierDto;
 import db.exception.DevisChantierBusinessException;
+import db.selDto.OuvrierDuChantierSel;
 import db.selDto.OuvrierSel;
 import java.net.URL;
 import java.sql.Date;
@@ -80,8 +82,9 @@ public class OuvrierFormEditerController implements Initializable {
         // TODO
     }
 
-    public void initVariables(int idOuvrier) {
+    public void initVariables(int idOuvrier, int idOuvrierDuChantier) {
         this.idOuvrier = idOuvrier;
+        idOuvrierDuChantier = idOuvrierDuChantier;
 
         try {
             OuvrierDto ouvrier = FacadeDB.findOuvrierBySel(new OuvrierSel(idOuvrier));
@@ -112,6 +115,32 @@ public class OuvrierFormEditerController implements Initializable {
             entree.setValue(dateN2);
             cout.setText(Double.toString(ouvrier.getCout()));
             remuneration.setText(Double.toString(ouvrier.getRemuneration()));
+
+            OuvrierDuChantierDto ouvrierChantier = FacadeDB.findOuvrierDuChantierBySel(new OuvrierDuChantierSel(idOuvrierDuChantier));
+
+            java.util.Date date3 = format.parse(ouvrierChantier.getDateDebut().toString());
+            SimpleDateFormat y3 = new SimpleDateFormat("yyyy");
+            int year3 = Integer.parseInt(y3.format(date3));
+            SimpleDateFormat m3 = new SimpleDateFormat("MM");
+            int month3 = Integer.parseInt(m3.format(date3));
+            SimpleDateFormat d3 = new SimpleDateFormat("dd");
+            int day3 = Integer.parseInt(d3.format(date3));
+            LocalDate dateN3 = LocalDate.of(year3, month3, day3);
+
+            java.util.Date date4 = format.parse(ouvrierChantier.getDateFin().toString());
+            SimpleDateFormat y4 = new SimpleDateFormat("yyyy");
+            int year4 = Integer.parseInt(y4.format(date4));
+            SimpleDateFormat m4 = new SimpleDateFormat("MM");
+            int month4 = Integer.parseInt(m4.format(date4));
+            SimpleDateFormat d4 = new SimpleDateFormat("dd");
+            int day4 = Integer.parseInt(d4.format(date4));
+            LocalDate dateN4 = LocalDate.of(year4, month4, day4);
+
+            debutDisponibilite.setValue(dateN);
+            finDisponibilite.setValue(dateN2);
+            quantite.setText(Double.toString(ouvrierChantier.getNombreHeures()));
+            idChantier.getId();
+                    
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         } catch (ParseException ex) {
