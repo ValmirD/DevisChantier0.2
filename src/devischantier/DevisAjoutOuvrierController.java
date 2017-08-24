@@ -12,7 +12,6 @@ import db.dto.OuvrierDuChantierDto;
 import db.exception.DevisChantierBusinessException;
 import db.selDto.ChantierSel;
 import db.selDto.OuvrierDuChantierSel;
-import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,25 +25,21 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import model.Utilitaire;
 
 /**
  * FXML Controller class
  *
  * @author Vali
  */
-public class OuvrierOverviewController implements Initializable {
+public class DevisAjoutOuvrierController implements Initializable {
 
     @FXML
     private TableView<OuvrierDto> idNomPrenom;
@@ -52,6 +47,8 @@ public class OuvrierOverviewController implements Initializable {
     private TableColumn<OuvrierDto, String> idNom;
     @FXML
     private TableColumn<OuvrierDto, String> idPrenom;
+    @FXML
+    private TableColumn<OuvrierDto, CheckBox> idSelection;
     @FXML
     private Label id;
     @FXML
@@ -71,11 +68,7 @@ public class OuvrierOverviewController implements Initializable {
     @FXML
     private Label remuneration;
     @FXML
-    private Button nouveau;
-    @FXML
-    private Button editer;
-    @FXML
-    private Button supprimer;
+    private Button valider;
     @FXML
     private Label message;
     @FXML
@@ -89,67 +82,15 @@ public class OuvrierOverviewController implements Initializable {
     @FXML
     private ListView<ChantierDto> listChantiers;
 
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        editer.setDisable(true);
-        displayList();
-    }
-
-    @FXML
-    private void gererNouveau(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(DevisChantier.class.getResource("OuvrierFormNouveau.fxml"));
-        AnchorPane ouvrierInfo;
-        try {
-            ouvrierInfo = (AnchorPane) loader.load();
-            Stage stage = new Stage();
-            Scene scene = new Scene(ouvrierInfo);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
-    private void gererEditer(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(DevisChantier.class.getResource("OuvrierFormEditer.fxml"));
-        AnchorPane ouvrierInfo;
-        try {
-            ouvrierInfo = (AnchorPane) loader.load();
-
-            //passer paramètres au controller suivant
-            if (id != null) {/*
-                OuvrierFormEditerController controller = loader.<OuvrierFormEditerController>getController();
-                controller.initVariables(Integer.parseInt(id.getText()));
-                 */
-            }
-            Stage stage = new Stage();
-            Scene scene = new Scene(ouvrierInfo);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @FXML
-    private void gererSupprimer(ActionEvent event
-    ) {
-        OuvrierDto ouvrier = idNomPrenom.getSelectionModel().selectedItemProperty().get();
-        if (Utilitaire.deleteOuvrier(3)) {
-            message.setText("Suppression avec succès !");
-        } else {
-            message.setText("Erreur de suppression ...!");
-        }
-    }
-
+                displayList();
+    }    
+    
     private void displayList() {
         idNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         idPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
@@ -163,7 +104,6 @@ public class OuvrierOverviewController implements Initializable {
                 @Override
                 public void handle(javafx.scene.input.MouseEvent event) {
                     OuvrierDto ouvrier = idNomPrenom.getSelectionModel().selectedItemProperty().get();
-                    editer.setDisable(false);
                     id.setText(ouvrier.getId().toString());
                     nom.setText(ouvrier.getNom());
                     prenom.setText(ouvrier.getPrenom());
@@ -180,7 +120,7 @@ public class OuvrierOverviewController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
-
+    
     private void displayChantiers() {
         try {
             ObservableList<ChantierDto> data = FXCollections.observableArrayList();
@@ -241,4 +181,9 @@ public class OuvrierOverviewController implements Initializable {
         }
     }
 
+
+    @FXML
+    private void gererValider(ActionEvent event) {
+    }
+    
 }
