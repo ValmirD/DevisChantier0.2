@@ -149,8 +149,8 @@ public class ChantierOverviewController implements Initializable {
                     ChantierDto chantiers = idDesignationID.getSelectionModel().selectedItemProperty().get();
                     editer.setDisable(false);
                     idChantier.setText(chantiers.getId().toString());
-                    idClient.setText(chantiers.getId().toString());
-                    idDevis.setText(chantiers.getId().toString());
+                    idClient.setText(Integer.toString(chantiers.getIdClient()));
+                    idDevis.setText(Integer.toString(chantiers.getIdDevis()));
                     datePrevue.setText(chantiers.getDateDebutPrevue().toString());
                     dateEffective.setText(chantiers.getDateDebutEffective().toString());
                     dateFinPrevue.setText(chantiers.getDateFinPrevue().toString());

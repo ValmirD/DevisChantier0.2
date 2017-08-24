@@ -84,7 +84,7 @@ public class ConducteurFormEditerController implements Initializable {
 
         try {
             ConducteurDto conducteur = FacadeDB.findConducteurBySel(new ConducteurSel(idConducteur));
-                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date date = format.parse(conducteur.getDateNaissance().toString());
             SimpleDateFormat y = new SimpleDateFormat("yyyy");
             int year = Integer.parseInt(y.format(date));
@@ -102,7 +102,7 @@ public class ConducteurFormEditerController implements Initializable {
             SimpleDateFormat d2 = new SimpleDateFormat("dd");
             int day2 = Integer.parseInt(d2.format(date2));
             LocalDate dateN2 = LocalDate.of(year2, month2, day2);
-                       
+
             nom.setText(conducteur.getNom());
             prenom.setText(conducteur.getPrenom());
             naissance.setValue(dateN);

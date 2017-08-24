@@ -6,13 +6,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.LoginOverviewController">
+<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.LoginOverviewController">
    <children>
-      <TextField id="loginId" fx:id="loginId" alignment="CENTER" layoutX="326.0" layoutY="116.0" promptText="Entrez votre identifiant" text="1" />
-      <PasswordField id="loginPass" fx:id="loginPass" layoutX="326.0" layoutY="175.0" promptText="Entrez votre mot de passe" text="beli" />
+      <TextField id="loginId" fx:id="loginId" alignment="CENTER" layoutX="326.0" layoutY="116.0" promptText="Entrez votre identifiant" text="4" />
+      <PasswordField id="loginPass" fx:id="loginPass" layoutX="326.0" layoutY="175.0" promptText="Entrez votre mot de passe" text="demaj" />
       <Label layoutX="326.0" layoutY="89.0" text="Identifiant" />
       <Label layoutX="326.0" layoutY="150.0" text="Mot de passe" />
-      <Button id="loginConnect" fx:id="loginConnect" layoutX="347.0" layoutY="248.0" mnemonicParsing="false" onAction="#GererConnection" text="Se connecter" />
+      <Button id="loginConnect" fx:id="loginConnect" layoutX="347.0" layoutY="248.0" mnemonicParsing="false" onAction="#gererButton" text="Se connecter" />
       <Label fx:id="loginError" layoutX="326.0" layoutY="329.0" />
    </children>
 </AnchorPane>

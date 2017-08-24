@@ -94,7 +94,7 @@ public class PatronDB {
             insert = connexion.prepareStatement(
                     "Insert into Patron(idPatron) "
                     + "values(?)");
-            insert.setInt(1, num);
+            insert.setInt(1, el.getId());
             insert.executeUpdate();
             return num;
         } catch (DevisChantierDbException | SQLException ex) {

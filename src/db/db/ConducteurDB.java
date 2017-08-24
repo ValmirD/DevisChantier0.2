@@ -161,7 +161,7 @@ public class ConducteurDB {
             insert = connexion.prepareStatement(
                     "Insert into Conducteur(idConducteur, password, nom, prenom, dateNaissance, numeroTelephone, numeroTelephonePro, email, remuneration, entreeFonction, cout) "
                     + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            insert.setInt(1, num);
+            insert.setInt(1, el.getId());
             insert.setString(2, el.getPassword());
             insert.setString(3, el.getNom());
             insert.setString(4, el.getPrenom());
