@@ -26,7 +26,7 @@ public class ChantierDB {
     public static List<ChantierDto> getCollection(ChantierSel sel) throws DevisChantierDbException {
         List<ChantierDto> al = new ArrayList<>();
         try {
-            String query = "Select idChantier, idClient, idDevis, localisation, designationProjet, commentaire, dateCreationProjet, dateDebutPrevue, dateDebutEffective, dateFinPrevue, dateFinEffective, validationProjet FROM Chantier ";
+            String query = "Select idChantier, idClient, localisation, designationProjet, commentaire, dateCreationProjet, dateDebutPrevue, dateDebutEffective, dateFinPrevue, dateFinEffective, validationProjet FROM Chantier ";
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement stmt;
             String where = "";
@@ -76,7 +76,6 @@ public class ChantierDB {
                 al.add(new ChantierDto(
                         rs.getInt("idChantier"), 
                         rs.getInt("idClient"), 
-                        rs.getInt("idDevis"),
                         rs.getString("localisation"),
                         rs.getString("designationProjet"),
                         rs.getString("commentaire"),
@@ -111,7 +110,6 @@ public class ChantierDB {
             java.sql.PreparedStatement update;
             String sql = "Update Chantier set "
                     + "idClient=?, "
-                    + "idDevis=?, "
                     + "localisation=?, "
                     + "designationProjet=?, "
                     + "commentaire=?, "
@@ -125,17 +123,16 @@ public class ChantierDB {
             System.out.println(sql);
             update = connexion.prepareStatement(sql);
             update.setInt(1, el.getIdClient());
-            update.setInt(2, el.getIdDevis());
-            update.setString(3, el.getLocalisation());
-            update.setString(4, el.getDesignationProjet());
-            update.setString(5, el.getCommentaire());
-            update.setDate(6, el.getDateCreationProjet());
-            update.setDate(7, el.getDateDebutPrevue());
-            update.setDate(8, el.getDateDebutEffective());
-            update.setDate(9, el.getDateFinPrevue());            
-            update.setDate(10, el.getDateFinEffective());
-            update.setBoolean(11, el.isValidationProjet());
-            update.setInt(12, el.getId());
+            update.setString(2, el.getLocalisation());
+            update.setString(3, el.getDesignationProjet());
+            update.setString(4, el.getCommentaire());
+            update.setDate(5, el.getDateCreationProjet());
+            update.setDate(6, el.getDateDebutPrevue());
+            update.setDate(7, el.getDateDebutEffective());
+            update.setDate(8, el.getDateFinPrevue());            
+            update.setDate(9, el.getDateFinEffective());
+            update.setBoolean(10, el.isValidationProjet());
+            update.setInt(11, el.getId());
             update.executeUpdate();
         } catch (DevisChantierDbException | SQLException ex) {
             throw new DevisChantierDbException("Chantier, modification impossible:\n" + ex.getMessage());
@@ -148,20 +145,19 @@ public class ChantierDB {
             java.sql.Connection connexion = DBManager.getConnection();
             java.sql.PreparedStatement insert;
             insert = connexion.prepareStatement(
-                    "Insert into Chantier(idChantier, idClient, idDevis, localisation, designationProjet, commentaire, dateCreationProjet, dateDebutPrevue, dateDebutEffective, dateFinPrevue, dateFinEffective, validationProjet) "
-                    + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    "Insert into Chantier(idChantier, idClient, localisation, designationProjet, commentaire, dateCreationProjet, dateDebutPrevue, dateDebutEffective, dateFinPrevue, dateFinEffective, validationProjet) "
+                    + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             insert.setInt(1, num);
             insert.setInt(2, el.getIdClient());
-            insert.setInt(3, el.getIdDevis());
-            insert.setString(4, el.getLocalisation());
-            insert.setString(5, el.getDesignationProjet());
-            insert.setString(6, el.getCommentaire());
-            insert.setDate(7, el.getDateCreationProjet());
-            insert.setDate(8, el.getDateDebutPrevue());
-            insert.setDate(9, el.getDateDebutEffective());
-            insert.setDate(10, el.getDateFinPrevue());
-            insert.setDate(11, el.getDateFinEffective());
-            insert.setBoolean(12, el.isValidationProjet());
+            insert.setString(3, el.getLocalisation());
+            insert.setString(4, el.getDesignationProjet());
+            insert.setString(5, el.getCommentaire());
+            insert.setDate(6, el.getDateCreationProjet());
+            insert.setDate(7, el.getDateDebutPrevue());
+            insert.setDate(8, el.getDateDebutEffective());
+            insert.setDate(9, el.getDateFinPrevue());
+            insert.setDate(10, el.getDateFinEffective());
+            insert.setBoolean(11, el.isValidationProjet());
             insert.executeUpdate();
             return num;
         } catch (DevisChantierDbException | SQLException ex) {

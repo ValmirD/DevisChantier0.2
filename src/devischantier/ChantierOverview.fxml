@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.ChantierOverviewController">
+<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="devischantier.ChantierOverviewController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" layoutX="153.0" layoutY="70.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -39,7 +39,6 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -52,28 +51,26 @@
                      <children>
                         <Label text="ID Chantier" />
                         <Label text="ID Client" GridPane.rowIndex="1" />
-                        <Label text="ID Devis" GridPane.rowIndex="2" />
-                        <Label text="Date de début prévue" GridPane.rowIndex="3" />
-                        <Label text="Date de début effective" GridPane.rowIndex="4" />
+                        <Label text="Date de début prévue" GridPane.rowIndex="2" />
+                        <Label text="Date de début effective" GridPane.rowIndex="3" />
                         <Label fx:id="idChantier" text="/" GridPane.columnIndex="1" />
                         <Label fx:id="idClient" text="/" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="idDevis" text="/" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label fx:id="datePrevue" text="/" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="dateEffective" text="/" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label fx:id="dateFinEffective" text="/" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Label text="Date de fin effective" GridPane.rowIndex="6" />
-                        <Label text="Date de fin prévue" GridPane.rowIndex="5" />
-                        <Label fx:id="dateFinPrevue" text="/" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label text="Localisation" GridPane.rowIndex="7" />
-                        <Label text="Désignation" GridPane.rowIndex="8" />
-                        <Label text="Commentaire" GridPane.rowIndex="9" />
-                        <Label fx:id="localisation" text="/" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <Label fx:id="designation" text="/" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                        <Label fx:id="commentaire" text="/" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                        <Label text="Date de création du projet" GridPane.rowIndex="10" />
-                        <Label fx:id="dateCreation" text="/" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                        <Label text="Validation du projet" GridPane.rowIndex="11" />
-                        <Label fx:id="validation" text="/" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <Label fx:id="datePrevue" text="/" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="dateEffective" text="/" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="dateFinEffective" text="/" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label text="Date de fin effective" GridPane.rowIndex="5" />
+                        <Label text="Date de fin prévue" GridPane.rowIndex="4" />
+                        <Label fx:id="dateFinPrevue" text="/" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label text="Localisation" GridPane.rowIndex="6" />
+                        <Label text="Désignation" GridPane.rowIndex="7" />
+                        <Label text="Commentaire" GridPane.rowIndex="8" />
+                        <Label fx:id="localisation" text="/" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="designation" text="/" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="commentaire" text="/" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label text="Date de création du projet" GridPane.rowIndex="9" />
+                        <Label fx:id="dateCreation" text="/" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <Label text="Validation du projet" GridPane.rowIndex="10" />
+                        <Label fx:id="validation" text="/" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                      </children>
                   </GridPane>
                   <ButtonBar layoutX="54.0" layoutY="250.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">

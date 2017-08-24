@@ -90,7 +90,7 @@ public class ChantierFormController implements Initializable {
             java.util.Date parsed5 = (java.util.Date) format.parse(finEffective.getValue().toString());
             java.sql.Date date5 = new Date(parsed5.getTime());
 
-            ChantierDto chantier = new ChantierDto(10000,1,1, localisation.getText(), designation.getText(), commentaire.getText(), date1, date2, date3, date4, date5, true);
+            ChantierDto chantier = new ChantierDto(10000, 1, localisation.getText(), designation.getText(), commentaire.getText(), date1, date2, date3, date4, date5, true);
             if (Utilitaire.insertChantier(chantier)) {
                 message.setText("Chantier ajouté avec succès !");
                 Stage stage = (Stage) pane.getScene().getWindow();

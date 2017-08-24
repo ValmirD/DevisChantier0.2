@@ -14,7 +14,6 @@ import java.sql.Date;
 public class ChantierDto extends EntityDto<Integer> {
     
     private int idClient;
-    private int idDevis;
     private String localisation;
     private String designationProjet;
     private String commentaire;
@@ -25,10 +24,9 @@ public class ChantierDto extends EntityDto<Integer> {
     private Date dateFinEffective;
     private boolean validationProjet;
 
-    public ChantierDto(int idChantier, int idClient, int idDevis, String localisation, String designationProjet, String commentaire, Date dateCreationProjet, Date dateDebutPrevue, Date dateDebutEffective, Date dateFinPrevue, Date dateFinEffective, boolean validationProjet) {
+    public ChantierDto(int idChantier, int idClient, String localisation, String designationProjet, String commentaire, Date dateCreationProjet, Date dateDebutPrevue, Date dateDebutEffective, Date dateFinPrevue, Date dateFinEffective, boolean validationProjet) {
         this.id = idChantier;
         this.idClient = idClient;
-        this.idDevis = idDevis;
         this.localisation = localisation;
         this.designationProjet = designationProjet;
         this.commentaire = commentaire;
@@ -42,10 +40,6 @@ public class ChantierDto extends EntityDto<Integer> {
 
     public int getIdClient() {
         return idClient;
-    }
-
-    public int getIdDevis() {
-        return idDevis;
     }
 
     public String getLocalisation() {

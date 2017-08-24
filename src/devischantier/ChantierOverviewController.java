@@ -10,6 +10,7 @@ import db.dto.ChantierDto;
 import db.exception.DevisChantierBusinessException;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.util.Collection;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -47,8 +48,6 @@ public class ChantierOverviewController implements Initializable {
     @FXML
     private Label idClient;
     @FXML
-    private Label idDevis;
-    @FXML
     private Label datePrevue;
     @FXML
     private Label dateEffective;
@@ -84,6 +83,9 @@ public class ChantierOverviewController implements Initializable {
         editer.setDisable(true);
         displayList();
     }
+    
+    @FXML
+    private void gererValidation(ActionEvent event) {}
 
     @FXML
     private void gererNouveau(ActionEvent event) {
@@ -150,7 +152,6 @@ public class ChantierOverviewController implements Initializable {
                     editer.setDisable(false);
                     idChantier.setText(chantiers.getId().toString());
                     idClient.setText(Integer.toString(chantiers.getIdClient()));
-                    idDevis.setText(Integer.toString(chantiers.getIdDevis()));
                     datePrevue.setText(chantiers.getDateDebutPrevue().toString());
                     if (chantiers.getDateDebutEffective() != null) {
                         dateEffective.setText(chantiers.getDateDebutEffective().toString());
@@ -159,6 +160,7 @@ public class ChantierOverviewController implements Initializable {
                     if (chantiers.getDateFinEffective() != null) {
                         dateFinEffective.setText(chantiers.getDateFinEffective().toString());
                     }
+
                     dateCreation.setText(chantiers.getDateCreationProjet().toString());
                     localisation.setText(chantiers.getLocalisation());
                     designation.setText(chantiers.getDesignationProjet());
