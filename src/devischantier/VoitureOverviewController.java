@@ -7,11 +7,17 @@ package devischantier;
 
 import db.business.FacadeDB;
 import db.dto.VoitureDto;
+import db.dto.VoitureDuChantierDto;
 import db.exception.DevisChantierBusinessException;
+import db.selDto.VoitureDuChantierSel;
+import db.selDto.VoitureSel;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.util.Collection;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -62,6 +68,14 @@ public class VoitureOverviewController implements Initializable {
     private Button supprimer;
     @FXML
     private Label message;
+    @FXML
+    private Label idChantier;
+    @FXML
+    private Label debutDisponibilite;
+    @FXML
+    private Label finDisponibilite;
+    @FXML
+    private Label quantite;
 
     /**
      * Initializes the controller class.
@@ -122,7 +136,6 @@ public class VoitureOverviewController implements Initializable {
         }
     }
 
-    @FXML
     private void displayList() {
         idMarque.setCellValueFactory(new PropertyValueFactory<>("marque"));
         idModele.setCellValueFactory(new PropertyValueFactory<>("modele"));
@@ -143,6 +156,19 @@ public class VoitureOverviewController implements Initializable {
                     chassis.setText(voiture.getNumeroChassis());
                     prix.setText(Double.toString(voiture.getPrixHtva()));
                     carburant.setText(voiture.getCarburant());
+                    
+                    java.sql.Date date = new Date(System.currentTimeMillis());
+                    VoitureDuChantierSel sel = new VoitureDuChantierSel(Integer.parseInt(id.getText()), date);
+                    System.out.println(date.toString());
+                    try {
+                        VoitureDuChantierDto voitChantier = FacadeDB.findVoitureDuChantierBySel(sel);
+                        idChantier.setText(Integer.toString(voitChantier.getIdChantier()));
+                        debutDisponibilite.setText(voitChantier.getDebutDisponilibite().toString());
+                        finDisponibilite.setText(voitChantier.getFinDisponilibite().toString());
+                        quantite.setText(Integer.toString(voitChantier.getNombreJours()));
+                    } catch (DevisChantierBusinessException ex) {
+                        System.out.println(ex.getMessage());
+                    }
                 }
             });
         } catch (DevisChantierBusinessException ex) {

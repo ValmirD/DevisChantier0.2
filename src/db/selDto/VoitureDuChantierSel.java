@@ -5,6 +5,8 @@
  */
 package db.selDto;
 
+import java.sql.Date;
+
 /**
  *
  * @author Vali
@@ -12,11 +14,25 @@ package db.selDto;
 public class VoitureDuChantierSel {
     
     private int idVoitureDuChantier;
+    private Date date;
 
     public VoitureDuChantierSel(int idVoitureDuChantier) {
         this.idVoitureDuChantier = idVoitureDuChantier;
     }
 
+    public VoitureDuChantierSel(int idVoitureDuChantier, Date aujourdhui) {
+        this.idVoitureDuChantier = idVoitureDuChantier;
+        this.date = aujourdhui;
+    }
+
+    public VoitureDuChantierSel(Date aujourdhui) {
+        this.date = aujourdhui;
+    }
+
+    public java.sql.Date getDate() {
+        return date;
+    }
+        
     public int getIdVoitureDuChantier() {
         return idVoitureDuChantier;
     }

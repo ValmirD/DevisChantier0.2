@@ -7,7 +7,6 @@ package devischantier;
 
 import db.business.FacadeDB;
 import db.dto.VoitureDto;
-import db.dto.VoitureDto;
 import db.exception.DevisChantierBusinessException;
 import db.selDto.VoitureSel;
 import java.net.URL;
@@ -16,7 +15,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -49,6 +50,15 @@ public class VoitureFormEditerController implements Initializable {
     private Label message;
     
     private int idVoiture;
+    
+    @FXML
+    private DatePicker debutDisponibilite;
+    @FXML
+    private DatePicker finDisponibilite;
+    @FXML
+    private TextField quantite;
+    @FXML
+    private ListView<?> idChantier;
 
     /**
      * Initializes the controller class.

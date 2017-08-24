@@ -35,6 +35,15 @@ public class VoitureDuChantierDB {
             if (sel.getIdVoitureDuChantier() != 0) {
                 where = where + " idVoitureDuChantier = ? ";
             }
+            
+            /*if (sel.getDate() != null){
+                if (!where.equals("")) {
+                    where = where + " AND ";
+                }
+                where = where + " debutDisponibilite <= ?";
+                where = where + " AND ";
+                where = where + " finDisponibilite >= ?";
+            }*/
                               
             if (where.length() != 0) {
                 where = " where " + where;
@@ -45,7 +54,11 @@ public class VoitureDuChantierDB {
                     stmt.setInt(i, sel.getIdVoitureDuChantier());
                     i++;
                 }
-
+               /* if (sel.getDate() != null){
+                    stmt.setDate(i, sel.getDate());
+                    i++;
+                    stmt.setDate(i, sel.getDate());
+                }*/
             } else {
                 stmt = connexion.prepareStatement(query);
             }
