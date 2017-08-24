@@ -112,8 +112,8 @@ public class ChantierOverviewController implements Initializable {
             if (idChantier != null) {
                 ChantierFormEditerController controller = loader.<ChantierFormEditerController>getController();
                 controller.initVariables(Integer.parseInt(idChantier.getText()));
-            } 
-            
+            }
+
             Stage stage = new Stage();
             Scene scene = new Scene(enginInfo);
             stage.setScene(scene);
@@ -152,16 +152,21 @@ public class ChantierOverviewController implements Initializable {
                     idClient.setText(Integer.toString(chantiers.getIdClient()));
                     idDevis.setText(Integer.toString(chantiers.getIdDevis()));
                     datePrevue.setText(chantiers.getDateDebutPrevue().toString());
-                    dateEffective.setText(chantiers.getDateDebutEffective().toString());
+                    if (chantiers.getDateDebutEffective() != null) {
+                        dateEffective.setText(chantiers.getDateDebutEffective().toString());
+                    }
                     dateFinPrevue.setText(chantiers.getDateFinPrevue().toString());
-                    dateFinEffective.setText(chantiers.getDateFinEffective().toString());
+                    if (chantiers.getDateFinEffective() != null) {
+                        dateFinEffective.setText(chantiers.getDateFinEffective().toString());
+                    }
                     dateCreation.setText(chantiers.getDateCreationProjet().toString());
                     localisation.setText(chantiers.getLocalisation());
                     designation.setText(chantiers.getDesignationProjet());
                     commentaire.setText(chantiers.getCommentaire());
                     validation.setText(Boolean.toString(chantiers.isValidationProjet()));
                 }
-            });
+            }
+            );
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
