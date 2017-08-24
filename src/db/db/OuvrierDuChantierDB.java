@@ -34,7 +34,18 @@ public class OuvrierDuChantierDB {
             if (sel.getIdOuvrierDuChantier() != 0) {
                 where = where + " idOuvrierDuChantier = ? ";
             }
-            
+            if (sel.getIdOuvrier()!= 0) {
+                if (!where.equals("")) {
+                    where = where + " AND ";
+                }
+                where = where + " idOuvrier = ? ";
+            }
+            if (sel.getIdChantier() != 0) {
+                if (!where.equals("")) {
+                    where = where + " AND ";
+                }
+                where = where + " idChantier = ? ";
+            }
                         
             if (where.length() != 0) {
                 where = " where " + where;
@@ -45,7 +56,14 @@ public class OuvrierDuChantierDB {
                     stmt.setInt(i, sel.getIdOuvrierDuChantier());
                     i++;
                 }
-
+                if (sel.getIdOuvrier() != 0) {
+                    stmt.setInt(i, sel.getIdOuvrier());
+                    i++;
+                }
+                if (sel.getIdChantier() != 0) {
+                    stmt.setInt(i, sel.getIdChantier());
+                    i++;
+                }
             } else {
                 stmt = connexion.prepareStatement(query);
             }

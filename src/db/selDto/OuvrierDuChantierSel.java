@@ -12,13 +12,32 @@ package db.selDto;
 public class OuvrierDuChantierSel {
     
     private int idOuvrierDuChantier;
+    private int idOuvrier;
+    private int idChantier;
 
     public OuvrierDuChantierSel(int idOuvrierDuChantier) {
         this.idOuvrierDuChantier = idOuvrierDuChantier;
     }
 
+    public OuvrierDuChantierSel(int idOuvrier, int idChantier) {
+        this.idOuvrier = idOuvrier;
+        this.idChantier = idChantier;
+    }
+    public OuvrierDuChantierSel(int idOuvrier, boolean b) {
+        this.idOuvrier = idOuvrier;
+    }
+    
+
     public int getIdOuvrierDuChantier() {
         return idOuvrierDuChantier;
+    }
+
+    public int getIdOuvrier() {
+        return idOuvrier;
+    }
+
+    public int getIdChantier() {
+        return idChantier;
     }
     
     

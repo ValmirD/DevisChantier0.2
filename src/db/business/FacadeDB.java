@@ -286,6 +286,24 @@ public class FacadeDB {
             }
         }
     }
+    
+    public static Collection<ChantierDto> findChantiersBySel(ChantierSel sel) throws DevisChantierBusinessException {
+        try {
+            DBManager.startTransaction();
+            Collection<ChantierDto> col = ChantierBL.findBySel(sel);
+            DBManager.validateTransaction();
+            return col;
+        } catch (DevisChantierDbException lDB) {
+            String msg = lDB.getMessage();
+            try {
+                DBManager.cancelTransaction();
+            } catch (DevisChantierDbException ex) {
+                msg = ex.getMessage() + "\n" + msg;
+            } finally {
+                throw new DevisChantierBusinessException("Chantier par ID introuvable ! \n" + msg);
+            }
+        }
+    }
 
     public static int addChantier(ChantierDto chaDto) throws DevisChantierBusinessException {
         try {
@@ -1414,6 +1432,24 @@ public class FacadeDB {
             }
             DBManager.validateTransaction();
             return ldto;
+        } catch (DevisChantierDbException lDB) {
+            String msg = lDB.getMessage();
+            try {
+                DBManager.cancelTransaction();
+            } catch (DevisChantierDbException ex) {
+                msg = ex.getMessage() + "\n" + msg;
+            } finally {
+                throw new DevisChantierBusinessException("OuvrierDuChantier par ID introuvable ! \n" + msg);
+            }
+        }
+    }
+    
+    public static Collection<OuvrierDuChantierDto> findOuvriersDuChantierBySel(OuvrierDuChantierSel sel) throws DevisChantierBusinessException {
+        try {
+            DBManager.startTransaction();
+            Collection<OuvrierDuChantierDto> col = OuvrierDuChantierBL.findBySel(sel);
+            DBManager.validateTransaction();
+            return col;
         } catch (DevisChantierDbException lDB) {
             String msg = lDB.getMessage();
             try {
