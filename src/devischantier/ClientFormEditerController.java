@@ -7,13 +7,16 @@ package devischantier;
 
 import db.business.FacadeDB;
 import db.dto.ClientDto;
-import db.dto.ClientDto;
 import db.exception.DevisChantierBusinessException;
 import db.selDto.ClientSel;
 import java.net.URL;
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -63,17 +66,28 @@ public class ClientFormEditerController implements Initializable {
 
     public void initVariables(int idClient) {
         this.idClient = idClient;
-        /*
+
         try {
             ClientDto clients = FacadeDB.findClientBySel(new ClientSel(idClient));
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date date = format.parse(clients.getDateNaissance().toString());
+            SimpleDateFormat y = new SimpleDateFormat("yyyy");
+            int year = Integer.parseInt(y.format(date));
+            SimpleDateFormat m = new SimpleDateFormat("MM");
+            int month = Integer.parseInt(m.format(date));
+            SimpleDateFormat d = new SimpleDateFormat("dd");
+            int day = Integer.parseInt(d.format(date));
+            LocalDate dateN = LocalDate.of(year, month, day);
             nom.setText(clients.getNom());
             prenom.setText(clients.getPrenom());
-            naissance.setText(clients.getDateNaissance().toString());
+            naissance.setValue(dateN);
             telephone.setText(clients.getNumeroTelephone());
             email.setText(clients.getEmail());
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
-        }*/
+        } catch (ParseException ex) {
+            Logger.getLogger(ClientFormEditerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
