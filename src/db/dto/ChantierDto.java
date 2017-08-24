@@ -77,8 +77,5 @@ public class ChantierDto extends EntityDto<Integer> {
     public boolean isValidationProjet() {
         return validationProjet;
     }
-
-    
-    
     
 }

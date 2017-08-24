@@ -6,6 +6,7 @@ drop table CODEREFERENCEDUCHANTIER;
 drop table VOITUREDUCHANTIER;
 drop table CAMIONDUCHANTIER;
 drop table CONDUCTEURDUCHANTIER;
+drop table DEVIS;
 
 drop table CHANTIER;
 
@@ -17,7 +18,6 @@ drop table VOITURE;
 drop table CAMION;
 drop table CLIENT;
 drop table OUVRIER;
-drop table DEVIS;
 drop table PATRON;
 drop table CONDUCTEUR;
 drop table SEQUENCES;
@@ -117,20 +117,9 @@ create table PATRON (
     constraint fkPatron foreign key (idPatron) references CONDUCTEUR(idConducteur) ON DELETE CASCADE
 	);
 	
-create table DEVIS (
-	idDevis numeric(10) primary key not null, 
-	designationDevis varchar(20) not null,
-	statut varchar(20) not null,
-	dateDevis date not null,
-	idChantier numeric(10) not null
-	
-
-	);
-	
 create table CHANTIER (
 	idChantier numeric(10) primary key not null, 
     idClient numeric(10) not null,
-    idDevis numeric(10) not null,
     localisation varchar(20) not null,
 	designationProjet varchar(20) not null,
 	commentaire varchar(500) not null,
@@ -141,8 +130,17 @@ create table CHANTIER (
 	dateFinEffective date,
 	validationProjet boolean not null,
         
-    constraint fkClient foreign key (idClient) references CLIENT(idClient),
-    constraint fkDevis foreign key (idDevis) references DEVIS(idDevis)
+    constraint fkClient foreign key (idClient) references CLIENT(idClient) ON DELETE CASCADE
+	);
+	
+	create table DEVIS (
+	idDevis numeric(10) primary key not null, 
+	designationDevis varchar(20) not null,
+	statut varchar(20) not null,
+	dateDevis date not null,
+	idChantier numeric(10) not null,
+	
+	constraint fkDevis foreign key (idChantier) references CHANTIER(idChantier) ON DELETE CASCADE
 	);
 
 create table CONDUCTEURDUCHANTIER (
@@ -271,7 +269,6 @@ Insert into CAMION Values (1,'C', 2, 1500, 'Mercedes', 'Worker', 'ZE25695d2d5', 
 Insert into CLIENT Values (1, 'Benoit', 'Marteans', '1960-02-04', '0488365222', 'benoit@hotmail.com');
 Insert into CODEREFERENCE Values (1, 'ER25698', 'Canalisation', 15);
 Insert into CONDUCTEUR Values (1, 'af3e4dd9d4eadafc95d2f5e1fe75bef0661e56b4', 'Laurent', 'Cordenier', '1990-09-11', '0485658999', '0499321587', 'laurent@melin.com', 3300, '2013-02-01', -1);
-Insert into DEVIS Values (1, 'Parc de Woluwe', 'En validation', '2017-07-15', 1);
 Insert into ENGIN Values (1, 'Grue', 'Gravier', 'REZ89851', 20);
 Insert into MATERIAU Values (1, 'Sable', 'Terrassement', '698.325.21', 'Externe', 'Hulpe', 10);
 Insert into OUVRIER Values (1, 'Jack', 'Bauer', '1988-05-03', '0477235987', 'jackbauer@melin.be', 1745, '2001-11-05', -1);
@@ -279,7 +276,8 @@ Insert into PATRON Values (1);
 Insert into PETITMATERIEL Values (1, 'Marteau', 'Nivellement', '2REZEDD', 5);
 Insert into VOITURE Values (1, 'Ford', 'Transporter', '36d5d5d48sd', 'Diesel', 19);
 
-Insert into CHANTIER Values (1, 1, 1, 'Bruxelles', 'parc de la woluwe', 'Cest un bon projet', '2017-02-01','2017-03-03', null,'2017-03-27', null, false);
+Insert into CHANTIER Values (1, 1, 'Bruxelles', 'parc de la woluwe', 'Cest un bon projet', '2017-02-01','2017-03-03', null,'2017-03-27', null, false);
+Insert into DEVIS Values (1, 'Parc de Woluwe', 'En validation', '2017-07-15', 1);
 
 Insert into CAMIONDUCHANTIER Values (1, 1, 1, 5, '2017-01-01', '2017-01-11');
 Insert into OUVRIERDUCHANTIER Values (1, 1, 1, '2017-09-01', '2017-09-10', 36);

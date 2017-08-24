@@ -50,6 +50,11 @@ public class ClientDto extends EntityDto<Integer> {
         return email;
     }
 
+    @Override
+    public String toString() {
+        return nom + " " + prenom;
+    } 
+    
     
     
     

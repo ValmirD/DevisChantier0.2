@@ -5,18 +5,27 @@
  */
 package devischantier;
 
+import db.business.FacadeDB;
 import db.dto.ChantierDto;
+import db.dto.ClientDto;
+import db.exception.DevisChantierBusinessException;
 import java.net.URL;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -55,6 +64,8 @@ public class ChantierFormController implements Initializable {
     private Button annuler;
     @FXML
     private Label message;
+    @FXML
+    private ListView<ClientDto> listClients;
 
     /**
      * Initializes the controller class.
@@ -62,11 +73,11 @@ public class ChantierFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+        displayClients();
+    }
 
     @FXML
     private void gererValidation(ActionEvent event) {
-
 
     }
 
@@ -104,10 +115,41 @@ public class ChantierFormController implements Initializable {
         }
     }
 
+    private void displayClients() {
+        try {
+            Collection<ClientDto> clients = FacadeDB.getAllClient();
+            ObservableList<ClientDto> data = FXCollections.observableArrayList(clients);
+            System.out.println(data.get(0));
+            listClients.setItems(data);
+            listClients.setCellFactory((ListView<ClientDto> param) -> new ListCell<ClientDto>() {
+                @Override
+                protected void updateItem(ClientDto item, boolean empty) {
+                    super.updateItem(item, true);
+                    if (empty || item == null || (item.getNom() + " " + item.getPrenom()) == null) {
+                        setText(null);
+                    } else {
+                        setText(item.getNom() + " " + item.getPrenom());
+                    }
+                }
+            });
+            listClients.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+
+                @Override
+                public void handle(javafx.scene.input.MouseEvent event) {
+                    ClientDto client = listClients.getSelectionModel().selectedItemProperty().get();
+                    
+                }
+            });
+
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
     @FXML
     private void annulation(ActionEvent event) {
         Stage stage = (Stage) pane.getScene().getWindow();
         stage.close();
     }
-    
+
 }
