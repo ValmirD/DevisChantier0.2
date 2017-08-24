@@ -51,15 +51,15 @@
                         <Label text="Type" GridPane.rowIndex="2" />
                         <Label text="Référence" GridPane.rowIndex="3" />
                         <Label text="Fourniture" GridPane.rowIndex="4" />
-                        <Label fx:id="id" text="Label" GridPane.columnIndex="1" />
-                        <Label fx:id="nom" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="type" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label fx:id="reference" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="fourniture" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label fx:id="production" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="id" text="/" GridPane.columnIndex="1" />
+                        <Label fx:id="nom" text="/" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="type" text="/" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="reference" text="/" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="fourniture" text="/" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="production" text="/" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label text="Site de production" GridPane.rowIndex="5" />
                         <Label text="Prix hors TVA" GridPane.rowIndex="6" />
-                        <Label fx:id="prix" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="prix" text="/" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
                   <ButtonBar layoutX="54.0" layoutY="250.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">

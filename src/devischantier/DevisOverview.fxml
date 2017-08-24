@@ -49,11 +49,11 @@
                         <Label text="Statut" GridPane.rowIndex="2" />
                         <Label text="Date du devis" GridPane.rowIndex="3" />
                         <Label text="Désignation" GridPane.rowIndex="4" />
-                        <Label fx:id="idDevis" text="Label" GridPane.columnIndex="1" />
-                        <Label fx:id="idChantier" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="statut" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label fx:id="date" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="designation" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="idDevis" text="/" GridPane.columnIndex="1" />
+                        <Label fx:id="idChantier" text="/" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="statut" text="/" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="date" text="/" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="designation" text="/" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
                   <ButtonBar layoutX="54.0" layoutY="250.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
