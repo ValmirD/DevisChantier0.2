@@ -46,7 +46,10 @@ public class VoitureDto extends EntityDto<Integer> {
         return prixHtva;
     }
 
-
+    @Override
+    public String toString() {
+        return marque + " " + modele;
+    }
 
 
     

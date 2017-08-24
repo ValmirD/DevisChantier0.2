@@ -10,7 +10,7 @@ package db.dto;
  * @author Vali
  */
 public class MateriauDto extends EntityDto<Integer> {
-    
+
     private String nom;
     private String type;
     private String reference;
@@ -51,8 +51,10 @@ public class MateriauDto extends EntityDto<Integer> {
     public double getPrixHtva() {
         return prixHtva;
     }
-    
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return nom + " " + type;
+    }
+
 }

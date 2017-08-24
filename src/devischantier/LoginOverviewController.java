@@ -37,7 +37,7 @@ import model.Utilitaire;
 /**
  * FXML Controller class
  *
- * @author Marco
+ * @author Vali
  */
 public class LoginOverviewController implements Initializable {
 

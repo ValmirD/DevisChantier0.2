@@ -24,7 +24,6 @@ public class ConducteurDto extends EntityDto<Integer> {
     private Date entreeFonction;
     private double cout;
 
-
     public ConducteurDto(int idConducteur, String password, String numeroTelephonePro, String numeroTelephone, double remuneration, String nom, String prenom, Date dateNaissance, String email, Date entreeFonction, double cout) {
         this.id = idConducteur;
         this.password = password;
@@ -79,6 +78,9 @@ public class ConducteurDto extends EntityDto<Integer> {
         return cout;
     }
 
-
+    @Override
+    public String toString() {
+        return nom + " " + prenom;
+    }
 
 }

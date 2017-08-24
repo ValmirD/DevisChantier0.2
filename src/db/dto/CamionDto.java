@@ -10,7 +10,7 @@ package db.dto;
  * @author Vali
  */
 public class CamionDto extends EntityDto<Integer> {
-    
+
     private String categorie;
     private int tonnage;
     private double capacite;
@@ -19,8 +19,7 @@ public class CamionDto extends EntityDto<Integer> {
     private String numeroChassis;
     private String carburant;
     private double prixHtva;
-    
-    
+
     public CamionDto(int idCamion, String categorie, int tonnage, double capacite, String marque, String modele, String numeroChassis, String carburant, double prixHtva) {
         this.id = idCamion;
         this.categorie = categorie;
@@ -32,7 +31,7 @@ public class CamionDto extends EntityDto<Integer> {
         this.carburant = carburant;
         this.prixHtva = prixHtva;
     }
-    
+
     public String getCategorie() {
         return categorie;
     }
@@ -65,6 +64,9 @@ public class CamionDto extends EntityDto<Integer> {
         return prixHtva;
     }
 
-    
-    
+    @Override
+    public String toString() {
+        return marque + " " + modele;
+    }
+
 }

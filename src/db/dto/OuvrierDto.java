@@ -7,13 +7,12 @@ import java.sql.Date;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Vali
  */
 public class OuvrierDto extends EntityDto<Integer> {
-    
+
     private double remuneration;
     private String nom;
     private String prenom;
@@ -66,7 +65,10 @@ public class OuvrierDto extends EntityDto<Integer> {
     public double getCout() {
         return cout;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return nom + " " + prenom;
+    }
+
 }

@@ -78,4 +78,9 @@ public class ChantierDto extends EntityDto<Integer> {
         return validationProjet;
     }
     
+    @Override
+    public String toString() {
+        return designationProjet + " " + id;
+    } 
+    
 }

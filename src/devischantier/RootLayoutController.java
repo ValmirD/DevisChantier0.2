@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Marco
+ * @author Vali
  */
 public class RootLayoutController implements Initializable {
 

@@ -10,7 +10,7 @@ package db.dto;
  * @author Vali
  */
 public class CodeReferenceDto extends EntityDto<Integer> {
-    
+
     private String reference;
     private String typeTravail;
     private double prixHtva;
@@ -33,7 +33,10 @@ public class CodeReferenceDto extends EntityDto<Integer> {
     public double getPrixHtva() {
         return prixHtva;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return reference;
+    }
+
 }

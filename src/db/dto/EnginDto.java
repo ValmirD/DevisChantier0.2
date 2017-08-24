@@ -10,7 +10,7 @@ package db.dto;
  * @author Vali
  */
 public class EnginDto extends EntityDto<Integer> {
-    
+
     private String nom;
     private String type;
     private String reference;
@@ -39,7 +39,10 @@ public class EnginDto extends EntityDto<Integer> {
     public double getPrixHeure() {
         return prixHeure;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return nom + " " + type;
+    }
+
 }

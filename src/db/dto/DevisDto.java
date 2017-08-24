@@ -12,7 +12,7 @@ import java.sql.Date;
  * @author Vali
  */
 public class DevisDto extends EntityDto<Integer> {
-    
+
     private String designationDevis;
     private String statut;
     private Date dateDevis;
@@ -41,7 +41,10 @@ public class DevisDto extends EntityDto<Integer> {
     public int getIdChantier() {
         return idChantier;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return designationDevis + " " + id;
+    }
+
 }
