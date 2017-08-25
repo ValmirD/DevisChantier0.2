@@ -25,7 +25,6 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -77,8 +76,7 @@ public class LoginOverviewController implements Initializable {
         }
     }
 
-    @FXML
-    private void gererButton(ActionEvent event) {
+    private void toNextScreen() {
         FXMLLoader l = new FXMLLoader();
         l.setLocation(DevisChantier.class.getResource("RootLayout.fxml"));
         BorderPane rootLayout;
@@ -90,12 +88,6 @@ public class LoginOverviewController implements Initializable {
             AnchorPane mainOverview;
             mainOverview = (AnchorPane) loader.load();
             rootLayout.setCenter(mainOverview);
-
-            if (inscription == true) {
-                gererInscription(event);
-            } else {
-                gererConnection(event);
-            }
             if (loginId != null) {
                 MainOverviewController controller = loader.<MainOverviewController>getController();
                 controller.initVariables(Integer.parseInt(loginId.getText()), isPatron);
@@ -105,6 +97,15 @@ public class LoginOverviewController implements Initializable {
             stage.setScene(scene);
         } catch (IOException ex) {
             Logger.getLogger(LoginOverviewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void gererButton(ActionEvent event) {
+        if (inscription == true) {
+            gererInscription(event);
+        } else {
+            gererConnection(event);
         }
     }
 
@@ -128,6 +129,7 @@ public class LoginOverviewController implements Initializable {
         try {
             FacadeDB.addPatron(patron);
             isPatron = true;
+            toNextScreen();
 
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
@@ -157,11 +159,12 @@ public class LoginOverviewController implements Initializable {
                 if (patron != null) {
                     isPatron = true;
                 }
+                toNextScreen();
             } else {
                 loginError.setText("Votre ID ou mot de passe est incorrect");
             }
         } catch (DevisChantierBusinessException ex) {
-            Logger.getLogger(LoginOverviewController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
     }
 

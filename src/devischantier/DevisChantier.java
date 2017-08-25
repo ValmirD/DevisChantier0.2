@@ -14,13 +14,18 @@ import model.Utilitaire;
 import db.business.FacadeDB;
 import db.exception.DevisChantierBusinessException;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.sql.Connection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import static javafx.application.Application.launch;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import org.apache.derby.drda.NetworkServerControl;
 
 /**
  *
@@ -28,7 +33,7 @@ import javafx.scene.layout.BorderPane;
  */
 public class DevisChantier extends Application {
 
-  private Stage primaryStage;
+    private Stage primaryStage;
     private BorderPane rootLayout;
 
     @Override
@@ -36,29 +41,9 @@ public class DevisChantier extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Gestion des devis");
 
-       // initRootLayout();
-
+        // initRootLayout();
         showLoginOverview();
     }
-
-    /**
-     * Initializes the root layout.
-     */
-   /** public void initRootLayout() {
-        try {
-            // Load root layout from fxml file.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(DevisChantier.class.getResource("RootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
-
-            // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }**/
 
     /**
      * Shows the Client overview inside the root layout.
@@ -82,6 +67,7 @@ public class DevisChantier extends Application {
 
     /**
      * Returns the main stage.
+     *
      * @return
      */
     public Stage getPrimaryStage() {
@@ -89,6 +75,28 @@ public class DevisChantier extends Application {
     }
 
     public static void main(String[] args) {
+        startServer();
         launch(args);
+    }
+
+    private static void startServer() {
+        /*
+        Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+        Connection conn = DriverManager.getConnection("jdbc:derby:" + "DevisChantier" + ";create=true", "root", "root");
+        */
+        System.setProperty("derby.drda.startNetworkServer", "true");
+        try {
+            // start derby in port 20000
+            NetworkServerControl server = new NetworkServerControl(InetAddress.getByName("localhost"),
+                    1527,
+                    "root",
+                    "root");
+            java.io.PrintWriter consoleWriter = new java.io.PrintWriter(System.out, true);
+            server.start(consoleWriter);
+            System.out.println("=====    Started/Connected DB    =====");
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }
