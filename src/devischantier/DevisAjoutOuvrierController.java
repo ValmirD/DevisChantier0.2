@@ -10,12 +10,10 @@ import db.dto.ChantierDto;
 import db.dto.OuvrierDto;
 import db.dto.OuvrierDuChantierDto;
 import db.exception.DevisChantierBusinessException;
-import db.selDto.ChantierSel;
-import db.selDto.OuvrierDuChantierSel;
 import java.net.URL;
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Collection;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -28,13 +26,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import model.Utilitaire;
 
 /**
  * FXML Controller class
@@ -76,13 +77,11 @@ public class DevisAjoutOuvrierController implements Initializable {
     @FXML
     private Label idChantier;
     @FXML
-    private Label debutDisponibilite;
+    private DatePicker debutDisponibilite;
     @FXML
-    private Label finDisponibilite;
+    private DatePicker finDisponibilite;
     @FXML
-    private Label quantite;
-    @FXML
-    private ListView<ChantierDto> listChantiers;
+    private TextField quantite;
 
     /**
      * Initializes the controller class.
@@ -91,6 +90,11 @@ public class DevisAjoutOuvrierController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         displayList();
+        valider.setDisable(true);
+    }
+
+    public void initVariables(int idChantier) {
+        this.idChantier.setText(Integer.toString(idChantier));
     }
 
     private void displayList() {
@@ -117,63 +121,9 @@ public class DevisAjoutOuvrierController implements Initializable {
                     entree.setText(ouvrier.getEntreeFonction().toString());
                     cout.setText(Double.toString(ouvrier.getCout()));
                     remuneration.setText(Double.toString(ouvrier.getRemuneration()));
-                    displayChantiers();
-
+                    valider.setDisable(false);
                 }
             });
-        } catch (DevisChantierBusinessException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    private void displayChantiers() {
-        try {
-            Collection<ChantierDto> chantier = FacadeDB.getAllChantier();
-            ObservableList<ChantierDto> data = FXCollections.observableArrayList(chantier);
-            listChantiers.setItems(data);
-            listChantiers.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
-
-                @Override
-                public void handle(javafx.scene.input.MouseEvent event) {
-                    try {
-                        ChantierDto chantier = listChantiers.getSelectionModel().selectedItemProperty().get();
-                        idChantier.setText(chantier.getId().toString());
-                        System.out.println(id.getText());
-                        System.out.println(chantier.getId());
-                        OuvrierDuChantierSel sel = new OuvrierDuChantierSel(Integer.parseInt(id.getText()), chantier.getId());
-                        OuvrierDuChantierDto ouvcha = FacadeDB.findOuvrierDuChantierBySel(sel);
-
-                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                        java.util.Date date3 = format.parse(ouvcha.getDateDebut().toString());
-                        SimpleDateFormat y3 = new SimpleDateFormat("yyyy");
-                        int year3 = Integer.parseInt(y3.format(date3));
-                        SimpleDateFormat m3 = new SimpleDateFormat("MM");
-                        int month3 = Integer.parseInt(m3.format(date3));
-                        SimpleDateFormat d3 = new SimpleDateFormat("dd");
-                        int day3 = Integer.parseInt(d3.format(date3));
-                        LocalDate dateN3 = LocalDate.of(year3, month3, day3);
-
-                        java.util.Date date4 = format.parse(ouvcha.getDateFin().toString());
-                        SimpleDateFormat y4 = new SimpleDateFormat("yyyy");
-                        int year4 = Integer.parseInt(y4.format(date4));
-                        SimpleDateFormat m4 = new SimpleDateFormat("MM");
-                        int month4 = Integer.parseInt(m4.format(date4));
-                        SimpleDateFormat d4 = new SimpleDateFormat("dd");
-                        int day4 = Integer.parseInt(d4.format(date4));
-                        LocalDate dateN4 = LocalDate.of(year4, month4, day4);
-
-                        debutDisponibilite.setText(dateN3.toString());
-                        finDisponibilite.setText(dateN4.toString());
-                        quantite.setText(Double.toString(ouvcha.getNombreHeures()));
-
-                    } catch (DevisChantierBusinessException ex) {
-                        Logger.getLogger(OuvrierOverviewController.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (ParseException ex) {
-                        Logger.getLogger(OuvrierOverviewController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            });
-
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
@@ -181,6 +131,24 @@ public class DevisAjoutOuvrierController implements Initializable {
 
     @FXML
     private void gererValider(ActionEvent event) {
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            System.out.println(debutDisponibilite.getValue().toString());
+            java.util.Date parsed = (java.util.Date) format.parse(debutDisponibilite.getValue().toString());
+            java.sql.Date dateD = new Date(parsed.getTime());
+
+            java.util.Date parsed2 = (java.util.Date) format.parse(finDisponibilite.getValue().toString());
+            java.sql.Date dateF = new Date(parsed2.getTime());
+
+            OuvrierDuChantierDto ouvrier = new OuvrierDuChantierDto(1000, dateD, dateF, Double.parseDouble(quantite.getText()),
+                    Integer.parseInt(idChantier.getText()), Integer.parseInt(id.getText()));
+            Utilitaire.insertOuvrierDuChantier(ouvrier);
+            Stage stage = (Stage) valider.getScene().getWindow();
+            stage.close();
+        } catch (ParseException ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 
 }

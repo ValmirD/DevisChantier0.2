@@ -9,7 +9,6 @@ import db.business.FacadeDB;
 import db.dto.ChantierDto;
 import db.dto.DevisDto;
 import db.exception.DevisChantierBusinessException;
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -26,7 +25,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -110,6 +108,16 @@ public class DevisFormController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         displayChantiers();
+        ajoutOuvrier.setDisable(true);
+        pdf.setDisable(true);
+        ajoutClient.setDisable(true);
+        ajoutEngin.setDisable(true);
+        ajoutMateriau.setDisable(true);
+        ajoutPetitMateriel.setDisable(true);
+        ajoutCodeReference.setDisable(true);
+        ajoutVoiture.setDisable(true);
+        ajoutCamion.setDisable(true);
+        ajoutConducteur.setDisable(true);
     }
 
     @FXML
@@ -144,6 +152,16 @@ public class DevisFormController implements Initializable {
                     ChantierDto chantier = listChantiers.getSelectionModel().selectedItemProperty().get();
                     idChantier = chantier.getId();
                     System.out.println(idChantier);
+                    ajoutOuvrier.setDisable(false);
+                    pdf.setDisable(false);
+                    ajoutClient.setDisable(false);
+                    ajoutEngin.setDisable(false);
+                    ajoutMateriau.setDisable(false);
+                    ajoutPetitMateriel.setDisable(false);
+                    ajoutCodeReference.setDisable(false);
+                    ajoutVoiture.setDisable(false);
+                    ajoutCamion.setDisable(false);
+                    ajoutConducteur.setDisable(false);
                 }
             });
 
@@ -165,6 +183,10 @@ public class DevisFormController implements Initializable {
         AnchorPane ouvrierInfo;
         try {
             ouvrierInfo = (AnchorPane) loader.load();
+            
+            DevisAjoutOuvrierController controller = loader.<DevisAjoutOuvrierController>getController();
+            controller.initVariables(idChantier);
+            
             Stage stage = new Stage();
             Scene scene = new Scene(ouvrierInfo);
             stage.setScene(scene);
@@ -220,7 +242,7 @@ public class DevisFormController implements Initializable {
         }
 
         // LOGO MELIN
-       Image image = null;
+        Image image = null;
         try {
             image = Image.getInstance("src/images/melin.jpg");
             image.setAbsolutePosition(37, 720);

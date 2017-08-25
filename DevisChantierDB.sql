@@ -164,7 +164,8 @@ create table OUVRIERDUCHANTIER (
     nombreHeures double not null,
 
     constraint fkOUVRIERDUCHANTIER foreign key (idChantier) references CHANTIER(idChantier) ON DELETE CASCADE,
-    constraint fkOUVRIERDUCHANTIER2 foreign key (idOuvrier) references OUVRIER(idOuvrier) ON DELETE CASCADE
+    constraint fkOUVRIERDUCHANTIER2 foreign key (idOuvrier) references OUVRIER(idOuvrier) ON DELETE CASCADE,
+constraint OuvrierChantier UNIQUE(idChantier, idOuvrier)
 	
 	);
 
