@@ -7,11 +7,15 @@ package devischantier;
 
 import db.business.FacadeDB;
 import db.dto.DevisDto;
+import db.dto.OuvrierDuChantierDto;
 import db.exception.DevisChantierBusinessException;
+import db.selDto.OuvrierDuChantierSel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -60,6 +64,22 @@ public class DevisOverviewController implements Initializable {
     private Button supprimer;
     @FXML
     private Label message;
+    @FXML
+    private Label ouvrier;
+    @FXML
+    private Label camion;
+    @FXML
+    private Label engin;
+    @FXML
+    private Label voiture;
+    @FXML
+    private Label materiel;
+    @FXML
+    private Label petitMateriel;
+    @FXML
+    private Label conducteur;
+    @FXML
+    private Label total;
 
     /**
      * Initializes the controller class.
@@ -120,7 +140,6 @@ public class DevisOverviewController implements Initializable {
 
     }
 
-    @FXML
     private void displayList() {
         idDesignation.setCellValueFactory(new PropertyValueFactory<>("designationDevis"));
         idIdentification.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -142,6 +161,16 @@ public class DevisOverviewController implements Initializable {
                     idChantier.setText(Integer.toString(devis.getIdChantier()));
                 }
             });
+        } catch (DevisChantierBusinessException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    private void calculCoutOuvrier(){
+        OuvrierDuChantierSel sel = new OuvrierDuChantierSel(Integer.parseInt(idChantier.getText()));
+        try {
+            Collection<OuvrierDuChantierDto> ouvChantier = FacadeDB.findOuvriersDuChantierBySel(sel);
+            
         } catch (DevisChantierBusinessException ex) {
             System.out.println(ex.getMessage());
         }
